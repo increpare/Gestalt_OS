@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="5" height="4" tilewidth="20" tileheight="20" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="spitesheet.tsx"/>
+ <group name="Nach">
+  <group name="Winter">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+  <group name="Herbst">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+  <group name="Sommer">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+  <group name="Frühling">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+ </group>
+ <group name="Vor">
+  <group name="Winter">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+  <group name="Herbst">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+  <group name="Sommer">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+  <group name="Frühling">
+   <layer name="Nacht" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Abend" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Tag" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+   <layer name="Morgen" width="5" height="4">
+    <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0
+</data>
+   </layer>
+  </group>
+ </group>
+</map>

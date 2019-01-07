@@ -1,0 +1,1476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScappleDocument Version="1.1" ID="EA7C2D45-A8B4-445E-964E-1931DC8451E6">
+    <Notes>
+        <Note ID="0" FontSize="12.0" Position="1841.0,1550.0" Width="119.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Kranzdraht sammeln</String>
+        </Note>
+        <Note ID="1" FontSize="12.0" Position="2056.0,1754.0" Width="81.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Dunkle Nacht</String>
+        </Note>
+        <Note ID="3" FontSize="12.0" Position="2115.0,1617.0" Width="83.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Wolken Kranz</String>
+        </Note>
+        <Note ID="4" FontSize="12.0" Position="1719.0,1619.0" Width="68.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Efeu Kranz</String>
+        </Note>
+        <Note ID="5" FontSize="12.0" Position="2212.0,1610.0" Width="72.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Stern Kranz</String>
+        </Note>
+        <Note ID="6" FontSize="12.0" Position="1838.0,1618.0" Width="71.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Rose Kranz</String>
+        </Note>
+        <Note ID="7" FontSize="12.0" Position="1968.0,1616.0" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>advent kranz</String>
+        </Note>
+        <Note ID="9" FontSize="12.0" Position="2469.0,1810.0" Width="200.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Stars on buried corpse -&gt; sky scene</String>
+        </Note>
+        <Note ID="10" FontSize="12.0" Position="2476.0,1767.0" Width="200.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>lilies on unburied corpse -&gt; buried corpse (plus withered flowers?)</String>
+        </Note>
+        <Note ID="11" FontSize="12.0" Position="2776.0,1724.0" Width="202.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>withered flowers -&gt; things to death?  (but only get after? hmmm)</String>
+        </Note>
+        <Note ID="12" FontSize="12.0" Position="2463.0,1692.0" Width="194.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>ivy wreath -&gt; go to when things die</String>
+        </Note>
+        <Note ID="13" FontSize="12.0" Position="2463.0,1631.0" Width="200.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>rose kranz -&gt; go to time when things were alive? - or will next be alive</String>
+        </Note>
+        <Note ID="14" FontSize="12.0" Position="2511.0,1589.0" Width="200.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>cloud kranz -&gt; cry tears, needed for dark night</String>
+        </Note>
+        <Note ID="15" FontSize="12.0" Position="2457.0,1548.0" Width="157.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>advent kranz -&gt; go to winter</String>
+        </Note>
+        <Note ID="28" FontSize="12.0" Position="480.0,683.0" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Summer</String>
+            <ConnectedNoteIDs>46, 121</ConnectedNoteIDs>
+            <PointsToNoteIDs>46, 121</PointsToNoteIDs>
+        </Note>
+        <Note ID="41" FontSize="12.0" Position="373.0,775.73035" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>42-43</ConnectedNoteIDs>
+            <PointsToNoteIDs>42</PointsToNoteIDs>
+        </Note>
+        <Note ID="42" FontSize="12.0" Position="208.0,770.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>41</ConnectedNoteIDs>
+            <PointsToNoteIDs>41</PointsToNoteIDs>
+        </Note>
+        <Note ID="43" FontSize="12.0" Position="312.867424,869.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>41</ConnectedNoteIDs>
+            <PointsToNoteIDs>41</PointsToNoteIDs>
+        </Note>
+        <Note ID="44" FontSize="12.0" Position="301.0,734.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="46" FontSize="12.0" Position="171.0,682.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Spring</String>
+            <ConnectedNoteIDs>28, 52, 58</ConnectedNoteIDs>
+            <PointsToNoteIDs>52</PointsToNoteIDs>
+        </Note>
+        <Note ID="52" FontSize="12.0" Position="170.0,917.0" Width="50.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Autumn</String>
+            <ConnectedNoteIDs>46</ConnectedNoteIDs>
+            <PointsToNoteIDs>46</PointsToNoteIDs>
+        </Note>
+        <Note ID="58" FontSize="12.0" Position="474.144413,930.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Winter</String>
+            <ConnectedNoteIDs>46</ConnectedNoteIDs>
+            <PointsToNoteIDs>46</PointsToNoteIDs>
+        </Note>
+        <Note ID="60" FontSize="12.0" Position="132.0,596.0" Width="44.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Before</String>
+        </Note>
+        <Note ID="86" FontSize="12.0" Position="881.0,600.0" Width="34.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>After</String>
+        </Note>
+        <Note ID="87" FontSize="12.0" Position="145.0,531.0" Width="200.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>POSSIBLE WITH ROSE (recurrance)</String>
+        </Note>
+        <Note ID="98" FontSize="12.0" Position="666.0,788.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>99-100</ConnectedNoteIDs>
+        </Note>
+        <Note ID="99" FontSize="12.0" Position="509.0,782.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>98</ConnectedNoteIDs>
+            <PointsToNoteIDs>98</PointsToNoteIDs>
+        </Note>
+        <Note ID="100" FontSize="12.0" Position="599.0,854.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>98</ConnectedNoteIDs>
+            <PointsToNoteIDs>98</PointsToNoteIDs>
+        </Note>
+        <Note ID="101" FontSize="12.0" Position="607.0,752.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="102" FontSize="12.0" Position="664.0,1031.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>103-104</ConnectedNoteIDs>
+            <PointsToNoteIDs>103</PointsToNoteIDs>
+        </Note>
+        <Note ID="103" FontSize="12.0" Position="509.0,1005.0" Width="65.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening 3</String>
+            <ConnectedNoteIDs>102</ConnectedNoteIDs>
+            <PointsToNoteIDs>102</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,9</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="104" FontSize="12.0" Position="598.0,1096.0" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day 4</String>
+            <ConnectedNoteIDs>102</ConnectedNoteIDs>
+            <PointsToNoteIDs>102</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,5</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="105" FontSize="12.0" Position="624.0,974.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="106" FontSize="12.0" Position="344.0,1026.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>107-108</ConnectedNoteIDs>
+            <PointsToNoteIDs>107</PointsToNoteIDs>
+        </Note>
+        <Note ID="107" FontSize="12.0" Position="214.0,996.0" Width="65.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening 2</String>
+            <ConnectedNoteIDs>106</ConnectedNoteIDs>
+            <PointsToNoteIDs>106</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,9</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="108" FontSize="12.0" Position="278.0,1091.0" Width="44.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day  1</String>
+            <ConnectedNoteIDs>106</ConnectedNoteIDs>
+            <PointsToNoteIDs>106</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,6</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="109" FontSize="12.0" Position="307.0,970.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="111" FontSize="12.0" Position="1229.0,685.0" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Summer</String>
+            <ConnectedNoteIDs>117</ConnectedNoteIDs>
+            <PointsToNoteIDs>117</PointsToNoteIDs>
+        </Note>
+        <Note ID="112" FontSize="12.0" Position="1090.0,791.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>113-114, 130</ConnectedNoteIDs>
+            <PointsToNoteIDs>113, 130</PointsToNoteIDs>
+        </Note>
+        <Note ID="113" FontSize="12.0" Position="958.0,772.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>112</ConnectedNoteIDs>
+            <PointsToNoteIDs>112</PointsToNoteIDs>
+        </Note>
+        <Note ID="114" FontSize="12.0" Position="1023.0,837.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>112, 132</ConnectedNoteIDs>
+            <PointsToNoteIDs>112, 132</PointsToNoteIDs>
+        </Note>
+        <Note ID="115" FontSize="12.0" Position="1050.0,736.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="117" FontSize="12.0" Position="920.0,684.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Spring</String>
+            <ConnectedNoteIDs>111, 119</ConnectedNoteIDs>
+        </Note>
+        <Note ID="119" FontSize="12.0" Position="919.0,919.0" Width="50.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Autumn</String>
+            <ConnectedNoteIDs>117</ConnectedNoteIDs>
+            <PointsToNoteIDs>117</PointsToNoteIDs>
+        </Note>
+        <Note ID="121" FontSize="12.0" Position="1232.0,926.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Winter</String>
+            <ConnectedNoteIDs>28</ConnectedNoteIDs>
+        </Note>
+        <Note ID="122" FontSize="12.0" Position="1415.0,790.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>123-124</ConnectedNoteIDs>
+            <PointsToNoteIDs>123</PointsToNoteIDs>
+        </Note>
+        <Note ID="123" FontSize="12.0" Position="1249.0,784.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>122</ConnectedNoteIDs>
+            <PointsToNoteIDs>122</PointsToNoteIDs>
+        </Note>
+        <Note ID="124" FontSize="12.0" Position="1348.0,855.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>122</ConnectedNoteIDs>
+            <PointsToNoteIDs>122</PointsToNoteIDs>
+        </Note>
+        <Note ID="125" FontSize="12.0" Position="1380.0,735.0" Width="49.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night 5</String>
+            <Formatting>
+                <FormatRange Bold="Yes">0,7</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="126" FontSize="12.0" Position="1413.0,1033.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>127-128</ConnectedNoteIDs>
+            <PointsToNoteIDs>127</PointsToNoteIDs>
+        </Note>
+        <Note ID="127" FontSize="12.0" Position="1258.0,1007.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>126</ConnectedNoteIDs>
+            <PointsToNoteIDs>126</PointsToNoteIDs>
+        </Note>
+        <Note ID="128" FontSize="12.0" Position="1347.0,1098.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>126</ConnectedNoteIDs>
+            <PointsToNoteIDs>126</PointsToNoteIDs>
+        </Note>
+        <Note ID="129" FontSize="12.0" Position="1373.0,976.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="130" FontSize="12.0" Position="1093.0,1027.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>112, 131-132</ConnectedNoteIDs>
+            <PointsToNoteIDs>112, 131</PointsToNoteIDs>
+        </Note>
+        <Note ID="131" FontSize="12.0" Position="942.0,1000.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>130</ConnectedNoteIDs>
+            <PointsToNoteIDs>130</PointsToNoteIDs>
+        </Note>
+        <Note ID="132" FontSize="12.0" Position="1027.0,1093.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>114, 130</ConnectedNoteIDs>
+            <PointsToNoteIDs>114, 130</PointsToNoteIDs>
+        </Note>
+        <Note ID="133" FontSize="12.0" Position="1056.0,972.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="191" FontSize="12.0" Position="468.968936,1429.610863" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Summer</String>
+            <ConnectedNoteIDs>197, 199, 201</ConnectedNoteIDs>
+            <PointsToNoteIDs>199, 201</PointsToNoteIDs>
+        </Note>
+        <Note ID="192" FontSize="12.0" Position="377.0,1554.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>194-195</ConnectedNoteIDs>
+            <PointsToNoteIDs>194-195</PointsToNoteIDs>
+        </Note>
+        <Note ID="193" FontSize="12.0" Position="219.054315,1551.240699" Width="65.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening 2</String>
+            <ConnectedNoteIDs>195</ConnectedNoteIDs>
+            <PointsToNoteIDs>195</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,9</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="194" FontSize="12.0" Position="277.0,1622.597842" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>192, 195</ConnectedNoteIDs>
+            <PointsToNoteIDs>195</PointsToNoteIDs>
+        </Note>
+        <Note ID="195" FontSize="12.0" Position="303.0,1490.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>192-194</ConnectedNoteIDs>
+            <PointsToNoteIDs>192</PointsToNoteIDs>
+        </Note>
+        <Note ID="197" FontSize="12.0" Position="174.0,1439.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Spring</String>
+            <ConnectedNoteIDs>191, 199, 201</ConnectedNoteIDs>
+            <PointsToNoteIDs>191, 199, 201</PointsToNoteIDs>
+        </Note>
+        <Note ID="199" FontSize="12.0" Position="144.619234,1673.0" Width="50.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Autumn</String>
+            <ConnectedNoteIDs>191, 197, 201</ConnectedNoteIDs>
+            <PointsToNoteIDs>201</PointsToNoteIDs>
+        </Note>
+        <Note ID="201" FontSize="12.0" Position="492.030506,1687.53869" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Winter</String>
+            <ConnectedNoteIDs>191, 197, 199</ConnectedNoteIDs>
+        </Note>
+        <Note ID="202" FontSize="12.0" Position="135.0,1352.0" Width="44.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Before</String>
+            <ConnectedNoteIDs>204</ConnectedNoteIDs>
+            <PointsToNoteIDs>204</PointsToNoteIDs>
+        </Note>
+        <Note ID="204" FontSize="12.0" Position="884.0,1356.0" Width="34.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>After</String>
+            <ConnectedNoteIDs>202</ConnectedNoteIDs>
+        </Note>
+        <Note ID="205" FontSize="12.0" Position="148.0,1287.0" Width="166.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>POSSIBLE WITH IVY (death)</String>
+        </Note>
+        <Note ID="242" FontSize="12.0" Position="685.0,1554.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>244-245</ConnectedNoteIDs>
+            <PointsToNoteIDs>244-245</PointsToNoteIDs>
+        </Note>
+        <Note ID="243" FontSize="12.0" Position="520.0,1546.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>245</ConnectedNoteIDs>
+            <PointsToNoteIDs>245</PointsToNoteIDs>
+        </Note>
+        <Note ID="244" FontSize="12.0" Position="585.0,1611.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>242, 245</ConnectedNoteIDs>
+            <PointsToNoteIDs>245</PointsToNoteIDs>
+        </Note>
+        <Note ID="245" FontSize="12.0" Position="611.0,1491.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>242-244</ConnectedNoteIDs>
+            <PointsToNoteIDs>242</PointsToNoteIDs>
+        </Note>
+        <Note ID="246" FontSize="12.0" Position="378.0,1792.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>248-249</ConnectedNoteIDs>
+            <PointsToNoteIDs>248-249</PointsToNoteIDs>
+        </Note>
+        <Note ID="247" FontSize="12.0" Position="186.0,1784.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>249</ConnectedNoteIDs>
+            <PointsToNoteIDs>249</PointsToNoteIDs>
+        </Note>
+        <Note ID="248" FontSize="12.0" Position="277.0,1848.0" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day 1</String>
+            <ConnectedNoteIDs>246, 249</ConnectedNoteIDs>
+            <PointsToNoteIDs>249</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,5</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="249" FontSize="12.0" Position="303.0,1728.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>246-248</ConnectedNoteIDs>
+            <PointsToNoteIDs>246</PointsToNoteIDs>
+        </Note>
+        <Note ID="250" FontSize="12.0" Position="673.0,1789.0" Width="66.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning 3</String>
+            <ConnectedNoteIDs>253</ConnectedNoteIDs>
+            <PointsToNoteIDs>253</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,9</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="251" FontSize="12.0" Position="492.0,1781.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>253</ConnectedNoteIDs>
+            <PointsToNoteIDs>253</PointsToNoteIDs>
+        </Note>
+        <Note ID="252" FontSize="12.0" Position="583.0,1846.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>253</ConnectedNoteIDs>
+            <PointsToNoteIDs>253</PointsToNoteIDs>
+        </Note>
+        <Note ID="253" FontSize="12.0" Position="609.0,1726.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>250-252</ConnectedNoteIDs>
+            <PointsToNoteIDs>250</PointsToNoteIDs>
+        </Note>
+        <Note ID="268" FontSize="12.0" Position="1682.0,614.0" Width="44.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Before</String>
+        </Note>
+        <Note ID="270" FontSize="12.0" Position="2432.0,618.0" Width="34.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>After</String>
+        </Note>
+        <Note ID="271" FontSize="12.0" Position="1695.0,549.0" Width="153.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>POSSIBLE WITH ADVENT</String>
+        </Note>
+        <Note ID="273" FontSize="12.0" Position="2779.0,703.0" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Summer</String>
+            <ConnectedNoteIDs>283</ConnectedNoteIDs>
+            <PointsToNoteIDs>283</PointsToNoteIDs>
+        </Note>
+        <Note ID="274" FontSize="12.0" Position="2652.0,797.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="275" FontSize="12.0" Position="2508.0,790.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="276" FontSize="12.0" Position="2573.0,855.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="277" FontSize="12.0" Position="2600.0,754.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="279" FontSize="12.0" Position="2471.0,702.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Spring</String>
+            <ConnectedNoteIDs>283</ConnectedNoteIDs>
+            <PointsToNoteIDs>283</PointsToNoteIDs>
+        </Note>
+        <Note ID="281" FontSize="12.0" Position="2469.0,937.0" Width="50.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Autumn</String>
+            <ConnectedNoteIDs>283</ConnectedNoteIDs>
+            <PointsToNoteIDs>283</PointsToNoteIDs>
+        </Note>
+        <Note ID="283" FontSize="12.0" Position="2782.0,944.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Winter</String>
+            <ConnectedNoteIDs>273, 279, 281</ConnectedNoteIDs>
+        </Note>
+        <Note ID="284" FontSize="12.0" Position="2965.0,808.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="285" FontSize="12.0" Position="2818.0,802.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="286" FontSize="12.0" Position="2899.0,873.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="287" FontSize="12.0" Position="2930.0,753.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="288" FontSize="12.0" Position="2964.0,1051.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="289" FontSize="12.0" Position="2808.0,1025.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="290" FontSize="12.0" Position="2897.0,1116.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="291" FontSize="12.0" Position="2923.0,994.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="292" FontSize="12.0" Position="2644.0,1045.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="293" FontSize="12.0" Position="2493.0,1018.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="294" FontSize="12.0" Position="2577.0,1111.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="295" FontSize="12.0" Position="2607.0,990.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="309" FontSize="12.0" Position="2030.0,714.0" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Summer</String>
+            <ConnectedNoteIDs>319</ConnectedNoteIDs>
+            <PointsToNoteIDs>319</PointsToNoteIDs>
+        </Note>
+        <Note ID="310" FontSize="12.0" Position="1902.0,809.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="311" FontSize="12.0" Position="1759.0,801.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="312" FontSize="12.0" Position="1824.0,865.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="313" FontSize="12.0" Position="1851.0,765.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="315" FontSize="12.0" Position="1722.0,713.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Spring</String>
+            <ConnectedNoteIDs>319</ConnectedNoteIDs>
+            <PointsToNoteIDs>319</PointsToNoteIDs>
+        </Note>
+        <Note ID="317" FontSize="12.0" Position="1720.0,948.0" Width="50.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Autumn</String>
+            <ConnectedNoteIDs>319</ConnectedNoteIDs>
+            <PointsToNoteIDs>319</PointsToNoteIDs>
+        </Note>
+        <Note ID="319" FontSize="12.0" Position="2033.0,955.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Winter</String>
+            <ConnectedNoteIDs>309, 315, 317</ConnectedNoteIDs>
+        </Note>
+        <Note ID="320" FontSize="12.0" Position="2216.0,819.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="321" FontSize="12.0" Position="2070.0,812.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="322" FontSize="12.0" Position="2150.0,884.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="323" FontSize="12.0" Position="2181.0,764.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="324" FontSize="12.0" Position="2215.0,1061.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="325" FontSize="12.0" Position="2059.0,1036.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="326" FontSize="12.0" Position="2148.0,1127.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="327" FontSize="12.0" Position="2174.0,1005.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="328" FontSize="12.0" Position="1895.0,1056.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+        </Note>
+        <Note ID="329" FontSize="12.0" Position="1744.0,1029.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+        </Note>
+        <Note ID="330" FontSize="12.0" Position="1828.0,1121.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+        </Note>
+        <Note ID="331" FontSize="12.0" Position="1858.0,1001.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+        </Note>
+        <Note ID="336" FontSize="12.0" Position="1224.0,1442.0" Width="83.0" Level="1">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Summer</String>
+            <ConnectedNoteIDs>346</ConnectedNoteIDs>
+            <PointsToNoteIDs>346</PointsToNoteIDs>
+        </Note>
+        <Note ID="337" FontSize="12.0" Position="1118.0,1556.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>339-340</ConnectedNoteIDs>
+            <PointsToNoteIDs>339-340</PointsToNoteIDs>
+        </Note>
+        <Note ID="338" FontSize="12.0" Position="927.0,1548.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>340</ConnectedNoteIDs>
+            <PointsToNoteIDs>340</PointsToNoteIDs>
+        </Note>
+        <Note ID="339" FontSize="12.0" Position="1018.0,1613.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>337, 340</ConnectedNoteIDs>
+            <PointsToNoteIDs>340</PointsToNoteIDs>
+        </Note>
+        <Note ID="340" FontSize="12.0" Position="1044.0,1493.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>337-339</ConnectedNoteIDs>
+            <PointsToNoteIDs>337</PointsToNoteIDs>
+        </Note>
+        <Note ID="342" FontSize="12.0" Position="915.0,1441.0" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Spring</String>
+            <ConnectedNoteIDs>346</ConnectedNoteIDs>
+            <PointsToNoteIDs>346</PointsToNoteIDs>
+        </Note>
+        <Note ID="344" FontSize="12.0" Position="914.0,1676.0" Width="50.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Autumn</String>
+            <ConnectedNoteIDs>346</ConnectedNoteIDs>
+            <PointsToNoteIDs>346</PointsToNoteIDs>
+        </Note>
+        <Note ID="346" FontSize="12.0" Position="1227.0,1683.0" Width="72.0" Level="1">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Winter</String>
+            <ConnectedNoteIDs>336, 342, 344</ConnectedNoteIDs>
+        </Note>
+        <Note ID="347" FontSize="12.0" Position="1426.0,1557.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>349-350</ConnectedNoteIDs>
+            <PointsToNoteIDs>349-350</PointsToNoteIDs>
+        </Note>
+        <Note ID="348" FontSize="12.0" Position="1263.0,1550.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>350</ConnectedNoteIDs>
+            <PointsToNoteIDs>350</PointsToNoteIDs>
+        </Note>
+        <Note ID="349" FontSize="12.0" Position="1326.0,1614.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>347, 350</ConnectedNoteIDs>
+            <PointsToNoteIDs>350</PointsToNoteIDs>
+        </Note>
+        <Note ID="350" FontSize="12.0" Position="1352.0,1493.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>347-349</ConnectedNoteIDs>
+            <PointsToNoteIDs>347</PointsToNoteIDs>
+        </Note>
+        <Note ID="351" FontSize="12.0" Position="1119.0,1794.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>353-354</ConnectedNoteIDs>
+            <PointsToNoteIDs>353-354</PointsToNoteIDs>
+        </Note>
+        <Note ID="352" FontSize="12.0" Position="927.0,1786.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>354</ConnectedNoteIDs>
+            <PointsToNoteIDs>354</PointsToNoteIDs>
+        </Note>
+        <Note ID="353" FontSize="12.0" Position="1018.0,1851.0" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day 1</String>
+            <ConnectedNoteIDs>351, 354</ConnectedNoteIDs>
+            <PointsToNoteIDs>354</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,5</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="354" FontSize="12.0" Position="1045.0,1730.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>351-353</ConnectedNoteIDs>
+            <PointsToNoteIDs>351</PointsToNoteIDs>
+        </Note>
+        <Note ID="355" FontSize="12.0" Position="1425.0,1792.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Morning</String>
+            <ConnectedNoteIDs>358</ConnectedNoteIDs>
+            <PointsToNoteIDs>358</PointsToNoteIDs>
+        </Note>
+        <Note ID="356" FontSize="12.0" Position="1233.0,1784.0" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Evening</String>
+            <ConnectedNoteIDs>358</ConnectedNoteIDs>
+            <PointsToNoteIDs>358</PointsToNoteIDs>
+        </Note>
+        <Note ID="357" FontSize="12.0" Position="1324.0,1848.0" Width="30.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Day</String>
+            <ConnectedNoteIDs>358</ConnectedNoteIDs>
+            <PointsToNoteIDs>358</PointsToNoteIDs>
+        </Note>
+        <Note ID="358" FontSize="12.0" Position="1351.0,1728.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>Night</String>
+            <ConnectedNoteIDs>355-357</ConnectedNoteIDs>
+            <PointsToNoteIDs>355</PointsToNoteIDs>
+        </Note>
+        <Note ID="359" FontSize="12.0" Position="2773.0,1850.0" Width="196.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>better to enforce clouds before ivy?</String>
+        </Note>
+    </Notes>
+    <BackgroundShapes>
+        <Shape ID="88" Sticky="No" Position="98.0,570.0" Width="1452.398926" Height="658.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="59" Sticky="No" Position="109.0,637.0" Width="681.398926" Height="569.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="27" Sticky="No" Position="470.0,714.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="45" Sticky="No" Position="162.0,714.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="51" Sticky="No" Position="161.0,949.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="57" Sticky="No" Position="474.0,956.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="61" Sticky="No" Position="858.0,641.0" Width="681.398926" Height="569.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="110" Sticky="No" Position="1219.0,716.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="116" Sticky="No" Position="911.0,716.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="118" Sticky="No" Position="910.0,951.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="120" Sticky="No" Position="1223.0,958.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="188" Sticky="No" Position="100.0,1330.0" Width="1452.398926" Height="658.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="189" Sticky="No" Position="111.0,1393.0" Width="681.398926" Height="569.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="190" Sticky="No" Position="473.0,1470.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="196" Sticky="No" Position="165.0,1470.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="198" Sticky="No" Position="163.0,1705.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="200" Sticky="No" Position="476.0,1712.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="203" Sticky="No" Position="861.0,1398.0" Width="681.398926" Height="569.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="254" Sticky="No" Position="1648.0,588.0" Width="1452.398926" Height="658.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="255" Sticky="No" Position="1659.0,655.0" Width="681.398926" Height="569.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="269" Sticky="No" Position="2408.0,659.0" Width="681.398926" Height="569.250977">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="272" Sticky="No" Position="2769.0,734.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="278" Sticky="No" Position="2461.0,733.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="280" Sticky="No" Position="2460.0,969.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="282" Sticky="No" Position="2773.0,976.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="308" Sticky="No" Position="2020.0,745.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="314" Sticky="No" Position="1712.0,744.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="316" Sticky="No" Position="1711.0,979.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="318" Sticky="No" Position="2024.0,986.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="335" Sticky="No" Position="1214.0,1473.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="341" Sticky="No" Position="906.0,1472.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="343" Sticky="No" Position="905.0,1708.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="345" Sticky="No" Position="1217.0,1715.0" Width="272.0" Height="187.355423">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+    </BackgroundShapes>
+    <Labels>
+        <Label IDs="41,42">Sun/Lark</Label>
+        <Label IDs="248,249">Sun</Label>
+        <Label IDs="28,46">Swallow/Efeu</Label>
+        <Label IDs="192,194">Lark</Label>
+        <Label IDs="112,114">Sun</Label>
+        <Label IDs="192,195">Sun/Moon</Label>
+        <Label IDs="98,99">Sun/Lark</Label>
+        <Label IDs="126,127">Sun</Label>
+        <Label IDs="112,113">Sun/Lark</Label>
+        <Label IDs="197,201">Swallow</Label>
+        <Label IDs="28,121">Red Dress</Label>
+        <Label IDs="98,100">Sun</Label>
+        <Label IDs="126,128">Sun</Label>
+        <Label IDs="112,130">Rose</Label>
+        <Label IDs="353,354">Sun</Label>
+        <Label IDs="252,253">Sun</Label>
+        <Label IDs="102,103">Sun</Label>
+        <Label IDs="102,104">Sun</Label>
+        <Label IDs="130,131">Sun/Lark</Label>
+        <Label IDs="315,319">Christmas Tree</Label>
+        <Label IDs="130,132">Sun</Label>
+        <Label IDs="336,346">Swallow</Label>
+        <Label IDs="41,43">Sun</Label>
+        <Label IDs="273,283">Christmas Tree</Label>
+        <Label IDs="357,358">Sun</Label>
+        <Label IDs="347,350">Sun/Moon</Label>
+        <Label IDs="242,244">Lark</Label>
+        <Label IDs="242,245">Sun/Moon</Label>
+        <Label IDs="106,107">Sun/Lark</Label>
+        <Label IDs="193,195">Sun/Lark</Label>
+        <Label IDs="106,108">Sun</Label>
+        <Label IDs="347,349">Lark</Label>
+        <Label IDs="46,58">Efeu</Label>
+        <Label IDs="337,340">Sun/Moon</Label>
+        <Label IDs="191,201">Swallow</Label>
+        <Label IDs="246,248">Lark</Label>
+        <Label IDs="309,319">Christmas Tree</Label>
+        <Label IDs="246,249">Sun/Moon</Label>
+        <Label IDs="351,353">Lark</Label>
+        <Label IDs="117,119">Swallow</Label>
+        <Label IDs="351,354">Sun/Moon</Label>
+        <Label IDs="337,339">Lark</Label>
+        <Label IDs="281,283">Christmas Tree</Label>
+        <Label IDs="344,346">Swallow</Label>
+        <Label IDs="197,199">Efeu</Label>
+        <Label IDs="348,350">Sun/Lark</Label>
+        <Label IDs="243,245">Sun/Lark</Label>
+        <Label IDs="250,253">Sun/Moon</Label>
+        <Label IDs="194,195">Sun</Label>
+        <Label IDs="199,201">Swallow/Rose</Label>
+        <Label IDs="114,132">Rose</Label>
+        <Label IDs="355,358">Sun/Moon</Label>
+        <Label IDs="338,340">Sun/Lark</Label>
+        <Label IDs="317,319">Christmas Tree</Label>
+        <Label IDs="247,249">Sun/Lark</Label>
+        <Label IDs="352,354">Sun/Lark</Label>
+        <Label IDs="202,204">Mädchen</Label>
+        <Label IDs="191,197">Rose</Label>
+        <Label IDs="111,117">Swallow</Label>
+        <Label IDs="46,52">Swallow/Rose</Label>
+        <Label IDs="349,350">Sun</Label>
+        <Label IDs="191,199">Efeu</Label>
+        <Label IDs="244,245">Sun</Label>
+        <Label IDs="279,283">Christmas Tree</Label>
+        <Label IDs="251,253">Sun/Lark</Label>
+        <Label IDs="122,123">Sun/Lark</Label>
+        <Label IDs="122,124">Sun</Label>
+        <Label IDs="342,346">Swallow</Label>
+        <Label IDs="356,358">Sun/Lark</Label>
+        <Label IDs="339,340">Sun</Label>
+    </Labels>
+    <AutoFit>0-1, 3-7, 9, 12, 15, 28, 41-44, 46, 52, 58, 60, 86, 98-109, 111-115, 117, 119, 121-133, 191-195, 197, 199, 201-202, 204-205, 242-253, 268, 270-271, 273-277, 279, 281, 283-295, 309-313, 315, 317, 319-331, 337-340, 342, 344, 347-359</AutoFit>
+    <NoteStyles>
+        <Style Name="Bubble (Blue)" ID="076AE0FB-4D53-476E-9F50-08B68C8E647A" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.561855 0.71062 0.779401</BorderColor>
+            <FillColor>0.702319 0.888276 0.974252</FillColor>
+        </Style>
+        <Style Name="Bubble (Green)" ID="798462A0-3362-4108-B86B-296C4907A76E" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.572684 0.758969 0.558154</BorderColor>
+            <FillColor>0.715855 0.948712 0.697692</FillColor>
+        </Style>
+        <Style Name="Bubble (Pink)" ID="B85724DA-A661-42CC-919D-B5A05DD35E75" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.794796 0.560965 0.58607</BorderColor>
+            <FillColor>0.957566 0.766747 0.999616</FillColor>
+        </Style>
+        <Style Name="Bubble (Red)" ID="52F7D52E-9A20-4235-9B37-E0BB51D46C51" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.794796 0.560965 0.58607</BorderColor>
+            <FillColor>0.993495 0.701207 0.732587</FillColor>
+        </Style>
+        <Style Name="Bubble (Yellow)" ID="A776BE5D-F878-4800-94AF-E9C77DB6F493" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.798177 0.714184 0.522055</BorderColor>
+            <FillColor>0.997722 0.89273 0.652569</FillColor>
+        </Style>
+        <Style Name="Red Text" ID="370F07B3-3ED0-41A6-B326-38EDDD98CB78" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>0.985948 0.0 0.026951</TextColor>
+        </Style>
+        <Style Name="Title Text" ID="2FABC8D4-56CE-4A29-AC36-FB8E31DBE903" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>0.999767 0.98837 0.949907</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+        <DefaultTextColor>0.0 0.0 0.0</DefaultTextColor>
+    </UISettings>
+    <PrintSettings PaperSize="595.275553,841.889771" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="iso-a4" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>

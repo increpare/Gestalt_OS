@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <set name="windowwidth" value="312" />
+  <set name="windowheight" value="235" />
+  
+	<meta 
+    title="Magiewerkbank" 
+    package="com.increpare.magiewerkbank" 
+    version="1.0.0" 
+    company="Haxegon" 
+  />
+  
+  <app swf-version="17.0" if="flash"/>
+	<app 
+      main="haxegon.Load"
+      path="bin" 
+      file="magiewerkbank" 
+   />
+
+  <window width="${windowwidth}" height="${windowheight}" if="flash || cpp || neko"></window>
+  <window width="0" height="0" if="html5 || mobile"></window>
+	 
+	<window
+      fps="60"
+      background="0x7869c4"
+      orientation="landscape"
+      hardware="true"
+      vsync="true"
+      allow-high-dpi="true"
+   ></window>
+   
+	<source path="src" />
+	<source path="plugins" />
+	<haxelib name="openfl" />
+	<haxelib name="haxegon" />
+	<haxedef name="windowwidth" value="${windowwidth}" />
+  <haxedef name="windowheight" value="${windowheight}" />
+  
+  <dependency name="js/recorder.js" />
+  <dependency name="js/rng.js" />
+  <dependency name="js/sfxr.js" />
+
+  <template path="js/recorder.js" rename="js/recorder.js" if="html5" />
+  <template path="js/rng.js" rename="js/rng.js" if="html5" />
+  <template path="js/sfxr.js" rename="js/sfxr.js" if="html5" />
+  
+
+	<assets path="data" exclude="*.mp3" if="cpp || neko"/>
+	<assets path="data" exclude="*.ogg" if="flash"/>
+	<assets path="data" if="html5"/>
+	
+	<icon path="data/icon.png"/>
+</project>

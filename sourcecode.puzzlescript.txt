@@ -1,0 +1,178 @@
+title Simple Block Pushing Game
+author Stephen Lavelle
+homepage www.puzzlescript.net
+
+
+noaction
+========
+OBJECTS
+========
+
+Background
+darkgreen
+
+Wall
+black
+
+Player_1
+Black Orange White Blue brown gray gray
+.55..
+.55..
+.5666
+.6666
+.....
+
+
+Player_2
+Black Orange White Blue brown gray gray
+.....
+.6555
+.6655
+.66..
+.66..
+
+
+Player_3
+Black Orange White Blue brown gray gray
+.....
+6666.
+6665.
+..55.
+..55.
+
+Player_4
+Black Orange White Blue brown gray gray
+..66.
+..66.
+5566.
+5556.
+.....
+
+
+ziel z
+gray
+.....
+.000.
+.0.0.
+.000.
+.....
+
+crate c
+lightgray
+00000
+0...0
+0...0
+0...0
+00000
+
+
+
+temp
+transparent
+
+=======
+LEGEND
+=======
+
+player = Player_1 or Player_2 or Player_3 or Player_4
+# = Wall
+P = Player_1 
+1 = Player_1 
+2 = Player_2 
+3 = Player_3 
+4 = Player_4 
+. = Background
+
+
+* = Crate
+@ = Crate and ziel
+O = ziel
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+ziel
+Player, Wall, crate
+temp
+
+======
+RULES
+======
+
+[ left Player_1 ] -> cancel
+[ down Player_1 ] -> cancel
+
+[ up Player_2 ] -> cancel
+[ left Player_2 ] -> cancel
+
+[ up Player_3 ] -> cancel
+[ right Player_3 ] -> cancel
+
+[ right Player_4 ] -> cancel
+[ down Player_4 ] -> cancel
+
+[ > player | crate ] -> [ > player | > crate ]
+[ > crate | crate ] -> cancel
+[ > crate | wall ] -> cancel
+[ > player | wall ] -> cancel
+
+late [ player_1 no temp ] -> [ player_2 temp ]
+late [ player_2 no temp ] -> [ player_3 temp ]
+late [ player_3 no temp ] -> [ player_4 temp ]
+late [ player_4 no temp ] -> [ player_1 temp ]
+late [ temp ] -> []
+
+
+
+==============
+WINCONDITIONS
+==============
+
+all crate on ziel
+
+=======
+LEVELS
+=======
+
+
+###########
+#.........#
+#.........#
+#..z...c..#
+#.........#
+#....2....#
+#.........#
+#.........#
+###########
+
+
+###########
+#.........#
+#.........#
+#.........#
+#...zcz...#
+#...c.c...#
+#...zcz...#
+#.........#
+#....1....#
+#.........#
+###########
+
+
+#########
+#.......#
+#.z.#.c.#
+#.......#
+#...1...#
+#.......#
+#########
+
+
+
+
