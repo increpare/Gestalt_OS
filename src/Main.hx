@@ -509,14 +509,14 @@ class Main {
 						fellBei(i+1,j+0)||
 						fellBei(i+1,j+1)
 					) {
-						versuchBehaaren(i-1,j-1);
+						// versuchBehaaren(i-1,j-1);
 						versuchBehaaren(i-1,j-0);
-						versuchBehaaren(i-1,j+1);
+						// versuchBehaaren(i-1,j+1);
 						versuchBehaaren(i-0,j-1);
 						versuchBehaaren(i-0,j+1);
-						versuchBehaaren(i+1,j-1);
+						// versuchBehaaren(i+1,j-1);
 						versuchBehaaren(i+1,j-0);
-						versuchBehaaren(i+1,j+1);
+						// versuchBehaaren(i+1,j+1);
 					}
 				}
 			}
@@ -595,6 +595,94 @@ class Main {
 	}
 
 
+	function schraegspiegeln(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+
+		function setf(px,py,v){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return;
+			}
+			f[py][px]=v;
+		}
+
+
+		function get_vorbrett(px,py){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return null;
+			}
+			return anim.vor_brett[py][px];
+		}
+
+		function getf(px,py,def){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return def;
+			}
+			return f[py][px];
+		}
+
+
+		var schritte = sp_spalten+sp_zeilen;
+		for (i in 0...schritte){
+			var l_x=x+i;
+			var l_y=y-i;
+			
+			var u_x=x-i;
+			var u_y=y+i;
+			
+			setf(u_x,u_y,0);
+			setf(l_x,l_y,0);			
+		}
+
+		var frames=0;
+		
+		var geaendert=true;
+		while(geaendert){
+			geaendert=false;
+			
+			for (j in 0...sp_zeilen){
+				for (i in 0...sp_spalten){
+					var deltax = i-x;
+					var deltay = j-y;
+					if (deltax==0&&deltay==0){
+						continue;
+					}
+					
+					var i2 = x-deltay;
+					var j2 = y-deltax;
+					a[j][i]=get_vorbrett(i2,j2);
+
+					if (f[j][i]>=0){
+						continue;
+					}
+					var v1 = getf(i-1,j,-1);
+					var v2 = getf(i,j-1,-1);
+					var v3 = getf(i+1,j,-1);
+					var v4 = getf(i,j+1,-1);
+					var m = v1;
+					if (v2>m){
+						m=v2;
+					}
+					if (v3>m){
+						m=v3;
+					}
+					if (v4>m){
+						m=v4;
+					}
+					if (m>=0){
+						m++;
+						f[j][i]=m;
+						geaendert=true;
+						if (m>frames){
+							frames=m;
+						}
+					}					
+				}
+			}
+
+		}
+		anim.maxabweichung=frames;
+	}
 	function spiegeln_hinunten(anim:AnimationFrame,hoverziel_x:Int,hoverziel_y:Int){
 	
 	
@@ -830,7 +918,7 @@ class Main {
 			case "s14":
 			
 			case "s15":
-			
+				schraegspiegeln(animation,hoverziel_x,hoverziel_y);	
 			case "s16":
 				spiegeln_hinunten(animation,hoverziel_x,hoverziel_y);		
 			case "s17":
