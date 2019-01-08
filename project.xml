@@ -21,7 +21,7 @@
   <window width="0" height="0" if="html5 || mobile"></window>
 	 
 	<window
-      fps="60"
+      fps="30"
       background="0x7869c4"
       orientation="landscape"
       hardware="true"

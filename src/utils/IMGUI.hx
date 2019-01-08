@@ -8,6 +8,35 @@ class IMGUI {
 
 	private static var downstates:Map<String,Bool> = new Map<String,Bool>();
 
+
+	public static function clickableimage(
+		im:String,
+		x:Int,
+		y:Int
+		) : Bool
+	{
+		
+		var dx = Mouse.x-x;
+		var dy = Mouse.y-y;
+	 	var w = Gfx.imagewidth(im);
+	 	var h = Gfx.imageheight(im);
+
+
+		Gfx.drawimage(
+			x,
+			y,
+			im
+			);
+	
+		var over:Bool = dx>=0&& dy>=0 && dx<w && dy<h;
+
+		var mouseclicked = Mouse.leftclick();
+		// var mousedown = Mouse.leftheld()||mouseclicked;
+		// var clicked=false;
+		return over && mouseclicked;
+
+	}
+
 	public static function pressbutton(
 		id:String,
 		bg:String,
