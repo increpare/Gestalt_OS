@@ -129,6 +129,277 @@ class Main {
 		anim.maxabweichung=i;
 	}
 
+
+
+	function zeile_entleeren(anim:AnimationFrame,x:Int,y:Int){
+
+		var max_frame=0;
+
+		for (i in 1...sp_spalten){
+			var i_von=x-i;
+			var i_zu=x+i;
+			if (i_von>=0 && i_von<sp_spalten){
+				anim.nach_brett[y][i_von]=null;
+				anim.abweichung[y][i_von]=i;
+				if (i>max_frame){
+					max_frame=i;
+				}
+			}
+			if (i_zu>=0 && i_zu<sp_spalten){
+				anim.nach_brett[y][i_zu]=null;
+				anim.abweichung[y][i_zu]=i;
+				if (i>max_frame){
+					max_frame=i;
+				}
+			}
+		}
+		anim.maxabweichung=max_frame;
+	}
+
+	function spalte_entleeren(anim:AnimationFrame,x:Int,y:Int){
+
+		var max_frame=0;
+
+		for (j in 1...sp_zeilen){
+			var j_von=y-j;
+			var j_zu=y+j;
+			if (j_von>=0 && j_von<sp_zeilen){
+				anim.nach_brett[j_von][x]=null;
+				anim.abweichung[j_von][x]=j;
+				if (j>max_frame){
+					max_frame=j;
+				}
+			}
+			if (j_zu>=0 && j_zu<sp_zeilen){
+				anim.nach_brett[j_zu][x]=null;
+				anim.abweichung[j_zu][x]=j;
+				if (j>max_frame){
+					max_frame=j;
+				}
+			}
+		}
+		anim.maxabweichung=max_frame;
+	}
+
+
+	function schieben(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		
+		f[y][x]=0;
+
+		var frame=0;
+		
+		var dx=0;
+		var dy=0;
+
+		var i=0;
+
+		//von links
+		i=0;
+		dx=0;
+		while (dx<x){
+
+			if (dx>0){
+				a[y][dx-1]=a[y][dx];
+			}
+			a[y][dx]=null;
+			f[y][dx]=i;
+			dx++;
+			i++;
+		}
+		i--;
+		if (i>frame){
+			frame=i;
+		}
+
+
+		//von rechts
+		i=0;
+		dx=sp_spalten-1;
+		while (dx>x){
+
+			if (dx<sp_spalten-1){
+				a[y][dx+1]=a[y][dx];
+			}
+			a[y][dx]=null;
+			f[y][dx]=i;
+			dx--;
+			i++;
+		}
+		i--;
+		if (i>frame){
+			frame=i;
+		}
+
+
+
+		//von oben
+		i=0;
+		dy=0;
+		while (dy<y){
+
+			if (dy>0){
+				a[dy-1][x]=a[dy][x];
+			}
+			a[dy][x]=null;
+			f[dy][x]=i;
+			dy++;
+			i++;
+		}
+		i--;
+		if (i>frame){
+			frame=i;
+		}
+
+
+		//von unten
+		i=0;
+		dy=sp_zeilen-1;
+		while (dy>y){
+
+			if (dy<sp_zeilen-1){
+				a[dy+1][x]=a[dy][x];
+			}
+			a[dy][x]=null;
+			f[dy][x]=i;
+			dy--;
+			i++;
+		}
+		i--;
+		if (i>frame){
+			frame=i;
+		}
+
+	
+
+		anim.maxabweichung=frame;
+	}
+
+
+	function ziehen(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		
+		a[y][x]="s8";
+		f[y][x]=0;
+
+		var frame=0;
+
+		for (i in 1...sp_spalten){
+			var x_l = x-i;
+			var x_r = x+i;
+
+			if (x_l>=0){
+				if (i>1){
+					a[y][x_l+1]=a[y][x_l];
+				}
+				a[y][x_l]=null;
+				f[y][x_l]=i;
+				if (i>frame){
+					frame=i;
+				}
+			}
+
+			if (x_r<sp_spalten){
+				if (i>1){
+					a[y][x_r-1]=a[y][x_r];
+				}
+				a[y][x_r]=null;
+				f[y][x_r]=i;
+				if (i>frame){
+					frame=i;
+				}
+			}
+		}
+
+
+		for (j in 1...sp_zeilen){
+			var y_t = y-j;
+			var y_b = y+j;
+
+			if (y_t>=0){
+				if (j>1){
+					a[y_t+1][x]=a[y_t][x];
+				}
+				a[y_t][x]=null;
+				f[y_t][x]=j;
+				if (j>frame){
+					frame=j;
+				}
+			}
+
+			if (y_b<sp_zeilen){
+				if (j>1){
+					a[y_b-1][x]=a[y_b][x];			
+				}
+				a[y_b][x]=null;
+				f[y_b][x]=j;
+				if (j>frame){
+					frame=j;
+				}
+			}
+		}
+
+		anim.maxabweichung=frame;
+	}
+
+	function fuellen(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		//1 s6 ersetzen
+		for (j in 0...sp_zeilen){
+			for (i in 0...sp_spalten){
+				if (a[j][i]=="s6"){
+					a[j][i]="temp";
+				}
+			}
+		}
+		a[y][x]="s6";
+		f[y][x]=0;
+		var aenders=true;
+		var frame=1;
+		while (aenders){
+			aenders=false;
+
+			for (j in 0...sp_zeilen){
+				for (i in 0...sp_spalten){
+					var n = a[j][i];
+					if (n!=null){
+						continue;
+					}
+					var fuellbar=false;
+					if (j>0 && a[j-1][i]=="s6" && f[j-1][i]==(frame-1)){
+						fuellbar=true;
+					} else if (j<sp_spalten-1 && a[j+1][i]=="s6"&& f[j+1][i]==(frame-1)){
+						fuellbar=true;
+					} else if (i>0 && a[j][i-1]=="s6" && f[j][i-1]==(frame-1)){
+						fuellbar=true;
+					} else if (i<sp_zeilen-1 && a[j][i+1]=="s6"&& f[j][i+1]==(frame-1)){
+						fuellbar=true;
+					}
+					if (fuellbar){
+						aenders=true;
+						a[j][i]="s6";
+						f[j][i]=frame;
+					}
+				}
+			}
+			frame++;
+		}
+
+		for (j in 0...sp_zeilen){
+			for (i in 0...sp_spalten){
+				if (a[j][i]=="temp"){
+					a[j][i]="s6";
+				}
+			}
+		}
+		
+		frame--;
+		anim.maxabweichung=frame;
+	
+	}
 	function spiralen(anim:AnimationFrame,hoverziel_x:Int,hoverziel_y:Int){
 		var x= hoverziel_x;
 		var y = hoverziel_y;
@@ -136,7 +407,7 @@ class Main {
 		y--;
 
 		//heroben
-		while (y>0){
+		while (y>=0){
 			if (anim.nach_brett[y][x]!=null){
 				break;
 			}
@@ -203,7 +474,7 @@ class Main {
 		for (j in 0...sp_zeilen){
 			var j_von=hoverziel_y-j;
 			var j_zu=hoverziel_y+j;
-			if (j_von>0 && j_von<sp_zeilen){
+			if (j_von>=0 && j_von<sp_zeilen){
 				for (x in 0...sp_spalten){
 					anim.abweichung[j_von][x]=j;
 					if (j>max_frame){
@@ -211,7 +482,7 @@ class Main {
 					}
 				}
 			}
-			if (j_zu>0 && j_zu<sp_zeilen){
+			if (j_zu>=0 && j_zu<sp_zeilen){
 				for (x in 0...sp_spalten){
 					if (j!=0){
 						anim.nach_brett[j_zu][x]=null;
@@ -223,7 +494,7 @@ class Main {
 				}
 			}
 
-			if (j_von>0 && j_von<sp_zeilen && j_zu>0 && j_zu<sp_zeilen){
+			if (j_von>=0 && j_von<sp_zeilen && j_zu>=0 && j_zu<sp_zeilen){
 				for (x in 0...sp_spalten){
 					anim.nach_brett[j_zu][x]=anim.nach_brett[j_von][x];
 				}
@@ -272,6 +543,71 @@ class Main {
 		anim.maxabweichung=max_frame;
 	}
 
+	function versuchfallenzulassen(x:Int,y:Int){
+		var erlauben=false;
+		
+		for (j in 0...sp_zeilen){
+			for (i in 0...sp_spalten){
+				if (szs_brett[j][i]=="s9" && !(x==i&&y==j)){
+					if (j==sp_zeilen-1){
+						erlauben=true;
+						break;
+					}
+					if (szs_brett[j+1][i]==null){
+						erlauben=true;
+						break;
+					}
+				}
+			}
+		}
+		if (erlauben==false){
+			return;
+		}
+
+		var startframe = new AnimationFrame();
+		startframe.vor_brett = Copy.copy(szs_brett);
+		startframe.nach_brett = Copy.copy(szs_brett);
+		startframe.abweichung = leererAbweichungsgitter();
+		var animation = startframe;
+		animationen.push(animation);
+
+
+		var startframe2 = new AnimationFrame();
+		startframe2.vor_brett = Copy.copy(szs_brett);
+		startframe2.nach_brett = Copy.copy(szs_brett);
+		startframe2.abweichung = leererAbweichungsgitter();
+		var animation2 = startframe2;
+		animationen.push(animation2);
+
+		{
+			var j = sp_zeilen-1;
+			while(j>=0){
+				for (i in 0...i_spalten){
+					if (startframe.nach_brett[j][i]=="s9" && !(x==i&&y==j)){
+						if (j==sp_zeilen-1){
+							animation2.nach_brett[j][i]=null;
+							animation.abweichung[j][i]=0;
+							animation2.abweichung[j][i]=0;
+						} else {
+							if (animation2.nach_brett[j+1][i]==null) {
+								animation2.nach_brett[j][i]=null;
+								animation2.nach_brett[j+1][i]="s9";
+								animation.abweichung[j][i]=0;
+								animation2.abweichung[j+1][i]=0;
+							}
+						}
+					}
+				}
+				j--;
+			}	
+		}
+
+		animation.maxabweichung=0;
+		animation2.maxabweichung=0;
+
+
+	}
+
 	function tuePlatzierung(hoverziel_x:Int,hoverziel_y:Int,zieh_name:String){	
 		var startframe = new AnimationFrame();
 		startframe.vor_brett = Copy.copy(szs_brett);
@@ -289,19 +625,20 @@ class Main {
 			case "s1":
 
 			case "s2":
-			
+
 			case "s3":
-			
+				spalte_entleeren(animation,hoverziel_x,hoverziel_y);			
 			case "s4":
+				zeile_entleeren(animation,hoverziel_x,hoverziel_y);
 			
 			case "s5":
 				spazieren(animation,hoverziel_x,hoverziel_y);
 			case "s6":
-			
+				fuellen(animation,hoverziel_x,hoverziel_y);
 			case "s7":
 			
 			case "s8":
-			
+				ziehen(animation,hoverziel_x,hoverziel_y);
 			case "s9":
 			
 			case "s10":
@@ -312,6 +649,7 @@ class Main {
 				spiralen(animation,hoverziel_x,hoverziel_y);	
 			
 			case "s13":
+				schieben(animation,hoverziel_x,hoverziel_y);
 			
 			case "s14":
 			
@@ -328,7 +666,12 @@ class Main {
 			case "s20":
 			
 		}
-		szs_brett = startframe.nach_brett;
+
+		szs_brett = animation.nach_brett;
+
+		versuchfallenzulassen(hoverziel_x,hoverziel_y);
+
+		szs_brett = animationen[animationen.length-1].nach_brett;
 	}
 
 	public static var farbe_desktop = 0x7869c4;
