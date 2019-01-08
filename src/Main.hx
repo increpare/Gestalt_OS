@@ -131,6 +131,7 @@ class Main {
 
 
 
+
 	function zeile_entleeren(anim:AnimationFrame,x:Int,y:Int){
 
 		var max_frame=0;
@@ -155,6 +156,37 @@ class Main {
 		}
 		anim.maxabweichung=max_frame;
 	}
+
+
+	function bomben(anim:AnimationFrame,x:Int,y:Int){
+
+
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		
+		function entleeren(px,py){
+			if (px<0||py<0||px>=sp_spalten||py>=sp_zeilen){
+				return;
+			}
+			a[py][px]=null;
+			f[py][px]=1;
+		}
+
+		entleeren(x-1,y-1);
+		entleeren(x+0,y-1);
+		entleeren(x+1,y-1);
+		
+		entleeren(x-1,y+0);
+		entleeren(x+1,y+0);
+
+		entleeren(x-1,y+1);
+		entleeren(x+0,y+1);
+		entleeren(x+1,y+1);
+
+		anim.maxabweichung=1;
+	}
+
+
 
 	function spalte_entleeren(anim:AnimationFrame,x:Int,y:Int){
 
@@ -400,6 +432,103 @@ class Main {
 		anim.maxabweichung=frame;
 	
 	}
+
+	function behaaren(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		
+		a[y][x]="s2";
+		f[y][x]=0;
+		var aenders=true;
+		var frame=1;
+		while (aenders){
+			aenders=false;
+
+			for (j in 0...sp_zeilen){
+				for (i in 0...sp_spalten){
+					var n = a[j][i];
+					if (n==null || n=="s2"){
+						continue;
+					}
+
+					function fellBei(px,py):Bool{
+						if (px<0||py<0||px>=sp_spalten||py>=sp_zeilen){
+							return false;
+						}
+						var val = a[py][px];
+						if (val =="s2"){
+							return true;
+						}
+						return false;
+					}
+
+					function aktuellesFellBei(px,py):Bool{
+						if (px<0||py<0||px>=sp_spalten||py>=sp_zeilen){
+							return false;
+						}
+						var val = a[py][px];
+						if (val =="s2" && f[py][px]==(frame-1)){
+							return true;
+						}
+						return false;
+					}
+
+					function versuchBehaaren(px,py){
+
+						if (px<0||py<0||px>=sp_spalten||py>=sp_zeilen){
+							return ;
+						}
+
+						if (a[py][px]!=null){
+							return;
+						}
+
+						if (
+						aktuellesFellBei(px-1,py-1)||
+						aktuellesFellBei(px-1,py+0)||
+						aktuellesFellBei(px-1,py+1)||
+						aktuellesFellBei(px+0,py-1)||
+						aktuellesFellBei(px+0,py+1)||
+						aktuellesFellBei(px+1,py-1)||
+						aktuellesFellBei(px+1,py+0)||
+						aktuellesFellBei(px+1,py+1) 
+						){
+							a[py][px]="s2";
+							f[py][px]=frame;
+							aenders=true;
+						}
+					}
+					
+					if (
+						fellBei(i-1,j-1)||
+						fellBei(i-1,j+0)||
+						fellBei(i-1,j+1)||
+						fellBei(i+0,j-1)||
+						fellBei(i+0,j+1)||
+						fellBei(i+1,j-1)||
+						fellBei(i+1,j+0)||
+						fellBei(i+1,j+1)
+					) {
+						versuchBehaaren(i-1,j-1);
+						versuchBehaaren(i-1,j-0);
+						versuchBehaaren(i-1,j+1);
+						versuchBehaaren(i-0,j-1);
+						versuchBehaaren(i-0,j+1);
+						versuchBehaaren(i+1,j-1);
+						versuchBehaaren(i+1,j-0);
+						versuchBehaaren(i+1,j+1);
+					}
+				}
+			}
+			frame++;
+		}
+
+		
+		frame--;
+		anim.maxabweichung=frame;
+	
+	}
+
 	function spiralen(anim:AnimationFrame,hoverziel_x:Int,hoverziel_y:Int){
 		var x= hoverziel_x;
 		var y = hoverziel_y;
@@ -582,7 +711,7 @@ class Main {
 		{
 			var j = sp_zeilen-1;
 			while(j>=0){
-				for (i in 0...i_spalten){
+				for (i in 0...sp_spalten){
 					if (startframe.nach_brett[j][i]=="s9" && !(x==i&&y==j)){
 						if (j==sp_zeilen-1){
 							animation2.nach_brett[j][i]=null;
@@ -608,6 +737,52 @@ class Main {
 
 	}
 
+	function versuchaufzuwachsen(x:Int,y:Int){
+		
+		var targets=[];
+
+		for (j in 0...sp_zeilen){
+			for (i in 0...sp_spalten){
+				if (szs_brett[j][i]=="s20" && !(x==i&&y==j)){
+					var k = j-1;
+					while(k>=0){
+						if (szs_brett[k][i]==null){
+							targets.push([i,k]);
+							break;
+						}
+						if (szs_brett[k][i]!="s21"){
+							break;
+						}
+						k--;
+					}
+				}
+			}
+		}
+		if (targets.length==0){
+			return;
+		}
+
+		var startframe = new AnimationFrame();
+		startframe.vor_brett = Copy.copy(szs_brett);
+		startframe.nach_brett = Copy.copy(szs_brett);
+		startframe.abweichung = leererAbweichungsgitter();
+		var animation = startframe;
+		animationen.push(animation);
+
+
+		
+		for (p in targets){
+			var x = p[0];
+			var y = p[1];
+			animation.nach_brett[y][x]="s21";
+			animation.abweichung[y][x]=1;
+		}
+
+		animation.maxabweichung=1;
+
+
+	}
+
 	function tuePlatzierung(hoverziel_x:Int,hoverziel_y:Int,zieh_name:String){	
 		var startframe = new AnimationFrame();
 		startframe.vor_brett = Copy.copy(szs_brett);
@@ -625,6 +800,7 @@ class Main {
 			case "s1":
 
 			case "s2":
+				behaaren(animation,hoverziel_x,hoverziel_y);			
 
 			case "s3":
 				spalte_entleeren(animation,hoverziel_x,hoverziel_y);			
@@ -662,14 +838,17 @@ class Main {
 			case "s18":
 			
 			case "s19":
+				bomben(animation,hoverziel_x,hoverziel_y);
 			
 			case "s20":
+
 			
 		}
 
 		szs_brett = animation.nach_brett;
 
 		versuchfallenzulassen(hoverziel_x,hoverziel_y);
+		versuchaufzuwachsen(hoverziel_x,hoverziel_y);
 
 		szs_brett = animationen[animationen.length-1].nach_brett;
 	}
