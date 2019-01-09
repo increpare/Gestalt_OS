@@ -9,6 +9,7 @@ import haxe.Serializer;
 import haxe.Unserializer;
 import lime.ui.Window;
 import haxe.Json;
+import js.Browser;
 
 /*
 credits
@@ -42,9 +43,31 @@ class LevelZustand{
 	public function new(){};
 }
 
-
+class Ziel{
+	public var ziel:Array<Array<String>>;
+	public var werkzeuge:Array<Bool>;
+	public function new(z:Array<Array<String>>,wz:Array<Bool>){
+		ziel=z;
+		werkzeuge=wz;
+	}
+}
 
 class Main {
+	public var editmodus:Bool=true;
+	public var editor_tl_x:Int=1;
+	public var editor_tl_y:Int=2;
+	public var editor_br_x:Int=4;
+	public var editor_br_y:Int=5;
+
+
+	public var aktuellesZiel:Ziel;	
+	public var aktuellesZielIdx=0;
+	public var ziele:Array<String> = [
+		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		"cy4:Ziely4:zielaay3:s12u2haR2u2haR2u2hhy9:werkzeugeatttttttttttttttttttthg",
+		"cy4:Ziely4:zielaau4hau2y3:s15nhany3:s14u2hau4hhy9:werkzeugeattfftttftttttttttttthg"
+	];
+
 
 	public function leererAbweichungsgitter():Array<Array<Int>>{
 		var result = new Array<Array<Int>>();
@@ -59,8 +82,8 @@ class Main {
 		return result;
 	}
 
-	public var i_spalten:Int=4;
-	public var i_zeilen:Int=5;
+	public var i_spalten:Int=2;
+	public var i_zeilen:Int=10;
 	
 	public var sp_spalten:Int=10;
 	public var sp_zeilen:Int=11;
@@ -79,6 +102,35 @@ class Main {
 	public var zieh_name:String;
 	
 	function LoadLevel(level:Int){
+		if (level>=ziele.length||level<0){
+			aktuellesZiel = new Ziel(
+				[[null]],
+				[
+					true,true,
+					true,true,
+					true,true,
+					true,true,
+					true,true,
+					true,true,
+					true,true,
+					true,true,
+					true,true,
+					true,true
+				]
+			);
+
+			neuesBlatt();
+			return;
+		}
+
+		aktuellesZielIdx=level;
+
+		var ziel_s = ziele[aktuellesZielIdx];
+	    var unserializer = new Unserializer(ziel_s);
+
+		aktuellesZiel = unserializer.unserialize();
+
+		neuesBlatt();
 
 	}
 	
@@ -93,9 +145,8 @@ class Main {
 			Globals.state.solved[i]=Save.loadvalue("mwbsolved"+i,0);
 		}
 
-		LoadLevel(Globals.state.level);	
 
-		neuesBlatt();
+		LoadLevel(Globals.state.level);	
 	}
 
 	function reset(){
@@ -578,7 +629,7 @@ class Main {
 		var a = anim.nach_brett;
 		var f = anim.abweichung;
 
-		var frame=0;
+		var frame=1;
 
 		function ersetzen(von,zu,fr){
 			var ersetzt=false;
@@ -597,11 +648,11 @@ class Main {
 		//norden
 		if (y>0){
 			var vn = a[y-1][x];
-			if (vn!=null){
 				a[y-1][x]=null;
 				f[y-1][x]=frame;
 				frame++;
 				
+			if (vn!=null){
 				if (ersetzen(vn,null,frame)){
 					frame++;
 				}
@@ -612,11 +663,11 @@ class Main {
 		//westen
 		if (x>0){
 			var vn = a[y][x-1];
-			if (vn!=null){
 				a[y][x-1]=null;
 				f[y][x-1]=frame;
 				frame++;
 				
+			if (vn!=null){
 				if (ersetzen(vn,null,frame)){
 					frame++;
 				}
@@ -628,11 +679,11 @@ class Main {
 		//suden
 		if (y<sp_zeilen-1){
 			var vn = a[y+1][x];
-			if (vn!=null){
 				a[y+1][x]=null;
 				f[y+1][x]=frame;
 				frame++;
 				
+			if (vn!=null){
 				if (ersetzen(vn,null,frame)){
 					frame++;
 				}
@@ -644,11 +695,11 @@ class Main {
 		//osten
 		if (x<sp_spalten-1){
 			var vn = a[y][x+1];
-			if (vn!=null){
 				a[y][x+1]=null;
 				f[y][x+1]=frame;
 				frame++;
 				
+			if (vn!=null){
 				if (ersetzen(vn,null,frame)){
 					frame++;
 				}
@@ -1198,7 +1249,7 @@ class Main {
 		// Text.font = "dos";
 		// Sound.play("t2");
 		//Music.play("music",0,true);
-		Gfx.resizescreen(312, 235,true);
+		Gfx.resizescreen(354, 235,true);
 		SpriteManager.enable();
 		Particle.enable();
 		// Text.font="nokia";
@@ -1207,17 +1258,37 @@ class Main {
 		setup();
 	}	
 
-	function neuesBlatt(){		
+
+// var i_contents = [
+// 		10,11,
+// 		13,8,
+// 		3,4,
+// 		9,20,
+// 		16,17,
+// 		12,5,
+// 		6,2,
+// 		14,15,
+// 		1,7,
+// 		19,18
+// 	];
+	function neuesBlatt(){	
+
 		animationen = new Array<AnimationFrame>();
 		zieh_modus=false;
 		szs_inventory = new Array<Array<String>>();
 		for (j in 0...i_zeilen){
 			var zeile = new Array<String>();
 			for (i in 0...i_spalten){
-				var index = i+i_spalten*j+1 ;
-				zeile.push("s"+index);
+				var index = i+i_spalten*j;
+				if (aktuellesZiel==null || aktuellesZiel.werkzeuge[index]==true)
+				{
+					zeile.push("s"+(index+1));
+				} else {
+					zeile.push(null);
+				}
 			}
 			szs_inventory.push(zeile);
+
 		} 
 
 
@@ -1268,7 +1339,47 @@ class Main {
 		}
 	}
 
+	private var alphabet =".abcdefghijklmnopqrstuvwxyz";
+	function drueckBrett(){
+		var z = new Array<Array<String>>();
+		for (j in editor_tl_y...editor_br_y){
+			var r = new Array<String>();
+			for (i in editor_tl_x...editor_br_x){
+				r.push(szs_brett[j][i]);
+			}
+			z.push(r);
+		}
+		var wz :Array<Bool>= Copy.copy(aktuellesZiel.werkzeuge);
+
+		var new_z  = new Ziel(z,wz);
+    	    
+		var serializer = new Serializer();
+		serializer.serialize(new_z);
+		
+		aktuellesZiel=new_z;
+
+		var s = serializer.toString();
+		ziele[aktuellesZielIdx]=s;
+		Browser.alert(s);
+		trace(s);
+	}
+
+
+	function versperre(i:Int,j:Int){
+		trace("vs",i,j);
+		aktuellesZiel.werkzeuge[i+i_spalten*j]=!aktuellesZiel.werkzeuge[i+i_spalten*j];
+		if (aktuellesZiel.werkzeuge[i+i_spalten*j]==false){
+			szs_inventory[j][i]=null;
+		} else {
+			szs_inventory[j][i]="s"+(i+i_spalten*j+1);
+		}
+	}
+
 	function update() {	
+		if (Input.justpressed(Key.P)){
+			drueckBrett();
+		}
+
 		if (Mouse.leftclick()){
 			animationen.splice(0,animationen.length);	
 			animPos=0;		
@@ -1292,7 +1403,7 @@ class Main {
 				"taste_t_bg_up",
 				"taste_t_bg_down",
 				"icon_neu",
-				8,8,
+				248,209,
 				Globals.S("Blatt entleeren (N)","Clear page (N)")
 				)  
 				|| Input.justpressed(Key.N)
@@ -1308,7 +1419,7 @@ class Main {
 					"taste_t_bg_up",
 					"taste_t_bg_down",
 					"icon_undo",
-					8,28,
+					268,209,
 					Globals.S("Rueckgaengig (Z)","Undo (Z)")
 					)
 					|| Input.justpressed(Key.Z)
@@ -1318,7 +1429,7 @@ class Main {
 					tueUndo();
 			}
 		} else {
-			Gfx.drawimage(8,28,"keineundosmehr");
+			Gfx.drawimage(268,209,"keineundosmehr");
 		}
 
 		var aktuell_av:Bool = Globals.state.audio==1 ? true : false;
@@ -1328,8 +1439,8 @@ class Main {
 			"taste_t_bg_down",
 			"icon_audio_aus",
 			"icon_audio_an",
-			8,
-			48,
+			288,
+			209,
 			aktuell_av,
 			Globals.S("Audio: aus (M)","Audio: off (M)"),
 			Globals.S("Audio: an (M)","Audio: on (M)")			
@@ -1351,7 +1462,7 @@ class Main {
 			"taste_t_bg_down",
 			"icon_flagge_de",
 			"icon_flagge_en",
-			8,68,
+			308,209,
 			aktuell_sprache,
 			Globals.S("Sprache: Deutsch","Language: German"),
 			Globals.S("Sprache: Englisch","Language: English")	
@@ -1368,49 +1479,110 @@ class Main {
 			"taste_t_bg_up",
 			"taste_t_bg_down",
 			"icon_hilfe",
-			8,88,
+			328,209,
 			Globals.S("Ueber diese Anwendung","About this app")
 			);
 
-		Text.display(37,9,Globals.S("Sigilla","Sigils"),farbe_menutext);
+		Text.display(9,9,Globals.S("Wkzge","Tools"),farbe_menutext);
 
 
-		var ziele = Globals.state.solved.length;
 		var lebende = Lambda.count(Globals.state.solved, (w)->w==0);
 		var titeltext="";
 		if (lebende>1){
-			titeltext = Globals.S("Werkbank","Workbench") + " (" + lebende + Globals.S(" leben noch"," still live")+")." ;
+			titeltext = Globals.S("Werkbank","Workbench");// + " (" + lebende + Globals.S(" leben noch"," still live")+")." ;
 		} else {
-			titeltext = Globals.S("Werkbank","Workbench") + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
+			titeltext = Globals.S("Werkbank","Workbench");// + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
 		}
-		Text.display(119,9,titeltext,farbe_menutext);
+		Text.display(53,9,titeltext,farbe_menutext);
 
-		Text.display(37,123,Globals.S("Zauber","Magic"),farbe_menutext);
+		Text.display(249,9,Globals.S("Ziel","Goal"),farbe_menutext);
 
-		IMGUI.pressbutton("menü_l","taste_sm_up","taste_sm_down","icon_sm_l",35,210);
-		IMGUI.pressbutton("menü_r","taste_sm_up","taste_sm_down","icon_sm_r",91,210);
+		if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",248,182)){
+			if (aktuellesZielIdx>0){
+				LoadLevel(aktuellesZielIdx-1);
+			}
+		}
+		if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",328,182)){
+
+			if (aktuellesZielIdx+1<ziele.length){
+				LoadLevel(aktuellesZielIdx+1);
+			}
+		}
 
 		// Gfx.drawimage(Mouse.x-3,Mouse.y-3,"cursor_finger");
 
 
 		for (j in 0...i_zeilen){
 			for (i in 0...i_spalten){
-				var index = i+i_spalten*j+1 ;
+				var index = i+i_spalten*j +1;
 				var inhalt = szs_inventory[j][i];
+				
+				var ix = 8+19*i;
+				var iy = 21+19*j;
+				
 				if (inhalt!=null){
-					if (IMGUI.clickableimage("icons/"+inhalt,35+19*i,21+19*j)){
+					if (IMGUI.clickableimage(
+							"icons/"+inhalt,
+							ix,
+							iy)){
 						zieh_name = szs_inventory[j][i];
 						szs_inventory[j][i] = null;
 						zieh_modus=true;
-						zieh_offset_x=(35+19*i)-Mouse.x;
-						zieh_offset_y=(21+19*j)-Mouse.y;
+						zieh_offset_x=(ix)-Mouse.x;
+						zieh_offset_y=(iy)-Mouse.y;
 						zieh_quelle_i=i;
 						zieh_quelle_j=j;
 					}
 				} else {
-					Gfx.drawimage(35+19*i,21+19*j,"schatten/s"+index);
+					Gfx.drawimage(ix,iy,"schatten/s"+index);
+					if (aktuellesZiel.werkzeuge[index-1]==false){
+						Gfx.drawimage(ix,iy,"versperrt");
+					}
+				}
+				if (editmodus){
+					if (IMGUI.mouseover(
+							"schatten/s"+index,
+							ix,
+							iy) &&
+						Input.justpressed(Key.E) )
+					{
+						versperre(i,j);
+					}
+				}
+				
+			}
+		}
+
+		//ziel zeigen
+		{
+			var alevel = aktuellesZiel;
+			var z_raster = alevel.ziel;
+			var z_w = z_raster[0].length;
+			var z_h = z_raster.length;
+
+			var zielb_x=246;
+			var zielb_y=19;
+
+			var zielb_w=103;
+			var zielb_h=163;
+
+			var ziel_darstellung_w=17*z_w+1;
+			var ziel_darstellung_h=17*z_h+1;
+
+			var ziel_x=zielb_x+zielb_w/2-ziel_darstellung_w/2;
+			var ziel_y=zielb_y+zielb_h/2-ziel_darstellung_h/2;
+
+			for (i in 0...z_w){
+				for (j in 0...z_h){
+					
+					Gfx.drawimage(ziel_x+17*i,ziel_y+17*j,"zielgitterkiste");
+					var inhalt = z_raster[j][i];
+					if (inhalt!=null){
+						Gfx.drawimage(ziel_x+17*i+1,ziel_y+17*j+1,"icons/"+inhalt);
+					}
 				}
 			}
+
 		}
 
 		var brett_vor = szs_brett;
@@ -1435,12 +1607,73 @@ class Main {
 					}
 				}
 				if (inhalt!=null){
-					Gfx.fillbox(117+19*i,21+19*j,16,16,0x6a6a6a);
-					Gfx.drawimage(117+19*i,21+19*j,"icons/"+inhalt);
+					Gfx.fillbox(52+19*i,21+19*j,16,16,0x6a6a6a);
+					Gfx.drawimage(52+19*i,21+19*j,"icons/"+inhalt);
 				}
 				if (abw==frame){
-					Gfx.drawimage(117+19*i,21+19*j,"cursor_aktiv");
+					Gfx.drawimage(52+19*i,21+19*j,"cursor_aktiv");
 				}
+			}
+		}
+		
+		if (editmodus){
+			var input:Int=0;
+			if (Input.justpressed(Key.Q)){
+				input=1;
+			}
+			if (Input.justpressed(Key.W)){
+				input=2;
+			}
+			if (input>0){
+				var hoverziel_x=-1;
+				var hoverziel_y=-1;
+				var geltendes_hoverziel=false;
+
+				var mx=Mouse.x;
+				var my=Mouse.y;
+
+				var ox = mx-51;
+				var oy = my-20;
+				var ox_d = ox % 19;
+				var oy_d = oy % 19;
+
+				var nope:Bool=false;
+				if (ox_d<18 && oy_d<18){
+					hoverziel_x=Math.floor(ox/19);
+					hoverziel_y=Math.floor(oy/19);
+
+					if (hoverziel_x>=0 && hoverziel_x<sp_spalten && hoverziel_y>=0 && hoverziel_y<sp_zeilen){
+						geltendes_hoverziel=true;
+					}
+				}
+
+				if (geltendes_hoverziel){
+					if (input==1){
+						editor_tl_x=hoverziel_x;
+						editor_tl_y=hoverziel_y;
+					} else {
+						editor_br_x=hoverziel_x+1;
+						editor_br_y=hoverziel_y+1;
+					}
+					if (editor_tl_x>editor_br_x){
+						var t = editor_tl_x;
+						editor_tl_x=editor_br_x;
+						editor_br_x=t;
+					}
+					if (editor_br_y<editor_tl_y){
+						var t = editor_br_y;
+						editor_br_y=editor_tl_y;
+						editor_tl_y=t;
+					}
+				}
+			}
+			
+			if (editor_tl_x>=0){
+				var b_w=editor_br_x-editor_tl_x;
+				var b_h=editor_br_y-editor_tl_y;
+				b_w = b_w*19+1;
+				b_h = b_h*19+1;
+				Gfx.drawbox(51+editor_tl_x*19-1,20+editor_tl_y*19-1,b_w,b_h,Col.RED);
 			}
 		}
 		
@@ -1453,7 +1686,7 @@ class Main {
 			var mx=Mouse.x;
 			var my=Mouse.y;
 
-			var ox = mx-116;
+			var ox = mx-51;
 			var oy = my-20;
 			var ox_d = ox % 19;
 			var oy_d = oy % 19;
@@ -1470,7 +1703,7 @@ class Main {
 			
 			if (geltendes_hoverziel){
 				if (szs_brett[hoverziel_y][hoverziel_x]==null){
-					Gfx.drawimage(117+19*hoverziel_x,21+19*hoverziel_y,"zelle_hervorhebung");
+					Gfx.drawimage(52+19*hoverziel_x,21+19*hoverziel_y,"zelle_hervorhebung");
 				} else {
 					geltendes_hoverziel=false;
 					nope=true;

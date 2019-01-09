@@ -8,11 +8,33 @@ class IMGUI {
 
 	private static var downstates:Map<String,Bool> = new Map<String,Bool>();
 
+	public static function mouseover(
+		im:String,
+		x:Int,
+		y:Int
+		) : Bool
+	{
+		
+		var dx = Mouse.x-x;
+		var dy = Mouse.y-y;
+	 	var w = Gfx.imagewidth(im);
+	 	var h = Gfx.imageheight(im);
+
+
+	
+		var over:Bool = dx>=0&& dy>=0 && dx<w && dy<h;
+
+		return over;
+
+	}
+
 
 	public static function clickableimage(
 		im:String,
 		x:Int,
-		y:Int
+		y:Int,
+		?editkey:Key,
+		?editcallback:Void->Void
 		) : Bool
 	{
 		
@@ -33,6 +55,11 @@ class IMGUI {
 		var mouseclicked = Mouse.leftclick();
 		// var mousedown = Mouse.leftheld()||mouseclicked;
 		// var clicked=false;
+		if (editkey!=null){
+			if (over && Input.justpressed(editkey)){
+				editcallback();
+			}
+		}
 		return over && mouseclicked;
 
 	}
@@ -43,17 +70,22 @@ class IMGUI {
 			return;
 		}
 
-		var x = Mouse.x+4;
-		var y = Mouse.y+4;
+		var x = Mouse.x;
+		var y = Mouse.y;
 
-		var w = Text.width(tooltipstr);
-		var h = Text.height(tooltipstr);
+		var w = Math.ceil(Text.width(tooltipstr));
+		var h = Math.ceil(Text.height(tooltipstr));
 		var mx_l=4;
 		var mx_r=3;
 		var my_t=3;
 		var my_b=3;
-		Gfx.fillbox(x,y,w+mx_l+mx_r,h+my_t+my_b,0x035766);
-		Gfx.drawbox(x,y,w+mx_l+mx_r,h+my_t+my_b,0xbfbfbf);
+
+		var b_w=w+mx_l+mx_r;
+		var b_h =h+my_t+my_b;
+		x-=b_w-1;
+		y-=b_h-1;
+		Gfx.fillbox(x,y,b_w,b_h,0x035766);
+		Gfx.drawbox(x,y,b_w,b_h,0xbfbfbf);
 		Text.display(x+mx_l,y+my_t,tooltipstr,0x9f9f9f);
 		tooltipstr=null;	
 	}
