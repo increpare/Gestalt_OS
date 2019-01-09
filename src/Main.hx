@@ -8,6 +8,7 @@ import StringTools;
 import haxe.Serializer;
 import haxe.Unserializer;
 import lime.ui.Window;
+import haxe.Json;
 
 /*
 credits
@@ -31,6 +32,17 @@ class AnimationFrame {
 		
 	}
 }
+
+
+
+class LevelZustand{
+	public var i:Array<Array<String>>;
+	public var sp:Array<Array<String>>;
+	public var hash:String;
+	public function new(){};
+}
+
+
 
 class Main {
 
@@ -72,9 +84,7 @@ class Main {
 	
 		
 	function setup(){
-		animationen = new Array<AnimationFrame>();
-		zieh_modus=false;
-
+		undoStack=new Array<LevelZustand>();
 		Globals.state.level=Save.loadvalue("mwblevel",0);
 		Globals.state.audio=Save.loadvalue("mwbaudio",1);
 		Globals.state.sprache=Save.loadvalue("mwbsprache",1);
@@ -85,26 +95,7 @@ class Main {
 
 		LoadLevel(Globals.state.level);	
 
-		szs_inventory = new Array<Array<String>>();
-		for (j in 0...i_zeilen){
-			var zeile = new Array<String>();
-			for (i in 0...i_spalten){
-				var index = i+i_spalten*j+1 ;
-				zeile.push("s"+index);
-			}
-			szs_inventory.push(zeile);
-		} 
-
-
-		szs_brett = new Array<Array<String>>();
-		for (j in 0...sp_zeilen){
-			var zeile = new Array<String>();
-			for (i in 0...sp_spalten){
-				var index = i+sp_spalten*j+1 ;
-				zeile.push(null);
-			}
-			szs_brett.push(zeile);
-		} 
+		neuesBlatt();
 	}
 
 	function reset(){
@@ -130,6 +121,77 @@ class Main {
 	}
 
 
+	function spiegelkopien(anim:AnimationFrame,x:Int,y:Int){
+
+
+
+
+			var startframe2 = new AnimationFrame();
+			startframe2.vor_brett = Copy.copy(szs_brett);
+			startframe2.nach_brett = Copy.copy(szs_brett);
+			startframe2.abweichung = leererAbweichungsgitter();
+			var anim2 = startframe2;
+			startframe2.abweichung[y][x]=0;
+			animationen.push(anim2);
+			
+			
+
+		
+
+		function get_vorbrett(px,py){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return null;
+			}
+			return anim.vor_brett[py][px];
+		}
+
+
+		function set_brett(px,py,v){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return;
+			}
+			anim2.nach_brett[py][px]=v;
+		}
+
+
+		function setf(px,py,v){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return;
+			}
+			anim.abweichung[py][px]=v;
+			anim2.abweichung[py][px]=v;
+		}
+
+
+		var vn=get_vorbrett(x,y-1);
+		var vs=get_vorbrett(x,y+1);
+		var vo=get_vorbrett(x+1,y);
+		var vw=get_vorbrett(x-1,y);
+
+		setf(x-1,y,0);
+		setf(x+1,y,0);
+		setf(x,y-1,0);
+		setf(x,y+1,0);
+
+		if (vn==null){
+			set_brett(x,y-1,vs);
+		}
+
+		if (vs==null){
+			set_brett(x,y+1,vn);
+		}
+
+		if (vw==null){
+			set_brett(x-1,y,vo);
+		}
+
+		if (vo==null){
+			set_brett(x+1,y,vw);
+		}
+
+		anim.maxabweichung=0;
+		anim2.maxabweichung=0;
+	}
 
 
 	function zeile_entleeren(anim:AnimationFrame,x:Int,y:Int){
@@ -156,6 +218,26 @@ class Main {
 		}
 		anim.maxabweichung=max_frame;
 	}
+
+
+
+	function wiederholen(anim:AnimationFrame,x:Int,y:Int){
+
+		if (x==0){
+			return;
+		}
+
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		
+		f[y][x-1]=1;
+		anim.maxabweichung=1;
+
+		tuePlatzierung(x-1,y,a[y][x-1],false);
+		
+	}
+
+
 
 
 	function bomben(anim:AnimationFrame,x:Int,y:Int){
@@ -309,6 +391,63 @@ class Main {
 	}
 
 
+
+	function drehen(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+		
+		f[y][x]=0;
+
+
+		function set_brett(px,py,v){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return;
+			}
+			anim.nach_brett[py][px]=v;
+		}
+		
+		function get_vorbrett(px,py){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return null;
+			}
+			return anim.vor_brett[py][px];
+		}
+
+
+		function setf(px,py,v){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return;
+			}
+			f[py][px]=v;
+		}
+		
+
+		function getf(px,py,def){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return def;
+			}
+			return f[py][px];
+		}
+
+		function von_bis(x1,y1,x2,y2,f):Bool{
+			set_brett(x2,y2,get_vorbrett(x1,y1));
+			setf(x2,y2,f);
+			return true;
+		}
+
+		von_bis(x,y-1,		x-1,y-1,	1);
+		von_bis(x-1,y-1,	x-1,y,		1);
+		von_bis(x-1,y,		x-1,y+1,	1);
+		von_bis(x-1,y+1,	x,y+1,		1);
+		von_bis(x,y+1,		x+1,y+1,	1);
+		von_bis(x+1,y+1,	x+1,y,		1);
+		von_bis(x+1,y,		x+1,y-1,	1);
+		von_bis(x+1,y-1,	x,y-1,		1);
+		
+		anim.maxabweichung=1;
+	}
+
+
 	function ziehen(anim:AnimationFrame,x:Int,y:Int){
 		var a = anim.nach_brett;
 		var f = anim.abweichung;
@@ -433,6 +572,94 @@ class Main {
 	
 	}
 
+
+
+	function loeschen(anim:AnimationFrame,x:Int,y:Int){
+		var a = anim.nach_brett;
+		var f = anim.abweichung;
+
+		var frame=0;
+
+		function ersetzen(von,zu,fr){
+			var ersetzt=false;
+			for (j in 0...sp_zeilen){
+				for (i in 0...sp_spalten){
+					if (a[j][i]==von && f[j][i]==-1){
+						a[j][i]=zu;
+						f[j][i]=fr;
+						ersetzt=true;
+					}
+				}
+			}
+			return ersetzt;
+		}
+
+		//norden
+		if (y>0){
+			var vn = a[y-1][x];
+			if (vn!=null){
+				a[y-1][x]=null;
+				f[y-1][x]=frame;
+				frame++;
+				
+				if (ersetzen(vn,null,frame)){
+					frame++;
+				}
+			}
+		}
+
+
+		//westen
+		if (x>0){
+			var vn = a[y][x-1];
+			if (vn!=null){
+				a[y][x-1]=null;
+				f[y][x-1]=frame;
+				frame++;
+				
+				if (ersetzen(vn,null,frame)){
+					frame++;
+				}
+			}
+		}
+
+
+
+		//suden
+		if (y<sp_zeilen-1){
+			var vn = a[y+1][x];
+			if (vn!=null){
+				a[y+1][x]=null;
+				f[y+1][x]=frame;
+				frame++;
+				
+				if (ersetzen(vn,null,frame)){
+					frame++;
+				}
+			}
+		}
+
+
+
+		//osten
+		if (x<sp_spalten-1){
+			var vn = a[y][x+1];
+			if (vn!=null){
+				a[y][x+1]=null;
+				f[y][x+1]=frame;
+				frame++;
+				
+				if (ersetzen(vn,null,frame)){
+					frame++;
+				}
+			}
+		}
+
+		frame--;
+		anim.maxabweichung=frame;
+	
+	}
+
 	function behaaren(anim:AnimationFrame,x:Int,y:Int){
 		var a = anim.nach_brett;
 		var f = anim.abweichung;
@@ -509,14 +736,14 @@ class Main {
 						fellBei(i+1,j+0)||
 						fellBei(i+1,j+1)
 					) {
-						// versuchBehaaren(i-1,j-1);
+						versuchBehaaren(i-1,j-1);
 						versuchBehaaren(i-1,j-0);
-						// versuchBehaaren(i-1,j+1);
+						versuchBehaaren(i-1,j+1);
 						versuchBehaaren(i-0,j-1);
 						versuchBehaaren(i-0,j+1);
-						// versuchBehaaren(i+1,j-1);
+						versuchBehaaren(i+1,j-1);
 						versuchBehaaren(i+1,j-0);
-						// versuchBehaaren(i+1,j+1);
+						versuchBehaaren(i+1,j+1);
 					}
 				}
 			}
@@ -871,7 +1098,7 @@ class Main {
 
 	}
 
-	function tuePlatzierung(hoverziel_x:Int,hoverziel_y:Int,zieh_name:String){	
+	function tuePlatzierung(hoverziel_x:Int,hoverziel_y:Int,zieh_name:String,nachkram:Bool){	
 		var startframe = new AnimationFrame();
 		startframe.vor_brett = Copy.copy(szs_brett);
 
@@ -886,7 +1113,7 @@ class Main {
 
 		switch(zieh_name){
 			case "s1":
-
+				loeschen(animation,hoverziel_x,hoverziel_y);
 			case "s2":
 				behaaren(animation,hoverziel_x,hoverziel_y);			
 
@@ -900,6 +1127,7 @@ class Main {
 			case "s6":
 				fuellen(animation,hoverziel_x,hoverziel_y);
 			case "s7":
+				spiegelkopien(animation,hoverziel_x,hoverziel_y);	
 			
 			case "s8":
 				ziehen(animation,hoverziel_x,hoverziel_y);
@@ -916,7 +1144,7 @@ class Main {
 				schieben(animation,hoverziel_x,hoverziel_y);
 			
 			case "s14":
-			
+				drehen(animation,hoverziel_x,hoverziel_y);
 			case "s15":
 				schraegspiegeln(animation,hoverziel_x,hoverziel_y);	
 			case "s16":
@@ -924,7 +1152,7 @@ class Main {
 			case "s17":
 				spiegeln_hinoben(animation,hoverziel_x,hoverziel_y);
 			case "s18":
-			
+				wiederholen(animation,hoverziel_x,hoverziel_y);
 			case "s19":
 				bomben(animation,hoverziel_x,hoverziel_y);
 			
@@ -933,12 +1161,17 @@ class Main {
 			
 		}
 
-		szs_brett = animation.nach_brett;
-
-		versuchfallenzulassen(hoverziel_x,hoverziel_y);
-		versuchaufzuwachsen(hoverziel_x,hoverziel_y);
 
 		szs_brett = animationen[animationen.length-1].nach_brett;
+
+		if (nachkram){
+			versuchfallenzulassen(hoverziel_x,hoverziel_y);
+			versuchaufzuwachsen(hoverziel_x,hoverziel_y);
+
+			szs_brett = animationen[animationen.length-1].nach_brett;
+
+			zustandSpeichern();
+		}
 	}
 
 	public static var farbe_desktop = 0x7869c4;
@@ -956,7 +1189,65 @@ class Main {
 		setup();
 	}	
 
+	function neuesBlatt(){		
+		animationen = new Array<AnimationFrame>();
+		zieh_modus=false;
+		szs_inventory = new Array<Array<String>>();
+		for (j in 0...i_zeilen){
+			var zeile = new Array<String>();
+			for (i in 0...i_spalten){
+				var index = i+i_spalten*j+1 ;
+				zeile.push("s"+index);
+			}
+			szs_inventory.push(zeile);
+		} 
+
+
+		szs_brett = new Array<Array<String>>();
+		for (j in 0...sp_zeilen){
+			var zeile = new Array<String>();
+			for (i in 0...sp_spalten){
+				var index = i+sp_spalten*j+1 ;
+				zeile.push(null);
+			}
+			szs_brett.push(zeile);
+		} 
+		zustandSpeichern();
+	}
+
+	var undoStack:Array<LevelZustand>;
+
+	function zustandSpeichern(){
+		var lzs = new LevelZustand();
+		lzs.i=Copy.copy(szs_inventory);
+		lzs.sp=Copy.copy(szs_brett);
+		lzs.hash=Json.stringify([szs_inventory,szs_brett]);
+		if (undoStack.length>0){
+			if (undoStack[undoStack.length-1].hash==lzs.hash){
+				return;//keine duplikaten
+			}
+		}
+		undoStack.push(lzs);
+	}
 	
+	function tueUndo(){
+		animationen.splice(0,animationen.length);
+		var curhash = Json.stringify([szs_inventory,szs_brett]);
+		var i = undoStack.length-1;
+		while (i>=0){
+			var zs = undoStack[i];
+			if (curhash!=zs.hash){
+				szs_inventory=Copy.copy(zs.i);
+				szs_brett=Copy.copy(zs.sp);
+				return;
+			} else {
+				if (i>0){
+					undoStack.splice(i,1);
+				}
+			}
+			i--;
+		}
+	}
 
 	function update() {	
 		if (Mouse.leftclick()){
@@ -976,10 +1267,57 @@ class Main {
 		Gfx.drawimage(0,0,"bg");
 	
 		// Gfx.drawimage(7,7,"taste_t_bg_up");
-		IMGUI.pressbutton("neu","taste_t_bg_up","taste_t_bg_down","icon_neu",8,8);
-		IMGUI.pressbutton("rückgängig","taste_t_bg_up","taste_t_bg_down","icon_rueckgaengig",8,28);
+		if (IMGUI.pressbutton(
+				"neu",
+				"taste_t_bg_up",
+				"taste_t_bg_down",
+				"icon_neu",
+				8,8,
+				Globals.S("Blatt entleeren (N)","Clear page (N)")
+				)  
+				|| Input.justpressed(Key.N)
+				|| Input.justpressed(Key.R)
+				)
+		{
+			neuesBlatt();
+		}
+
+		if (undoStack.length>1){
+			if (IMGUI.pressbutton(
+					"rückgängig",
+					"taste_t_bg_up",
+					"taste_t_bg_down",
+					"icon_undo",
+					8,28,
+					Globals.S("Rueckgaengig (Z)","Undo (Z)")
+					)
+					|| Input.justpressed(Key.Z)
+					|| Input.justpressed(Key.U)
+					)
+			{
+					tueUndo();
+			}
+		} else {
+			Gfx.drawimage(8,28,"keineundosmehr");
+		}
+
 		var aktuell_av:Bool = Globals.state.audio==1 ? true : false;
-		var neuaudio:Bool = IMGUI.togglebutton("audio","taste_t_bg_up","taste_t_bg_down","icon_audio_aus","icon_audio_an",8,48,aktuell_av);
+		var neuaudio:Bool = IMGUI.togglebutton(
+			"audio",
+			"taste_t_bg_up",
+			"taste_t_bg_down",
+			"icon_audio_aus",
+			"icon_audio_an",
+			8,
+			48,
+			aktuell_av,
+			Globals.S("Audio: aus (M)","Audio: off (M)"),
+			Globals.S("Audio: an (M)","Audio: on (M)")			
+			);
+		if (Input.justpressed(Key.M)){
+			neuaudio=!aktuell_av;
+		}
+		
 		var neu_av = neuaudio?1:0;
 		if (neu_av!=Globals.state.audio){
 			Globals.state.audio=neu_av;
@@ -987,14 +1325,32 @@ class Main {
 		}
 
 		var aktuell_sprache:Bool = Globals.state.sprache==1 ? true : false;
-		var neusprache:Bool = IMGUI.togglebutton("sprache","taste_t_bg_up","taste_t_bg_down","icon_flagge_de","icon_flagge_en",8,68,aktuell_sprache);
+		var neusprache:Bool = IMGUI.togglebutton(
+			"sprache",
+			"taste_t_bg_up",
+			"taste_t_bg_down",
+			"icon_flagge_de",
+			"icon_flagge_en",
+			8,68,
+			aktuell_sprache,
+			Globals.S("Sprache: Deutsch","Language: German"),
+			Globals.S("Sprache: Englisch","Language: English")	
+			);
+
 		var neu_spr = neusprache?1:0;
 		if (neu_spr!=Globals.state.sprache){
 			Globals.state.sprache=neu_spr;
 			Save.savevalue("mwbsprache",Globals.state.sprache);
 		}
 
-		IMGUI.pressbutton("hilfe","taste_t_bg_up","taste_t_bg_down","icon_hilfe",8,88);
+		IMGUI.pressbutton(
+			"hilfe",
+			"taste_t_bg_up",
+			"taste_t_bg_down",
+			"icon_hilfe",
+			8,88,
+			Globals.S("Ueber diese Anwendung","About this app")
+			);
 
 		Text.display(37,9,Globals.S("Sigilla","Sigils"),farbe_menutext);
 
@@ -1114,10 +1470,11 @@ class Main {
 				if (geltendes_hoverziel==false){
 					szs_inventory[zieh_quelle_j][zieh_quelle_i]=zieh_name;
 				} else {
-					tuePlatzierung(hoverziel_x,hoverziel_y,zieh_name);
+					tuePlatzierung(hoverziel_x,hoverziel_y,zieh_name,true);
 				}
 			}
 		}
+		IMGUI.zeigtooltip();
 	}
 
 }
