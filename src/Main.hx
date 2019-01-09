@@ -664,6 +664,17 @@ class Main {
 		var a = anim.nach_brett;
 		var f = anim.abweichung;
 		
+
+		function nichtfellob(px,py){
+			if (px<0||px>=sp_spalten ||py<0||py>=sp_zeilen){
+				return false;
+			}
+			if (a[py][px]==null){
+				return false;
+			}
+			return a[py][px]!="s2"; 
+		}
+
 		a[y][x]="s2";
 		f[y][x]=0;
 		var aenders=true;
@@ -677,7 +688,7 @@ class Main {
 					if (n==null || n=="s2"){
 						continue;
 					}
-
+				
 					function fellBei(px,py):Bool{
 						if (px<0||py<0||px>=sp_spalten||py>=sp_zeilen){
 							return false;
@@ -720,9 +731,16 @@ class Main {
 						aktuellesFellBei(px+1,py+0)||
 						aktuellesFellBei(px+1,py+1) 
 						){
-							a[py][px]="s2";
-							f[py][px]=frame;
-							aenders=true;
+							if (
+								(nichtfellob(px+1,py)  ) ||
+								(nichtfellob(px,py+1)  ) ||
+								(nichtfellob(px,py-1)  ) ||
+								(nichtfellob(px-1,py)  ) 
+							){
+								a[py][px]="s2";
+								f[py][px]=frame;
+								aenders=true;
+							}
 						}
 					}
 					
@@ -1231,7 +1249,8 @@ class Main {
 	}
 	
 	function tueUndo(){
-		animationen.splice(0,animationen.length);
+		animationen.splice(0,animationen.length);	
+		animPos=0;		
 		var curhash = Json.stringify([szs_inventory,szs_brett]);
 		var i = undoStack.length-1;
 		while (i>=0){
@@ -1251,7 +1270,8 @@ class Main {
 
 	function update() {	
 		if (Mouse.leftclick()){
-			animationen.splice(0,animationen.length);
+			animationen.splice(0,animationen.length);	
+			animPos=0;		
 		}
 		if (animationen.length>0){
 			var animation=animationen[0];
