@@ -15,7 +15,7 @@ import js.Browser;
 credits
 
 testing/feedback:
-daniel frier
+Daniel Frier, 
 
 rest:
 increpare
@@ -53,7 +53,11 @@ class Ziel{
 }
 
 class Main {
-	public var editmodus:Bool=true;
+	public var cansolve:Bool=true;
+	public var solvex:Int=-1;
+	public var solvey:Int=-1;
+
+	public var editmodus:Bool=false;
 	public var editor_tl_x:Int=1;
 	public var editor_tl_y:Int=2;
 	public var editor_br_x:Int=4;
@@ -63,9 +67,55 @@ class Main {
 	public var aktuellesZiel:Ziel;	
 	public var aktuellesZielIdx=0;
 	public var ziele:Array<String> = [
+
+		//sehr einfach
+		"cy4:Ziely4:zielaau6hany2:s5R2R2R2nhau6hhy9:werkzeugeatttttttttttttttttttthg",
+		"cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		//mittel-leicht, interessanter
+		"cy4:Ziely4:zielaay2:s5R2R2haR2y3:s14R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//leichter variatn von 2x4 punkte
+		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		//ziemlich einfach - zu einfach?
+		"cy4:Ziely4:zielaay3:s12R2R2R2R2haR2nR2nR2haR2R2R2R2R2haR2nR2nR2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//ziemlich einfach 
+		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2nR2nR2hanR2y2:s8R2nhaR2nR2nR2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//mittel-leicht, nicht so interessant
+		"cy4:Ziely4:zielaay2:s5u3R2haR2y3:s12R3R3R2haR2R3nR3R2haR2R3R3R3R2haR2u3R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//2x4 punkte
 		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		"cy4:Ziely4:zielaay3:s12u2haR2u2haR2u2hhy9:werkzeugeatttttttttttttttttttthg",
-		"cy4:Ziely4:zielaau4hau2y3:s15nhany3:s14u2hau4hhy9:werkzeugeattfftttftttttttttttthg"
+		//finde ich das tatsächlich ok? ich weiß nicht!
+		"cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		//sollte nicht zu schwierig sein, aber bin nicht sicher
+		"cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//kreuz mit beharrung
+		"cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
+		//avocadenvoll
+		"cy4:Ziely4:zielaay3:s21R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//humdrumm
+		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany2:s5R4R4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		//langweilig, mit avocaden
+		"cy4:Ziely4:zielaay3:s20y3:s21R2haR3nR3haR2R3R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//L mit füßen
+		"cy4:Ziely4:zielaau5hany2:s5u3hanR2u3hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		//herzen - nicht einfach aber macht spaß?
+		"cy4:Ziely4:zielaany2:s2nR2nhaR2nR2nR2hanR2nR2nhau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+		// drehen
+		"cy4:Ziely4:zielaau5hau2y3:s11u2hany3:s10nR2nhau2R3u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
+		// vierekige haut
+		"cy4:Ziely4:zielaau5hany2:s2R2R2nhanR2nR2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		// große 1 (nicht so gut)
+		"cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		// große 5 (vllt besser ohne grenzebereich?)
+		"cy4:Ziely4:zielaau5hany3:s12R2R2nhanR2u3hanR2R2R2nhau3R2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		// große 8, meh
+		"cy4:Ziely4:zielaay3:s12R2R2haR2nR2haR2R2R2haR2nR2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",		
+		//ziemlich einfach , 3 zu machen
+		"cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		// futter
+		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2y2:s6R2R3R2hanR2y2:s8R2nhaR2R3R2R3R2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//meh
+		"cy4:Ziely4:zielaau5hany3:s12nR2nhau2y3:s13u2hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+
 	];
 
 
@@ -101,6 +151,94 @@ class Main {
 	public var zieh_offset_y:Int;
 	public var zieh_name:String;
 	
+	function checkSolve(){
+
+		var schonloesbar = cansolve;
+
+		solvex=-1;
+		solvey=-1;
+		cansolve=false;
+		
+		var z =  aktuellesZiel.ziel;
+		var zw = aktuellesZiel.ziel[0].length;
+		var zh = aktuellesZiel.ziel.length;
+
+		for (gi in 0...(sp_spalten+1-zw)){
+			for (gj in 0...(sp_zeilen+1-zh)){
+				var match=true;
+				for (i in 0...zw){
+					for (j in 0...zh){
+						if (z[j][i]!=szs_brett[gj+j][gi+i]){
+							match=false;
+						}
+					}
+					if (match==false){
+						break;
+					}
+				}
+				if (match){
+					cansolve=true;
+					solvex=gi;
+					solvey=gj;
+
+					if (schonloesbar==false){
+			
+						var px = 268;
+						var py =  182;
+						var pbb = Gfx.imagewidth("btn_solve_bg_up");
+						var pbh = Gfx.imageheight("btn_solve_bg_down");
+						cansolve=true;
+						Particle.GenerateParticles(
+										{min:px,max:px+pbb},
+										{min:py,max:py+pbh},
+										0x9e61cc,
+										10,
+										1.0,
+										0.0,
+										{min:2,max:4},
+										{min:0,max:360},
+										{min:-20,max:20},
+										{min:-20,max:20},
+										{min:-1,max:1},
+										{min:3,max:5},
+										{min:0,max:0});	
+						Particle.GenerateParticles(
+										{min:px,max:px+pbb},
+										{min:py,max:py+pbh},
+										0x6051ac,
+										10,
+										1.0,
+										0.0,
+										{min:2,max:4},
+										{min:0,max:360},
+										{min:-20,max:20},
+										{min:-20,max:20},
+										{min:-1,max:1},
+										{min:3,max:5},
+										{min:0,max:0});	
+						Particle.GenerateParticles(
+										{min:px,max:px+pbb},
+										{min:py,max:py+pbh},
+										0x40318d,
+										10,
+										1.0,
+										0.0,
+										{min:2,max:4},
+										{min:0,max:360},
+										{min:-20,max:20},
+										{min:-20,max:20},
+										{min:-1,max:1},
+										{min:3,max:5},
+										{min:0,max:0});	
+										
+					}
+					return;
+				}
+			}	
+		}
+
+	}
+
 	function LoadLevel(level:Int){
 		if (level>=ziele.length||level<0){
 			aktuellesZiel = new Ziel(
@@ -120,6 +258,7 @@ class Main {
 			);
 
 			neuesBlatt();
+			checkSolve();
 			return;
 		}
 
@@ -131,11 +270,24 @@ class Main {
 		aktuellesZiel = unserializer.unserialize();
 
 		neuesBlatt();
-
+		checkSolve();
 	}
 	
 		
+	var geloest = [];
+	var version=1.1;
+	
 	function setup(){
+
+		geloest = [];
+		for (i in 0...ziele.length){
+			geloest.push(Save.loadvalue("level"+version+"-"+i,false));
+		}
+
+		// Core.showstats=true;
+		Core.fps=30;
+		Core.fullscreenbutton(0,0,10,10);
+		Gfx.clearcolor=Col.TRANSPARENT;
 		undoStack=new Array<LevelZustand>();
 		Globals.state.level=Save.loadvalue("mwblevel",0);
 		Globals.state.audio=Save.loadvalue("mwbaudio",1);
@@ -153,7 +305,7 @@ class Main {
 		setup();
 	}
 
-	public static var animFrameDauer:Int=10;
+	public static var animFrameDauer:Int=5;
 	public static var animPos:Int=0;
 
 	function spazieren(anim:AnimationFrame,hoverziel_x:Int,hoverziel_y:Int){
@@ -1235,11 +1387,13 @@ class Main {
 
 		if (nachkram){
 			versuchfallenzulassen(hoverziel_x,hoverziel_y);
+			szs_brett = animationen[animationen.length-1].nach_brett;
 			versuchaufzuwachsen(hoverziel_x,hoverziel_y);
 
 			szs_brett = animationen[animationen.length-1].nach_brett;
 
 			zustandSpeichern();
+			checkSolve();
 		}
 	}
 
@@ -1329,6 +1483,7 @@ class Main {
 			if (curhash!=zs.hash){
 				szs_inventory=Copy.copy(zs.i);
 				szs_brett=Copy.copy(zs.sp);
+				checkSolve();
 				return;
 			} else {
 				if (i>0){
@@ -1360,7 +1515,7 @@ class Main {
 
 		var s = serializer.toString();
 		ziele[aktuellesZielIdx]=s;
-		Browser.alert(s);
+		Browser.alert('"'+s+'",');
 		trace(s);
 	}
 
@@ -1375,7 +1530,84 @@ class Main {
 		}
 	}
 
+	var forcerender:Bool=true;
+	
+	var zeigabout:Bool=false;
+
 	function update() {	
+
+
+		if (Input.justpressed(Key.A)){
+			editmodus=!editmodus;
+		}
+
+		if (
+			Mouse.deltax==0 &&
+			Mouse.deltay==0 &&
+			!Mouse.leftclick() && 
+			!Mouse.leftreleased() &&
+			!Mouse.leftheld() &&
+			!Input.justpressed(Key.P) &&
+			!Input.justpressed(Key.N) &&
+			!Input.justpressed(Key.R) &&
+			!Input.justpressed(Key.M) &&
+			!Input.justpressed(Key.Z) &&
+			!Input.justpressed(Key.U) &&
+			!Input.justpressed(Key.E) &&
+			!Input.justpressed(Key.Q) &&
+			!Input.justpressed(Key.W) &&
+			!Input.justpressed(Key.LEFT) &&
+			!Input.justpressed(Key.RIGHT) &&
+			!Particle.active() &&
+			animationen.length==0 &&
+			forcerender==false
+			)
+		{
+				return;
+		}
+
+		if (zeigabout){
+			Text.wordwrap=181;
+
+			Gfx.drawimage(0,0,"aboutscreen");
+			
+			Text.display(86,25,Globals.S("Ueber Spruch_BS","About Spell_OS"),farbe_menutext);
+
+			Text.display(136,44,Globals.S("Rechtschreibungs-","Word Manufacturing"),0x20116d);
+			Text.display(136,55,Globals.S("korporation GMBH","Corporation (R)"),0x20116d);
+			
+			Text.display(136,73,Globals.S("Spruch_BS 3.14 (\"VSO\")","Spell_OS 3.14 (\"VSO\")"),0x20116d);
+			Text.display(136,90,Globals.S("(R) RSK GMBH 2019","Copyright(C) 2019 WMC"),0x20116d);
+
+			Text.display(87,116,
+			Globals.S("Dank fuer Testing und Feedback zu sagen zu Daniel Frier, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla.
+			
+			Der Rest: increpare",
+			"Thanks for testing and feedback to Daniel Frier, Guilherme Toews, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla.
+			
+			The rest: increpare"),0x20116d
+			);
+			Text.wordwrap=0;
+
+			if (
+				IMGUI.presstextbutton(
+					"ueber_ok",
+					"btn_solve_bg_up",
+					"btn_solve_bg_down",
+					Globals.S("OK","OK"),
+					0x20116d,
+					212,193
+					))
+			{
+				zeigabout=false;
+				forcerender=true;
+			}
+	
+			return;
+		}
+
+		forcerender=false;
+
 		if (Input.justpressed(Key.P)){
 			drueckBrett();
 		}
@@ -1394,7 +1626,6 @@ class Main {
 		}
 
 		
-		Gfx.clearscreen(Col.YELLOW);
 		Gfx.drawimage(0,0,"bg");
 	
 		// Gfx.drawimage(7,7,"taste_t_bg_up");
@@ -1435,6 +1666,7 @@ class Main {
 		var aktuell_av:Bool = Globals.state.audio==1 ? true : false;
 		var neuaudio:Bool = IMGUI.togglebutton(
 			"audio",
+
 			"taste_t_bg_up",
 			"taste_t_bg_down",
 			"icon_audio_aus",
@@ -1452,6 +1684,8 @@ class Main {
 		var neu_av = neuaudio?1:0;
 		if (neu_av!=Globals.state.audio){
 			Globals.state.audio=neu_av;
+			IMGUI.tooltipstr=null;
+				forcerender=true;
 			Save.savevalue("mwbaudio",Globals.state.audio);
 		}
 
@@ -1470,18 +1704,23 @@ class Main {
 
 		var neu_spr = neusprache?1:0;
 		if (neu_spr!=Globals.state.sprache){
-			Globals.state.sprache=neu_spr;
+				Globals.state.sprache=neu_spr;
+				IMGUI.tooltipstr=null;
+				forcerender=true;
 			Save.savevalue("mwbsprache",Globals.state.sprache);
 		}
 
-		IMGUI.pressbutton(
+		if (IMGUI.pressbutton(
 			"hilfe",
 			"taste_t_bg_up",
 			"taste_t_bg_down",
 			"icon_hilfe",
 			328,209,
 			Globals.S("Ueber diese Anwendung","About this app")
-			);
+			)){
+				zeigabout=true;
+				forcerender=true;
+			}
 
 		Text.display(9,9,Globals.S("Wkzge","Tools"),farbe_menutext);
 
@@ -1495,18 +1734,52 @@ class Main {
 		}
 		Text.display(53,9,titeltext,farbe_menutext);
 
-		Text.display(249,9,Globals.S("Ziel","Goal"),farbe_menutext);
+		Text.display(249,9,Globals.S("Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")","Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")"),farbe_menutext);
 
-		if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",248,182)){
-			if (aktuellesZielIdx>0){
+		if (aktuellesZielIdx>0){
+			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",248,182)||Input.justpressed(Key.LEFT)){
 				LoadLevel(aktuellesZielIdx-1);
 			}
-		}
-		if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",328,182)){
+		} else {
+			Gfx.drawimage(248,182,"taste_t_bg_up");
+			Gfx.drawimage(248,182,"icon_sm_l_deaktiviert");
 
-			if (aktuellesZielIdx+1<ziele.length){
+		}
+
+
+		if (geloest[aktuellesZielIdx]){
+			IMGUI.presstextbutton_disabled(
+						"menü_l",
+						"btn_solve_bg_down_done",
+						"btn_solve_bg_down_done",
+						Globals.S("Geloest","Solved"),
+						0x505050,
+						268,182
+						);
+		} else if (cansolve){
+			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Loesen","Solve"),0x20116d,268,182)){
+				geloest[aktuellesZielIdx]=true;
+				Save.savevalue("level"+version+"-"+aktuellesZielIdx,true);
+				forcerender=true;
+			}
+		} else {
+					IMGUI.presstextbutton_disabled(
+						"menü_l",
+						"btn_solve_bg_up",
+						"btn_solve_bg_down",
+						Globals.S("Loesen","Solve"),
+						0x505050,
+						268,182
+						);
+		}
+		
+		if (aktuellesZielIdx+1<ziele.length){
+			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",328,182)||Input.justpressed(Key.RIGHT)){
 				LoadLevel(aktuellesZielIdx+1);
 			}
+		} else {
+			Gfx.drawimage(328,182,"taste_t_bg_up");
+			Gfx.drawimage(328,182,"icon_sm_r_deaktiviert");
 		}
 
 		// Gfx.drawimage(Mouse.x-3,Mouse.y-3,"cursor_finger");
@@ -1514,12 +1787,27 @@ class Main {
 
 		for (j in 0...i_zeilen){
 			for (i in 0...i_spalten){
-				var index = i+i_spalten*j +1;
-				var inhalt = szs_inventory[j][i];
-				
+
 				var ix = 8+19*i;
 				var iy = 21+19*j;
 				
+
+				var index = i+i_spalten*j +1;
+				
+				if (editmodus){
+					if (IMGUI.mouseover(
+							"schatten/s"+index,
+							ix,
+							iy) &&
+						Input.justpressed(Key.E) )
+					{
+						versperre(i,j);
+					}
+				}
+
+				var inhalt = szs_inventory[j][i];
+				
+
 				if (inhalt!=null){
 					if (IMGUI.clickableimage(
 							"icons/"+inhalt,
@@ -1537,16 +1825,6 @@ class Main {
 					Gfx.drawimage(ix,iy,"schatten/s"+index);
 					if (aktuellesZiel.werkzeuge[index-1]==false){
 						Gfx.drawimage(ix,iy,"versperrt");
-					}
-				}
-				if (editmodus){
-					if (IMGUI.mouseover(
-							"schatten/s"+index,
-							ix,
-							iy) &&
-						Input.justpressed(Key.E) )
-					{
-						versperre(i,j);
 					}
 				}
 				
@@ -1725,7 +2003,33 @@ class Main {
 				} else {
 					tuePlatzierung(hoverziel_x,hoverziel_y,zieh_name,true);
 				}
+				forcerender=true;
 			}
+		}
+
+		for (i in 0...ziele.length){
+			var px = 10 + 3*(i%11);
+			var py = 217 + 3*Math.floor(i/11);
+			if (geloest[i]){
+				Gfx.setpixel(px,py,Col.WHITE);
+
+				if (i==aktuellesZielIdx){
+					Gfx.drawbox(px-1,py-1,3,3,0x6051ac);
+				}
+				
+			} else {
+				Gfx.setpixel(px,py,Col.BLACK);
+
+				if (i==aktuellesZielIdx){
+					Gfx.drawbox(px-1,py-1,3,3,0x40318d);
+				}
+			
+			}
+
+
+		}
+		if (zeigabout){
+			IMGUI.tooltipstr=null;
 		}
 		IMGUI.zeigtooltip();
 	}

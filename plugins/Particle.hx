@@ -33,6 +33,10 @@ class Particle {
 
     static var particles:Array<ParticleElem>;
 
+    public static function active():Bool{
+        return particles.length>0;
+    }
+    
     public static function enable(){
         particles = [];
         Core.registerplugin("particle", "0.1.0");
