@@ -53,6 +53,9 @@ class Ziel{
 }
 
 class Main {
+
+	public var letztes_hoverziel_x:Int=-1;
+	public var letztes_hoverziel_y:Int=-1;
 	public var cansolve:Bool=true;
 	public var solvex:Int=-1;
 	public var solvey:Int=-1;
@@ -111,6 +114,8 @@ class Main {
 		"cy4:Ziely4:zielaay3:s12R2R2haR2nR2haR2R2R2haR2nR2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",		
 		//ziemlich einfach , 3 zu machen
 		"cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		//mittel-schwer, könnte spaß machen
+		"cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
 		// futter
 		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2y2:s6R2R3R2hanR2y2:s8R2nhaR2R3R2R3R2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		//meh
@@ -1905,6 +1910,7 @@ class Main {
 			if (input>0){
 				var hoverziel_x=-1;
 				var hoverziel_y=-1;
+
 				var geltendes_hoverziel=false;
 
 				var mx=Mouse.x;
@@ -1916,15 +1922,29 @@ class Main {
 				var oy_d = oy % 19;
 
 				var nope:Bool=false;
-				if (ox_d<18 && oy_d<18){
-					hoverziel_x=Math.floor(ox/19);
-					hoverziel_y=Math.floor(oy/19);
-
-					if (hoverziel_x>=0 && hoverziel_x<sp_spalten && hoverziel_y>=0 && hoverziel_y<sp_zeilen){
-						geltendes_hoverziel=true;
+				if ((ox_d==18||oy_d==18) && (letztes_hoverziel_x>=0)){
+					hoverziel_x=letztes_hoverziel_x;
+					hoverziel_y=letztes_hoverziel_y;
+					if (ox_d<18){
+						hoverziel_x=Math.floor(ox/19);
+					} else {
+						hoverziel_y=Math.floor(oy/19);
 					}
+				} else if (ox_d<18 && oy_d<18){
+					hoverziel_x=Math.floor(ox/19);
+					hoverziel_y=Math.floor(oy/19);					
 				}
 
+				if (hoverziel_x>=0 && hoverziel_x<sp_spalten && hoverziel_y>=0 && hoverziel_y<sp_zeilen){
+					geltendes_hoverziel=true;
+					letztes_hoverziel_x=hoverziel_x;
+					letztes_hoverziel_y=hoverziel_y;
+				} else {
+					letztes_hoverziel_x=-1;
+					letztes_hoverziel_y=-1;
+				}
+				
+				trace(hoverziel_x,hoverziel_y,geltendes_hoverziel,ox_d,oy_d);
 				if (geltendes_hoverziel){
 					if (input==1){
 						editor_tl_x=hoverziel_x;
@@ -1970,14 +1990,29 @@ class Main {
 			var oy_d = oy % 19;
 
 			var nope:Bool=false;
-			if (ox_d<18 && oy_d<18){
-				hoverziel_x=Math.floor(ox/19);
-				hoverziel_y=Math.floor(oy/19);
 
-				if (hoverziel_x>=0 && hoverziel_x<sp_spalten && hoverziel_y>=0 && hoverziel_y<sp_zeilen){
-					geltendes_hoverziel=true;
+			if ((ox_d==18||oy_d==18) && (letztes_hoverziel_x>=0)){
+				hoverziel_x=letztes_hoverziel_x;
+				hoverziel_y=letztes_hoverziel_y;
+				if (ox_d<18){
+					hoverziel_x=Math.floor(ox/19);
+				} else {
+					hoverziel_y=Math.floor(oy/19);
 				}
+			} else if (ox_d<18 && oy_d<18){
+				hoverziel_x=Math.floor(ox/19);
+				hoverziel_y=Math.floor(oy/19);					
 			}
+
+			if (hoverziel_x>=0 && hoverziel_x<sp_spalten && hoverziel_y>=0 && hoverziel_y<sp_zeilen){
+				geltendes_hoverziel=true;
+				letztes_hoverziel_x=hoverziel_x;
+				letztes_hoverziel_y=hoverziel_y;
+			} else {
+				letztes_hoverziel_x=-1;
+				letztes_hoverziel_y=-1;
+			}
+
 			
 			if (geltendes_hoverziel){
 				if (szs_brett[hoverziel_y][hoverziel_x]==null){
