@@ -33,16 +33,9 @@
 	<source path="plugins" />
 	<haxelib name="openfl" />
 	<haxelib name="haxegon" />
+	<haxelib name="howlerjs" />
 	<haxedef name="windowwidth" value="${windowwidth}" />
   <haxedef name="windowheight" value="${windowheight}" />
-  
-  <dependency name="js/recorder.js" />
-  <dependency name="js/rng.js" />
-  <dependency name="js/sfxr.js" />
-
-  <template path="js/recorder.js" rename="js/recorder.js" if="html5" />
-  <template path="js/rng.js" rename="js/rng.js" if="html5" />
-  <template path="js/sfxr.js" rename="js/sfxr.js" if="html5" />
   
 
 	<assets path="data" exclude="*.mp3" if="cpp || neko"/>

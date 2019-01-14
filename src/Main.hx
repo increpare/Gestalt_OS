@@ -10,6 +10,8 @@ import haxe.Unserializer;
 import lime.ui.Window;
 import haxe.Json;
 import js.Browser;
+import howler.Howler;
+
 
 /*
 credits
@@ -72,56 +74,75 @@ class Main {
 	public var ziele:Array<String> = [
 
 	
-		//sehr einfach
+		//1 sehr einfach
 		"cy4:Ziely4:zielaau6hany2:s5R2R2R2nhau6hhy9:werkzeugeatttttttttttttttttttthg",
-		"cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		//mittel-leicht, interessanter
-		"cy4:Ziely4:zielaay2:s5R2R2haR2y3:s14R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//leichter variatn von 2x4 punkte
-		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		//ziemlich einfach - zu einfach?
-		"cy4:Ziely4:zielaay3:s12R2R2R2R2haR2nR2nR2haR2R2R2R2R2haR2nR2nR2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//ziemlich einfach 
-		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2nR2nR2hanR2y2:s8R2nhaR2nR2nR2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//mittel-leicht, nicht so interessant
-		"cy4:Ziely4:zielaay2:s5u3R2haR2y3:s12R3R3R2haR2R3nR3R2haR2R3R3R3R2haR2u3R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//2x4 punkte
-		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		//finde ich das tatsächlich ok? ich weiß nicht!
-		"cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		//sollte nicht zu schwierig sein, aber bin nicht sicher
-		"cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//kreuz mit beharrung
-		"cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
-		//avocadenvoll
-		"cy4:Ziely4:zielaay3:s21R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//humdrumm
-		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany2:s5R4R4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		//langweilig, mit avocaden
-		"cy4:Ziely4:zielaay3:s20y3:s21R2haR3nR3haR2R3R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//L mit füßen
-		"cy4:Ziely4:zielaau5hany2:s5u3hanR2u3hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		//herzen - nicht einfach aber macht spaß?
-		"cy4:Ziely4:zielaany2:s2nR2nhaR2nR2nR2hanR2nR2nhau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
-		// drehen
-		"cy4:Ziely4:zielaau5hau2y3:s11u2hany3:s10nR2nhau2R3u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
-		// vierekige haut
-		"cy4:Ziely4:zielaau5hany2:s2R2R2nhanR2nR2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		// große 1 (nicht so gut)
-		"cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		// große 5 (vllt besser ohne grenzebereich?)
-		"cy4:Ziely4:zielaau5hany3:s12R2R2nhanR2u3hanR2R2R2nhau3R2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		// große 8, meh
-		"cy4:Ziely4:zielaay3:s12R2R2haR2nR2haR2R2R2haR2nR2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",		
-		//ziemlich einfach , 3 zu machen
-		"cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//mittel-schwer, könnte spaß machen
-		"cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
-		// futter
-		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2y2:s6R2R3R2hanR2y2:s8R2nhaR2R3R2R3R2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		//meh
-		"cy4:Ziely4:zielaau5hany3:s12nR2nhau2y3:s13u2hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 
+		//2
+		"cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//4 leichter variatn von 2x4 punkte
+		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//3 mittel-leicht, interessanter
+		"cy4:Ziely4:zielaay2:s5R2R2haR2y3:s14R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//6 ziemlich einfach 
+		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2nR2nR2hanR2y2:s8R2nhaR2nR2nR2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//5 ziemlich einfach - zu einfach?
+		"cy4:Ziely4:zielaay3:s12R2R2R2R2haR2nR2nR2haR2R2R2R2R2haR2nR2nR2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//7 mittel-leicht, nicht so interessant
+		"cy4:Ziely4:zielaay2:s5u3R2haR2y3:s12R3R3R2haR2R3nR3R2haR2R3R3R3R2haR2u3R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//8 2x4 punkte
+		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//9 finde ich das tatsächlich ok? ich weiß nicht!
+		"cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//19 große 1 (nicht so gut)
+		"cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//10 sollte nicht zu schwierig sein, aber bin nicht sicher
+		"cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//11 kreuz mit beharrung
+		"cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//12 avocadenvoll
+		"cy4:Ziely4:zielaay3:s21R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//13 humdrumm
+		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany2:s5R4R4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//14 langweilig, mit avocaden
+		"cy4:Ziely4:zielaay3:s20y3:s21R2haR3nR3haR2R3R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//15 L mit füßen
+		"cy4:Ziely4:zielaau5hany2:s5u3hanR2u3hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//16 herzen - nicht einfach aber macht spaß?
+		"cy4:Ziely4:zielaany2:s2nR2nhaR2nR2nR2hanR2nR2nhau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//17  drehen
+		"cy4:Ziely4:zielaau5hau2y3:s11u2hany3:s10nR2nhau2R3u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//18  vierekige haut
+		"cy4:Ziely4:zielaau5hany2:s2R2R2nhanR2nR2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//22 ziemlich einfach , digit 3 zu machen
+		"cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",		
+		
+		//20 große digit 5 (vllt besser ohne grenzebereich?)
+		"cy4:Ziely4:zielaau5hany3:s12R2R2nhanR2u3hanR2R2R2nhau3R2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//cross with ups and downs
+		"cy4:Ziely4:zielaau5hau2y3:s17u2hany3:s16nR3nhau2R2u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//23 mittel-schwer, könnte spaß machen
+		"cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+		
 		//2x2 deleters
 		"cy4:Ziely4:zielaau4hany2:s1y2:s3nhany2:s4y3:s19nhau4hhy9:werkzeugeatttttttttttttttttttthg",
 
@@ -135,6 +156,47 @@ class Main {
 		//quite tricky , by my logic it requires credoing a copier
 		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany3:s18nR4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 
+
+		//vertical avod/dropper ladder
+		"cy4:Ziely4:zielaay3:s21hay2:s9haR2haR3haR2haR3haR2hhy9:werkzeugeatttttttttttttttttttthg",
+
+
+		//3x3 skin
+		"cy4:Ziely4:zielaay2:s2R2R2haR2R2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//spaced ladder of flippers
+		"cy4:Ziely4:zielaany3:s16nhau3hanR2nhau3hanR2nhau3hanR2nhau3hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
+
+		//pretty easy-going
+		"cy4:Ziely4:zielaau2y3:s10u2hau5haR2nR2nR2hau5hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//medium-interesting, but not bad
+		"cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//tricky-hard to guess at (Actually i think it's ok now)
+		"cy4:Ziely4:zielaany3:s11nR2nhau5hay3:s10R2R3R2R3hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//+made of turners. it's ok	
+		"cy4:Ziely4:zielaay3:s14nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//great avocado level
+		"cy4:Ziely4:zielaau3hany3:s21nhau3hanR2nhany3:s20nhau3hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//avocado surrounded by foliage
+		"cy4:Ziely4:zielaay3:s21R2R2haR2y3:s20R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//= of plusses, designed to force plussing a plus
+		"cy4:Ziely4:zielaau5hany2:s7R2R2nhau5hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//leg diagonal. fun
+		"cy4:Ziely4:zielaay2:s5u3hanR2u2hau2R2nhau3R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//quad with corners missing
+		"cy4:Ziely4:zielaany3:s12R2nhaR2u2R2haR2u2R2hanR2R2nhhy9:werkzeugeatttttttttttttttttttthg",
+
+		//designated penultimate level
+		"cy4:Ziely4:zielaay2:s6R2R2R2R2haR2u3R2haR2nR2nR2haR2u3R2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+
 		//amazong final level
 		"cy4:Ziely4:zielaay3:s12y2:s1y2:s7y2:s3hay3:s14y2:s6y3:s11y2:s4hay3:s18y2:s5y3:s13y3:s10hay2:s2y2:s8y3:s20y2:s9hay3:s15y3:s17y3:s16y3:s19hhy9:werkzeugeatttttttttttttttttttthg",
 
@@ -146,16 +208,16 @@ class Main {
 		if (Globals.state.audio==0){
 			return;
 		}
-		switch(s){
-			case 0://animation sound
-				untyped __js__('playSound(25145307,0.05);',s);
-			case 1://remove
-				untyped __js__('playSound(91125301,0.2);',s);
-			case 2://drop
-				untyped __js__('playSound(73156307,0.2);',s);	
-			case 3://drag begin
-				untyped __js__('playSound(53550700,0.2);',s);	
-		}
+		// switch(s){
+		// 	case 0://animation sound
+		// 		untyped __js__('playSound(25145307,0.05);',s);
+		// 	case 1://remove
+		// 		untyped __js__('playSound(91125301,0.2);',s);
+		// 	case 2://drop
+		// 		untyped __js__('playSound(73156307,0.2);',s);	
+		// 	case 3://drag begin
+		// 		untyped __js__('playSound(53550700,0.2);',s);	
+		// }
 	}
 
 	public function leererAbweichungsgitter():Array<Array<Int>>{
@@ -222,7 +284,7 @@ class Main {
 
 					if (schonloesbar==false){
 			
-						var px = 268;
+						var px = 306;
 						var py =  182;
 						var pbb = Gfx.imagewidth("btn_solve_bg_up");
 						var pbh = Gfx.imageheight("btn_solve_bg_down");
@@ -304,6 +366,7 @@ class Main {
 
 		aktuellesZielIdx=level;
 
+		Save.savevalue("mwb"+version+"levelidx",aktuellesZielIdx);
 		var ziel_s = ziele[aktuellesZielIdx];
 	    var unserializer = new Unserializer(ziel_s);
 
@@ -324,7 +387,7 @@ class Main {
 	
 		
 	var geloest = [];
-	var version=1.1;
+	var version=1.2;
 	
 	function setup(){
 
@@ -352,6 +415,9 @@ class Main {
 		}
 
 
+		aktuellesZielIdx = Save.loadvalue("mwb"+version+"levelidx",0);
+		Globals.state.level=aktuellesZielIdx;
+		
 		LoadLevel(Globals.state.level);	
 	}
 
@@ -554,6 +620,7 @@ class Main {
 
 
 	function schieben(anim:AnimationFrame,x:Int,y:Int){
+		
 		var a = anim.nach_brett;
 		var f = anim.abweichung;
 		
@@ -565,6 +632,7 @@ class Main {
 		var dy=0;
 
 		var i=0;
+
 
 		//von links
 		i=0;
@@ -1440,9 +1508,16 @@ class Main {
 		szs_brett = animationen[animationen.length-1].nach_brett;
 
 		if (nachkram){
-			versuchfallenzulassen(hoverziel_x,hoverziel_y);
+			var tx = hoverziel_x;
+			var ty = hoverziel_y;
+			var tb = animationen[animationen.length-1].nach_brett;
+			if (zieh_name=="s18"){
+				tx=-1;
+				ty=-1;
+			}
+			versuchfallenzulassen(tx,ty);
 			szs_brett = animationen[animationen.length-1].nach_brett;
-			versuchaufzuwachsen(hoverziel_x,hoverziel_y);
+			versuchaufzuwachsen(tx,ty);
 
 			szs_brett = animationen[animationen.length-1].nach_brett;
 
@@ -1607,6 +1682,7 @@ class Main {
 
 		if (Input.justpressed(Key.A)){
 			editmodus=!editmodus;
+			forcerender=true;
 		}
 
 		if (
@@ -2118,14 +2194,13 @@ class Main {
 
 		for (i in 0...ziele.length){
 			var px = 17 + 13*(i%5);
-			var py = 128 + 15*Math.floor(i/5);
+			var py = 128 + 12*Math.floor(i/5);
 			if (geloest[i]){
-				Gfx.fillbox(px,py,3,3,Col.WHITE);
+				Gfx.drawimage(px-1,py-1,"level_geloest");
 
 				
 			} else {
-				Gfx.fillbox(px,py,3,3,Col.BLACK);
-
+				Gfx.drawimage(px-1,py-1,"level_ungeloest");
 			}
 
 			if (i==aktuellesZielIdx){
