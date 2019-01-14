@@ -71,6 +71,7 @@ class Main {
 	public var aktuellesZielIdx=0;
 	public var ziele:Array<String> = [
 
+	
 		//sehr einfach
 		"cy4:Ziely4:zielaau6hany2:s5R2R2R2nhau6hhy9:werkzeugeatttttttttttttttttttthg",
 		"cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
@@ -121,8 +122,41 @@ class Main {
 		//meh
 		"cy4:Ziely4:zielaau5hany3:s12nR2nhau2y3:s13u2hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 
+		//2x2 deleters
+		"cy4:Ziely4:zielaau4hany2:s1y2:s3nhany2:s4y3:s19nhau4hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//2x2 suckers
+		"cy4:Ziely4:zielaau4hany2:s8R2nhanR2R2nhau4hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//4x4 pushers
+		"cy4:Ziely4:zielaay3:s13u2R2hau4hau4haR2u2R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+
+		//quite tricky , by my logic it requires credoing a copier
+		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany3:s18nR4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//amazong final level
+		"cy4:Ziely4:zielaay3:s12y2:s1y2:s7y2:s3hay3:s14y2:s6y3:s11y2:s4hay3:s18y2:s5y3:s13y3:s10hay2:s2y2:s8y3:s20y2:s9hay3:s15y3:s17y3:s16y3:s19hhy9:werkzeugeatttttttttttttttttttthg",
+
 	];
 
+
+
+	private static function do_playSound(s:Int){
+		if (Globals.state.audio==0){
+			return;
+		}
+		switch(s){
+			case 0://animation sound
+				untyped __js__('playSound(25145307,0.05);',s);
+			case 1://remove
+				untyped __js__('playSound(91125301,0.2);',s);
+			case 2://drop
+				untyped __js__('playSound(73156307,0.2);',s);	
+			case 3://drag begin
+				untyped __js__('playSound(53550700,0.2);',s);	
+		}
+	}
 
 	public function leererAbweichungsgitter():Array<Array<Int>>{
 		var result = new Array<Array<Int>>();
@@ -137,8 +171,8 @@ class Main {
 		return result;
 	}
 
-	public var i_spalten:Int=2;
-	public var i_zeilen:Int=10;
+	public var i_spalten:Int=4;
+	public var i_zeilen:Int=5;
 	
 	public var sp_spalten:Int=10;
 	public var sp_zeilen:Int=11;
@@ -274,7 +308,15 @@ class Main {
 
 		aktuellesZiel = unserializer.unserialize();
 
-		neuesBlatt();
+		var dieser_undoStack = undoStack[aktuellesZielIdx];
+		if (dieser_undoStack.length>0){
+			var zs = dieser_undoStack[dieser_undoStack.length-1];
+			szs_inventory=Copy.copy(zs.i);
+			szs_brett=Copy.copy(zs.sp);
+		} else {
+			neuesBlatt();
+		}
+
 		checkSolve();
 	}
 	
@@ -293,7 +335,12 @@ class Main {
 		Core.fps=30;
 		Core.fullscreenbutton(0,0,10,10);
 		Gfx.clearcolor=Col.TRANSPARENT;
-		undoStack=new Array<LevelZustand>();
+
+		undoStack=new Array<Array<LevelZustand>>();
+		for (i in 0...ziele.length){
+			undoStack.push([]);
+		}
+
 		Globals.state.level=Save.loadvalue("mwblevel",0);
 		Globals.state.audio=Save.loadvalue("mwbaudio",1);
 		Globals.state.sprache=Save.loadvalue("mwbsprache",1);
@@ -750,11 +797,11 @@ class Main {
 					var fuellbar=false;
 					if (j>0 && a[j-1][i]=="s6" && f[j-1][i]==(frame-1)){
 						fuellbar=true;
-					} else if (j<sp_spalten-1 && a[j+1][i]=="s6"&& f[j+1][i]==(frame-1)){
+					} else if (j<sp_zeilen-1 && a[j+1][i]=="s6"&& f[j+1][i]==(frame-1)){
 						fuellbar=true;
 					} else if (i>0 && a[j][i-1]=="s6" && f[j][i-1]==(frame-1)){
 						fuellbar=true;
-					} else if (i<sp_zeilen-1 && a[j][i+1]=="s6"&& f[j][i+1]==(frame-1)){
+					} else if (i<sp_spalten-1 && a[j][i+1]=="s6"&& f[j][i+1]==(frame-1)){
 						fuellbar=true;
 					}
 					if (fuellbar){
@@ -1408,7 +1455,7 @@ class Main {
 		// Text.font = "dos";
 		// Sound.play("t2");
 		//Music.play("music",0,true);
-		Gfx.resizescreen(354, 235,true);
+		Gfx.resizescreen(392, 235,true);
 		SpriteManager.enable();
 		Particle.enable();
 		// Text.font="nokia";
@@ -1430,6 +1477,17 @@ class Main {
 // 		1,7,
 // 		19,18
 // 	];
+
+
+		var invfolge = [
+			12,1,7,3,
+			14,6,11,4,
+			18,5,13,10,
+			2,8,20,9,
+			15,17,16,19
+		];
+
+
 	function neuesBlatt(){	
 
 		animationen = new Array<AnimationFrame>();
@@ -1441,7 +1499,7 @@ class Main {
 				var index = i+i_spalten*j;
 				if (aktuellesZiel==null || aktuellesZiel.werkzeuge[index]==true)
 				{
-					zeile.push("s"+(index+1));
+					zeile.push("s"+invfolge[index]);
 				} else {
 					zeile.push(null);
 				}
@@ -1463,36 +1521,39 @@ class Main {
 		zustandSpeichern();
 	}
 
-	var undoStack:Array<LevelZustand>;
+	var undoStack:Array<Array<LevelZustand>>;
 
 	function zustandSpeichern(){
 		var lzs = new LevelZustand();
 		lzs.i=Copy.copy(szs_inventory);
 		lzs.sp=Copy.copy(szs_brett);
 		lzs.hash=Json.stringify([szs_inventory,szs_brett]);
-		if (undoStack.length>0){
-			if (undoStack[undoStack.length-1].hash==lzs.hash){
+
+		var dieser_undoStack = undoStack[aktuellesZielIdx];
+		if (dieser_undoStack.length>0){
+			if (dieser_undoStack[dieser_undoStack.length-1].hash==lzs.hash){
 				return;//keine duplikaten
 			}
 		}
-		undoStack.push(lzs);
+		dieser_undoStack.push(lzs);
 	}
 	
 	function tueUndo(){
 		animationen.splice(0,animationen.length);	
 		animPos=0;		
 		var curhash = Json.stringify([szs_inventory,szs_brett]);
-		var i = undoStack.length-1;
+		var i = undoStack[aktuellesZielIdx].length-1;
 		while (i>=0){
-			var zs = undoStack[i];
+			var zs = undoStack[aktuellesZielIdx][i];
 			if (curhash!=zs.hash){
 				szs_inventory=Copy.copy(zs.i);
 				szs_brett=Copy.copy(zs.sp);
 				checkSolve();
+				do_playSound(0);
 				return;
 			} else {
 				if (i>0){
-					undoStack.splice(i,1);
+					undoStack[aktuellesZielIdx].splice(i,1);
 				}
 			}
 			i--;
@@ -1572,28 +1633,36 @@ class Main {
 		}
 
 		if (zeigabout){
-			Text.wordwrap=181;
+			Text.wordwrap=277;
 
 			Gfx.drawimage(0,0,"aboutscreen");
 			
-			Text.display(86,25,Globals.S("Ueber Spruch_BS","About Spell_OS"),farbe_menutext);
+			Text.display(57,25,Globals.S("Ueber Gestalt_BS","About Gestalt_OS"),farbe_menutext);
 
-			Text.display(136,44,Globals.S("Rechtschreibungs-","Word Manufacturing"),0x20116d);
-			Text.display(136,55,Globals.S("korporation GMBH","Corporation (R)"),0x20116d);
+			Text.display(153,44,Globals.S("Gestaltaufbau","Gestalt Manufacturing"),0x20116d);
+			Text.display(153,55,Globals.S("GmbH (R)","Corporation (R)"),0x20116d);
 			
-			Text.display(136,73,Globals.S("Spruch_BS 3.14 (\"VSO\")","Spell_OS 3.14 (\"VSO\")"),0x20116d);
-			Text.display(136,90,Globals.S("(R) RSK GMBH 2019","Copyright(C) 2019 WMC"),0x20116d);
+			Text.display(153,73,Globals.S("Gestalt_BS 3.14 (\"Beton\")","Gestalt_OS 3.14 (\"Beton\")"),0x20116d);
+			Text.display(153,90,Globals.S("(R) GAB GmbH 2019","Copyright(C) 2019 GMC"),0x20116d);
 
-			Text.display(87,116,
-			Globals.S("Dank fuer Testing und Feedback zu sagen zu Daniel Frier, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla.
+			var nameListe = "Daniel Frier - Stephen Saver - David Kilford - Dani Soria - Adrian Toncean - Alvaro Salvagno - Ethan Clark - Blake Regehr - Happy Snake - Joel Gahr - Alexander Turner - Tatsunami - Matt Rix - Bigaston - Lajos Kis - Lorxus - Fachewachewa - Marcos Donnantuoni - That Scar - Llewelyn Griffiths - @capnsquishy - Alexander Martin - Guilherme Töws - Alex Fink - Christian Zachau - @Ilija - Celeste Brault - Cédric Coulon - Lukas Koudelka - George Kurelic - Konstantin Dediukhin";
+
+			Text.font = "pixel";
+			Text.display(56,113,
+			Globals.S("Dank fuer Testing und Feedback zu sagen zu "+nameListe+".
 			
-			Der Rest: increpare",
-			"Thanks for testing and feedback to Daniel Frier, Guilherme Toews, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla, bla bla.
+			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
-			The rest: increpare"),0x20116d
+			Der Rest: Stephen Lavelle",
+			"Thanks for testing and feedback to "+nameListe+".
+			
+			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
+			
+			The Rest: Stephen Lavelle ( http://www.increpare.com )."),0x20116d
 			);
 			Text.wordwrap=0;
-
+			Text.font = "";
+			
 			if (
 				IMGUI.presstextbutton(
 					"ueber_ok",
@@ -1639,8 +1708,8 @@ class Main {
 				"taste_t_bg_up",
 				"taste_t_bg_down",
 				"icon_neu",
-				248,209,
-				Globals.S("Blatt entleeren (N)","Clear page (N)")
+				286,209,
+				Globals.S("Blatt leeren (N)","Clear page (N)")
 				)  
 				|| Input.justpressed(Key.N)
 				|| Input.justpressed(Key.R)
@@ -1649,13 +1718,13 @@ class Main {
 			neuesBlatt();
 		}
 
-		if (undoStack.length>1){
+		if (undoStack[aktuellesZielIdx].length>1){
 			if (IMGUI.pressbutton(
 					"rückgängig",
 					"taste_t_bg_up",
 					"taste_t_bg_down",
 					"icon_undo",
-					268,209,
+					306,209,
 					Globals.S("Rueckgaengig (Z)","Undo (Z)")
 					)
 					|| Input.justpressed(Key.Z)
@@ -1665,7 +1734,7 @@ class Main {
 					tueUndo();
 			}
 		} else {
-			Gfx.drawimage(268,209,"keineundosmehr");
+			Gfx.drawimage(306,209,"keineundosmehr");
 		}
 
 		var aktuell_av:Bool = Globals.state.audio==1 ? true : false;
@@ -1676,7 +1745,7 @@ class Main {
 			"taste_t_bg_down",
 			"icon_audio_aus",
 			"icon_audio_an",
-			288,
+			326,
 			209,
 			aktuell_av,
 			Globals.S("Audio: aus (M)","Audio: off (M)"),
@@ -1701,7 +1770,7 @@ class Main {
 			"taste_t_bg_down",
 			"icon_flagge_de",
 			"icon_flagge_en",
-			308,209,
+			346,209,
 			aktuell_sprache,
 			Globals.S("Sprache: Deutsch","Language: German"),
 			Globals.S("Sprache: Englisch","Language: English")	
@@ -1720,14 +1789,14 @@ class Main {
 			"taste_t_bg_up",
 			"taste_t_bg_down",
 			"icon_hilfe",
-			328,209,
+			366,209,
 			Globals.S("Ueber diese Anwendung","About this app")
 			)){
 				zeigabout=true;
 				forcerender=true;
 			}
 
-		Text.display(9,9,Globals.S("Wkzge","Tools"),farbe_menutext);
+		Text.display(9,9,Globals.S("Werkzeuge","Tools"),farbe_menutext);
 
 
 		var lebende = Lambda.count(Globals.state.solved, (w)->w==0);
@@ -1737,17 +1806,17 @@ class Main {
 		} else {
 			titeltext = Globals.S("Werkbank","Workbench");// + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
 		}
-		Text.display(53,9,titeltext,farbe_menutext);
+		Text.display(91,9,titeltext,farbe_menutext);
 
-		Text.display(249,9,Globals.S("Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")","Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")"),farbe_menutext);
+		Text.display(287,9,Globals.S("Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")","Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")"),farbe_menutext);
 
 		if (aktuellesZielIdx>0){
-			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",248,182)||Input.justpressed(Key.LEFT)){
+			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,182)||Input.justpressed(Key.LEFT)){
 				LoadLevel(aktuellesZielIdx-1);
 			}
 		} else {
-			Gfx.drawimage(248,182,"taste_t_bg_up");
-			Gfx.drawimage(248,182,"icon_sm_l_deaktiviert");
+			Gfx.drawimage(286,182,"taste_t_bg_up");
+			Gfx.drawimage(286,182,"icon_sm_l_deaktiviert");
 
 		}
 
@@ -1759,10 +1828,10 @@ class Main {
 						"btn_solve_bg_down_done",
 						Globals.S("Geloest","Solved"),
 						0x505050,
-						268,182
+						306,182
 						);
 		} else if (cansolve){
-			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Loesen","Solve"),0x20116d,268,182)){
+			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Loesen","Solve"),0x20116d,306,182)){
 				geloest[aktuellesZielIdx]=true;
 				Save.savevalue("level"+version+"-"+aktuellesZielIdx,true);
 				forcerender=true;
@@ -1774,17 +1843,17 @@ class Main {
 						"btn_solve_bg_down",
 						Globals.S("Loesen","Solve"),
 						0x505050,
-						268,182
+						306,182
 						);
 		}
 		
 		if (aktuellesZielIdx+1<ziele.length){
-			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",328,182)||Input.justpressed(Key.RIGHT)){
+			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",366,182)||Input.justpressed(Key.RIGHT)){
 				LoadLevel(aktuellesZielIdx+1);
 			}
 		} else {
-			Gfx.drawimage(328,182,"taste_t_bg_up");
-			Gfx.drawimage(328,182,"icon_sm_r_deaktiviert");
+			Gfx.drawimage(366,182,"taste_t_bg_up");
+			Gfx.drawimage(366,182,"icon_sm_r_deaktiviert");
 		}
 
 		// Gfx.drawimage(Mouse.x-3,Mouse.y-3,"cursor_finger");
@@ -1797,11 +1866,11 @@ class Main {
 				var iy = 21+19*j;
 				
 
-				var index = i+i_spalten*j +1;
+				var index = i+i_spalten*j;
 				
 				if (editmodus){
 					if (IMGUI.mouseover(
-							"schatten/s"+index,
+							"schatten/s"+invfolge[index],
 							ix,
 							iy) &&
 						Input.justpressed(Key.E) )
@@ -1821,14 +1890,16 @@ class Main {
 						zieh_name = szs_inventory[j][i];
 						szs_inventory[j][i] = null;
 						zieh_modus=true;
+
+						do_playSound(3);
 						zieh_offset_x=(ix)-Mouse.x;
 						zieh_offset_y=(iy)-Mouse.y;
 						zieh_quelle_i=i;
 						zieh_quelle_j=j;
 					}
 				} else {
-					Gfx.drawimage(ix,iy,"schatten/s"+index);
-					if (aktuellesZiel.werkzeuge[index-1]==false){
+					Gfx.drawimage(ix,iy,"schatten/s"+invfolge[index]);
+					if (aktuellesZiel.werkzeuge[index]==false){
 						Gfx.drawimage(ix,iy,"versperrt");
 					}
 				}
@@ -1843,7 +1914,7 @@ class Main {
 			var z_w = z_raster[0].length;
 			var z_h = z_raster.length;
 
-			var zielb_x=246;
+			var zielb_x=284;
 			var zielb_y=19;
 
 			var zielb_w=103;
@@ -1890,11 +1961,11 @@ class Main {
 					}
 				}
 				if (inhalt!=null){
-					Gfx.fillbox(52+19*i,21+19*j,16,16,0x6a6a6a);
-					Gfx.drawimage(52+19*i,21+19*j,"icons/"+inhalt);
+					Gfx.fillbox(90+19*i,21+19*j,16,16,0x6a6a6a);
+					Gfx.drawimage(90+19*i,21+19*j,"icons/"+inhalt);
 				}
 				if (abw==frame){
-					Gfx.drawimage(52+19*i,21+19*j,"cursor_aktiv");
+					Gfx.drawimage(90+19*i,21+19*j,"cursor_aktiv");
 				}
 			}
 		}
@@ -1916,7 +1987,7 @@ class Main {
 				var mx=Mouse.x;
 				var my=Mouse.y;
 
-				var ox = mx-51;
+				var ox = mx-89;
 				var oy = my-20;
 				var ox_d = ox % 19;
 				var oy_d = oy % 19;
@@ -1971,7 +2042,7 @@ class Main {
 				var b_h=editor_br_y-editor_tl_y;
 				b_w = b_w*19+1;
 				b_h = b_h*19+1;
-				Gfx.drawbox(51+editor_tl_x*19-1,20+editor_tl_y*19-1,b_w,b_h,Col.RED);
+				Gfx.drawbox(89+editor_tl_x*19-1,20+editor_tl_y*19-1,b_w,b_h,Col.RED);
 			}
 		}
 		
@@ -1984,7 +2055,7 @@ class Main {
 			var mx=Mouse.x;
 			var my=Mouse.y;
 
-			var ox = mx-51;
+			var ox = mx-89;
 			var oy = my-20;
 			var ox_d = ox % 19;
 			var oy_d = oy % 19;
@@ -2016,7 +2087,7 @@ class Main {
 			
 			if (geltendes_hoverziel){
 				if (szs_brett[hoverziel_y][hoverziel_x]==null){
-					Gfx.drawimage(52+19*hoverziel_x,21+19*hoverziel_y,"zelle_hervorhebung");
+					Gfx.drawimage(90+19*hoverziel_x,21+19*hoverziel_y,"zelle_hervorhebung");
 				} else {
 					geltendes_hoverziel=false;
 					nope=true;
@@ -2039,28 +2110,25 @@ class Main {
 					tuePlatzierung(hoverziel_x,hoverziel_y,zieh_name,true);
 				}
 				forcerender=true;
+				do_playSound(2);
 			}
 		}
 
 		for (i in 0...ziele.length){
-			var px = 10 + 3*(i%11);
-			var py = 217 + 3*Math.floor(i/11);
+			var px = 17 + 13*(i%5);
+			var py = 128 + 15*Math.floor(i/5);
 			if (geloest[i]){
-				Gfx.setpixel(px,py,Col.WHITE);
+				Gfx.fillbox(px,py,3,3,Col.WHITE);
 
-				if (i==aktuellesZielIdx){
-					Gfx.drawbox(px-1,py-1,3,3,0x6051ac);
-				}
 				
 			} else {
-				Gfx.setpixel(px,py,Col.BLACK);
+				Gfx.fillbox(px,py,3,3,Col.BLACK);
 
-				if (i==aktuellesZielIdx){
-					Gfx.drawbox(px-1,py-1,3,3,0x40318d);
-				}
-			
 			}
 
+			if (i==aktuellesZielIdx){
+				Gfx.drawimage(px-3,py-3,"level_selector");
+			}
 
 		}
 		if (zeigabout){
