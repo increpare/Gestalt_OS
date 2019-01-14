@@ -298,6 +298,7 @@ class Main {
 
 			neuesBlatt();
 			checkSolve();
+			forcerender=true;
 			return;
 		}
 
@@ -318,6 +319,7 @@ class Main {
 		}
 
 		checkSolve();
+		forcerender=true;
 	}
 	
 		
