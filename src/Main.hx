@@ -1,7 +1,5 @@
-import js.html.Audio;
 import haxe.rtti.XmlParser;
 import haxe.ds.Vector;
-import js.html.svg.AnimatedBoolean;
 import haxegon.*;
 import utils.*;
 import StringTools;
@@ -9,8 +7,11 @@ import haxe.Serializer;
 import haxe.Unserializer;
 import lime.ui.Window;
 import haxe.Json;
-import js.Browser;
-import howler.Howler;
+#if html5
+ import js.Browser;
+ import js.html.Audio;
+#end
+// import waud.*;
 
 
 /*
@@ -160,6 +161,9 @@ class Main {
 		//vertical avod/dropper ladder
 		"cy4:Ziely4:zielaay3:s21hay2:s9haR2haR3haR2haR3haR2hhy9:werkzeugeatttttttttttttttttttthg",
 
+		//4x4 fill a hole
+		"cy4:Ziely4:zielaay2:s6R2R2R2haR2u2R2haR2u2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
 
 		//3x3 skin
 		"cy4:Ziely4:zielaay2:s2R2R2haR2R2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
@@ -204,19 +208,19 @@ class Main {
 
 
 
-	private static function do_playSound(s:Int){
+	private function do_playSound(s:Int){
 		if (Globals.state.audio==0){
 			return;
 		}
 		// switch(s){
 		// 	case 0://animation sound
-		// 		untyped __js__('playSound(25145307,0.05);',s);
+		// 		_sfx_drop.play();
 		// 	case 1://remove
-		// 		untyped __js__('playSound(91125301,0.2);',s);
+		// 		_sfx_drop2.play();
 		// 	case 2://drop
-		// 		untyped __js__('playSound(73156307,0.2);',s);	
+		// 		_sfx_drop3.play();
 		// 	case 3://drag begin
-		// 		untyped __js__('playSound(53550700,0.2);',s);	
+		// 		_sfx_drop2.play();
 		// }
 	}
 
@@ -389,7 +393,22 @@ class Main {
 	var geloest = [];
 	var version=1.2;
 	
+	// function _setupSound(url:String, ?loop:Bool = false):WaudSound {
+	// 	// return  new WaudSound(
+	// 		url, { autoplay: false, loop: loop, volume: 1.0 });
+	// }
+
+	// var _sfx_drop:WaudSound;
+	// var _sfx_drop2:WaudSound;
+	// var _sfx_drop3:WaudSound;
+	// var _sfx_drop4:WaudSound;
+
 	function setup(){
+		// Waud.init();
+		// _sfx_drop = _setupSound("data/sounds/drop.mp3");
+		// _sfx_drop2 = _setupSound("data/sounds/drop2.mp3");
+		// _sfx_drop3 = _setupSound("data/sounds/drop3.mp3");
+		// _sfx_drop4 = _setupSound("data/sounds/drop4.mp3");
 
 		geloest = [];
 		for (i in 0...ziele.length){
@@ -1658,7 +1677,11 @@ class Main {
 
 		var s = serializer.toString();
 		ziele[aktuellesZielIdx]=s;
-		Browser.alert('"'+s+'",');
+
+		#if html5 
+			Browser.alert('"'+s+'",');
+		#end
+
 		trace(s);
 	}
 
