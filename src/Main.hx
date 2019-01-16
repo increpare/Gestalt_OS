@@ -11,7 +11,6 @@ import haxe.Json;
  import js.Browser;
  import js.html.Audio;
 #end
-// import waud.*;
 
 
 /*
@@ -410,6 +409,7 @@ class Main {
 		// _sfx_drop3 = _setupSound("data/sounds/drop3.mp3");
 		// _sfx_drop4 = _setupSound("data/sounds/drop4.mp3");
 
+		
 		geloest = [];
 		for (i in 0...ziele.length){
 			geloest.push(Save.loadvalue("level"+version+"-"+i,false));
@@ -417,7 +417,6 @@ class Main {
 
 		// Core.showstats=true;
 		Core.fps=30;
-		Core.fullscreenbutton(0,0,10,10);
 		Gfx.clearcolor=Col.TRANSPARENT;
 
 		undoStack=new Array<Array<LevelZustand>>();
@@ -438,8 +437,14 @@ class Main {
 		Globals.state.level=aktuellesZielIdx;
 		
 		LoadLevel(Globals.state.level);	
+
+		Core.fullscreenbutton(isFullscreenButtonPressed,326,209,Gfx.imagewidth("taste_t_bg_up"),Gfx.imageheight("taste_t_bg_up"));
 	}
 
+
+	function isFullscreenButtonPressed():Bool{
+		return IMGUI.isButtonDown("vollbildmodus");
+	}
 	function reset(){
 		setup();
 	}
@@ -924,6 +929,8 @@ class Main {
 
 		var frame=1;
 
+		f[y][x]=-1;
+
 		function ersetzen(von,zu,fr){
 			var ersetzt=false;
 			for (j in 0...sp_zeilen){
@@ -938,66 +945,79 @@ class Main {
 			return ersetzt;
 		}
 
-		//norden
-		if (y>0){
-			var vn = a[y-1][x];
-				a[y-1][x]=null;
-				f[y-1][x]=frame;
-				frame++;
-				
-			if (vn!=null){
-				if (ersetzen(vn,null,frame)){
+		if (a[y][x]!=null){
+			//osten
+			if (x<sp_spalten-1){
+				var vn = a[y][x+1];
+					a[y][x+1]=null;
+					f[y][x+1]=frame;
 					frame++;
+					
+				if (vn!=null){
+					if (ersetzen(vn,null,frame)){
+						frame++;
+					}
+				}
+			}
+		}
+		
+
+		if (a[y][x]!=null){
+			//suden
+			if (y<sp_zeilen-1){
+				var vn = a[y+1][x];
+					a[y+1][x]=null;
+					f[y+1][x]=frame;
+					frame++;
+					
+				if (vn!=null){
+					if (ersetzen(vn,null,frame)){
+						frame++;
+					}
+				}
+			}
+		}		
+		
+		if (a[y][x]!=null){
+			//westen
+			if (x>0){
+				var vn = a[y][x-1];
+					a[y][x-1]=null;
+					f[y][x-1]=frame;
+					frame++;
+					
+				if (vn!=null){
+					if (ersetzen(vn,null,frame)){
+						frame++;
+					}
 				}
 			}
 		}
 
 
-		//westen
-		if (x>0){
-			var vn = a[y][x-1];
-				a[y][x-1]=null;
-				f[y][x-1]=frame;
-				frame++;
-				
-			if (vn!=null){
-				if (ersetzen(vn,null,frame)){
+
+
+		if (a[y][x]!=null){
+			//norden
+			if (y>0){
+				var vn = a[y-1][x];
+					a[y-1][x]=null;
+					f[y-1][x]=frame;
 					frame++;
+					
+				if (vn!=null){
+					if (ersetzen(vn,null,frame)){
+						frame++;
+					}
 				}
 			}
 		}
 
 
 
-		//suden
-		if (y<sp_zeilen-1){
-			var vn = a[y+1][x];
-				a[y+1][x]=null;
-				f[y+1][x]=frame;
-				frame++;
-				
-			if (vn!=null){
-				if (ersetzen(vn,null,frame)){
-					frame++;
-				}
-			}
-		}
 
 
 
-		//osten
-		if (x<sp_spalten-1){
-			var vn = a[y][x+1];
-				a[y][x+1]=null;
-				f[y][x+1]=frame;
-				frame++;
-				
-			if (vn!=null){
-				if (ersetzen(vn,null,frame)){
-					frame++;
-				}
-			}
-		}
 
 		frame--;
 		anim.maxabweichung=frame;
@@ -1460,12 +1480,11 @@ class Main {
 
 	}
 
-	function tuePlatzierung(hoverziel_x:Int,hoverziel_y:Int,zieh_name:String,nachkram:Bool){	
+	function tuePlatzierung(hoverziel_x:Int,hoverziel_y:Int,z_name:String,nachkram:Bool){	
 		var startframe = new AnimationFrame();
 		startframe.vor_brett = Copy.copy(szs_brett);
 
-		szs_brett[hoverziel_y][hoverziel_x]=zieh_name;
-
+		szs_brett[hoverziel_y][hoverziel_x]=z_name;
 		startframe.nach_brett = Copy.copy(szs_brett);
 		startframe.abweichung = leererAbweichungsgitter();
 		startframe.abweichung[hoverziel_y][hoverziel_x]=0;
@@ -1473,7 +1492,7 @@ class Main {
 		var animation = startframe;
 		animationen.push(animation);
 
-		switch(zieh_name){
+		switch(z_name){
 			case "s1":
 				loeschen(animation,hoverziel_x,hoverziel_y);
 			case "s2":
@@ -1530,7 +1549,7 @@ class Main {
 			var tx = hoverziel_x;
 			var ty = hoverziel_y;
 			var tb = animationen[animationen.length-1].nach_brett;
-			if (zieh_name=="s18"){
+			if (z_name=="s18"){
 				tx=-1;
 				ty=-1;
 			}
@@ -1543,6 +1562,7 @@ class Main {
 			zustandSpeichern();
 			checkSolve();
 		}
+
 	}
 
 	public static var farbe_desktop = 0x7869c4;
@@ -1554,7 +1574,7 @@ class Main {
 		Gfx.resizescreen(392, 235,true);
 		SpriteManager.enable();
 		Particle.enable();
-		// Text.font="nokia";
+		Text.font="nokia";
 		// Gfx.clearcolor=Col.RED;// desktop_farbe;
 		// Gfx.loadtiles("dice_highlighted",16,16);
 		setup();
@@ -1687,7 +1707,6 @@ class Main {
 
 
 	function versperre(i:Int,j:Int){
-		trace("vs",i,j);
 		aktuellesZiel.werkzeuge[i+i_spalten*j]=!aktuellesZiel.werkzeuge[i+i_spalten*j];
 		if (aktuellesZiel.werkzeuge[i+i_spalten*j]==false){
 			szs_inventory[j][i]=null;
@@ -1738,7 +1757,7 @@ class Main {
 
 			Gfx.drawimage(0,0,"aboutscreen");
 			
-			Text.display(57,25,Globals.S("Ueber Gestalt_BS","About Gestalt_OS"),farbe_menutext);
+			Text.display(57,25,Globals.S("Über Gestalt_BS","About Gestalt_OS"),farbe_menutext);
 
 			Text.display(153,44,Globals.S("Gestaltaufbau","Gestalt Manufacturing"),0x20116d);
 			Text.display(153,55,Globals.S("GmbH (R)","Corporation (R)"),0x20116d);
@@ -1750,7 +1769,7 @@ class Main {
 
 			Text.font = "pixel";
 			Text.display(56,113,
-			Globals.S("Dank fuer Testing und Feedback zu sagen zu "+nameListe+".
+			Globals.S("Dank für Testing und Feedback zu sagen zu "+nameListe+".
 			
 			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
@@ -1761,9 +1780,9 @@ class Main {
 			
 			The Rest: Stephen Lavelle ( http://www.increpare.com )."),0x20116d
 			);
-			Text.wordwrap=0;
-			Text.font = "";
-			
+			Text.wordwrap=0;			
+			Text.font="nokia";
+
 			if (
 				IMGUI.presstextbutton(
 					"ueber_ok",
@@ -1771,10 +1790,11 @@ class Main {
 					"btn_solve_bg_down",
 					Globals.S("OK","OK"),
 					0x20116d,
-					212,193
+					279,193
 					))
 			{
 				zeigabout=false;
+				Core.fullscreenbutton(isFullscreenButtonPressed,326,209,Gfx.imagewidth("taste_t_bg_up"),Gfx.imageheight("taste_t_bg_up"));
 				forcerender=true;
 			}
 	
@@ -1817,6 +1837,7 @@ class Main {
 				)
 		{
 			neuesBlatt();
+			forcerender=true;
 		}
 
 		if (undoStack[aktuellesZielIdx].length>1){
@@ -1826,43 +1847,31 @@ class Main {
 					"taste_t_bg_down",
 					"icon_undo",
 					306,209,
-					Globals.S("Rueckgaengig (Z)","Undo (Z)")
+					Globals.S("Rückgängig (Z)","Undo (Z)")
 					)
 					|| Input.justpressed(Key.Z)
 					|| Input.justpressed(Key.U)
 					)
 			{
 					tueUndo();
+					forcerender=true;
 			}
 		} else {
 			Gfx.drawimage(306,209,"keineundosmehr");
 		}
 
 		var aktuell_av:Bool = Globals.state.audio==1 ? true : false;
-		var neuaudio:Bool = IMGUI.togglebutton(
-			"audio",
-
-			"taste_t_bg_up",
-			"taste_t_bg_down",
-			"icon_audio_aus",
-			"icon_audio_an",
+		if (IMGUI.pressbutton(
+					"vollbildmodus",
+					"taste_t_bg_up",
+					"taste_t_bg_down",
+					"vollbildmodus",
 			326,
 			209,
-			aktuell_av,
-			Globals.S("Audio: aus (M)","Audio: off (M)"),
-			Globals.S("Audio: an (M)","Audio: on (M)")			
-			);
-		if (Input.justpressed(Key.M)){
-			neuaudio=!aktuell_av;
+			Globals.S("Vollbildmodus","Fullscreen mode")
+		)){
 		}
 		
-		var neu_av = neuaudio?1:0;
-		if (neu_av!=Globals.state.audio){
-			Globals.state.audio=neu_av;
-			IMGUI.tooltipstr=null;
-				forcerender=true;
-			Save.savevalue("mwbaudio",Globals.state.audio);
-		}
 
 		var aktuell_sprache:Bool = Globals.state.sprache==1 ? true : false;
 		var neusprache:Bool = IMGUI.togglebutton(
@@ -1891,13 +1900,14 @@ class Main {
 			"taste_t_bg_down",
 			"icon_hilfe",
 			366,209,
-			Globals.S("Ueber diese Anwendung","About this app")
+			Globals.S("Über diese Anwendung","About this app")
 			)){
 				zeigabout=true;
+				Core.fullscreenbutton(null,0,0,0,0);
 				forcerender=true;
 			}
 
-		Text.display(9,9,Globals.S("Werkzeuge","Tools"),farbe_menutext);
+		Text.display(9,8,Globals.S("Werkzeuge","Tools"),farbe_menutext);
 
 
 		var lebende = Lambda.count(Globals.state.solved, (w)->w==0);
@@ -1907,9 +1917,9 @@ class Main {
 		} else {
 			titeltext = Globals.S("Werkbank","Workbench");// + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
 		}
-		Text.display(91,9,titeltext,farbe_menutext);
+		Text.display(91,8,titeltext,farbe_menutext);
 
-		Text.display(287,9,Globals.S("Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")","Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")"),farbe_menutext);
+		Text.display(287,8,Globals.S("Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")","Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")"),farbe_menutext);
 
 		if (aktuellesZielIdx>0){
 			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,182)||Input.justpressed(Key.LEFT)){
@@ -1927,12 +1937,12 @@ class Main {
 						"menü_l",
 						"btn_solve_bg_down_done",
 						"btn_solve_bg_down_done",
-						Globals.S("Geloest","Solved"),
+						Globals.S("Gelöst","Solved"),
 						0x505050,
 						306,182
 						);
 		} else if (cansolve){
-			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Loesen","Solve"),0x20116d,306,182)){
+			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Lösen","Solve"),0x20116d,306,182)){
 				geloest[aktuellesZielIdx]=true;
 				Save.savevalue("level"+version+"-"+aktuellesZielIdx,true);
 				forcerender=true;
@@ -1942,7 +1952,7 @@ class Main {
 						"menü_l",
 						"btn_solve_bg_up",
 						"btn_solve_bg_down",
-						Globals.S("Loesen","Solve"),
+						Globals.S("Lösen","Solve"),
 						0x505050,
 						306,182
 						);
@@ -2116,7 +2126,6 @@ class Main {
 					letztes_hoverziel_y=-1;
 				}
 				
-				trace(hoverziel_x,hoverziel_y,geltendes_hoverziel,ox_d,oy_d);
 				if (geltendes_hoverziel){
 					if (input==1){
 						editor_tl_x=hoverziel_x;

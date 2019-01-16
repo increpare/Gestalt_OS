@@ -90,6 +90,14 @@ class IMGUI {
 		tooltipstr=null;	
 	}
 
+	public static function isButtonDown(id:String):Bool{
+		if (downstates.exists(id)==false){
+			downstates.set(id,false);
+		}
+		var downstate:Bool = downstates.get(id);
+		return downstate;
+	}
+
 	public static function pressbutton(
 		id:String,
 		bg:String,

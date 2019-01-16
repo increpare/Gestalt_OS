@@ -6,6 +6,9 @@ class Copy {
 	 * Deep copy of anything using reflection (so don't hope for much performance)
 	**/ 
 	public static function copy<T>( v:T ) : T  { 
+		#if cpp 
+		trace("Copy.copy doesn't work in C++!")
+		#end
 		if (!Reflect.isObject(v)) { // simple type 
 			return v; 
 		}
