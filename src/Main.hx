@@ -231,13 +231,14 @@ class Main {
 		}
 		// switch(s){
 		// 	case 0://animation sound
-		// 		_sfx_drop.play();
+		// 		Sound.play("drop",0,false,0.2);
 		// 	case 1://remove
-		// 		_sfx_drop2.play();
+		// 		Sound.play("drop2",0,false,0.2);
 		// 	case 2://drop
-		// 		_sfx_drop3.play();
+		// 		Sound.play("drop3",0,false,0.2);
 		// 	case 3://drag begin
-		// 		_sfx_drop2.play();
+
+		// 		Sound.play("drop4",0,false,0.2);
 		// }
 	}
 
@@ -1872,7 +1873,7 @@ function tueRedo(){
 			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
 			The Rest: Stephen Lavelle ( http://www.increpare.com ).",
-			"Gracias por probar y comentar a: "+nameListe+"
+			"Gracias por probar y comentar a: "+nameListe+".
 			
 			Diseño de niveles: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 
@@ -1880,7 +1881,7 @@ function tueRedo(){
 
 			El resto:  Stephen Lavelle ( http://www.increpare.com ).
 			",
-			"Merci pour tester et donner du feedback à: "+nameListe+"
+			"Merci pour tester et donner du feedback à: "+nameListe+".
 			
 			Conception de niveaux:  Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 
