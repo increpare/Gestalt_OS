@@ -1998,6 +1998,34 @@ function tueRedo(){
 
 		
 		Gfx.drawimage(0,0,"bg");
+
+		for (i in 0...ziele.length){
+
+			var gx = i%5;
+			var gy = Math.floor(i/5);
+			
+			var px = 18 + 13*gx;
+			var py = 216 - 10*gy;
+			
+			if (editmodus && Mouse.leftclick()){
+				if (Mouse.x>=(px-4)&&Mouse.y>=(py-2) && (Mouse.x<(px-2+9+2)) && (Mouse.y<(py-2+9))){
+					LoadLevel(i);
+				}
+			}
+
+			if (geloest[i]==ziele[i][0]){
+				Gfx.drawimage(px,py,"level_geloest");
+
+				
+			} else {
+				Gfx.drawimage(px,py,"level_ungeloest");
+			}
+
+			if (i==aktuellesZielIdx){
+				Gfx.drawimage(px-2,py-2,"level_selector");
+			}
+
+		}
 	
 		for (j in 0...i_zeilen){
 			for (i in 0...i_spalten){
@@ -2429,33 +2457,7 @@ function tueRedo(){
 			}
 		}
 
-		for (i in 0...ziele.length){
-
-			var gx = i%5;
-			var gy = Math.floor(i/5);
-			
-			var px = 18 + 13*gx;
-			var py = 216 - 10*gy;
-			
-			if (editmodus && Mouse.leftclick()){
-				if (Mouse.x>=(px-4)&&Mouse.y>=(py-2) && (Mouse.x<(px-2+9+2)) && (Mouse.y<(py-2+9))){
-					LoadLevel(i);
-				}
-			}
-
-			if (geloest[i]==ziele[i][0]){
-				Gfx.drawimage(px,py,"level_geloest");
-
-				
-			} else {
-				Gfx.drawimage(px,py,"level_ungeloest");
-			}
-
-			if (i==aktuellesZielIdx){
-				Gfx.drawimage(px-2,py-2,"level_selector");
-			}
-
-		}
+		
 		if (zeigabout||zeigende){
 			IMGUI.tooltipstr=null;
 		}
