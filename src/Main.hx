@@ -308,7 +308,7 @@ class Main {
 		} else if (aktuellesZielIdx==49){
 			cansolve=true;
 			for (i in 0...(ziele.length-1)){
-				if (geloest[i]==ziele[i][0]){
+				if (geloest[i]!=ziele[i][0]){
 					cansolve=false;
 					return;
 				}
@@ -421,7 +421,7 @@ class Main {
 
 		aktuellesZielIdx=level;
 
-		Save.savevalue("mwb"+version+"levelidx",aktuellesZielIdx);
+		Save.savevalue("mwblevelidx",aktuellesZielIdx);
 		var ziel_s = ziele[aktuellesZielIdx][1];
 	    var unserializer = new Unserializer(ziel_s);
 
@@ -443,7 +443,7 @@ class Main {
 	
 		
 	var geloest:Array<String> = [];
-	var version=1.4;
+	var version=1.5;
 	
 	// function _setupSound(url:String, ?loop:Bool = false):WaudSound {
 	// 	// return  new WaudSound(
@@ -465,7 +465,7 @@ class Main {
 		
 		geloest = [];
 		for (i in 0...ziele.length){
-			geloest.push(Save.loadvalue("level"+version+"-"+i,null));
+			geloest.push(Save.loadvalue("level"+i,null));
 		}
 
 		// Core.showstats=true;
@@ -488,18 +488,20 @@ class Main {
 		}
 
 
-		aktuellesZielIdx = Save.loadvalue("mwb"+version+"levelidx",0);
+		aktuellesZielIdx = Save.loadvalue("mwblevelidx",0);
+		if (aktuellesZielIdx<0){
+			aktuellesZielIdx=0;
+		}
+		if (aktuellesZielIdx>ziele.length){
+			aktuellesZielIdx=ziele.length-1;
+		}
 		Globals.state.level=aktuellesZielIdx;
 		
 		LoadLevel(Globals.state.level);	
 
-		Core.fullscreenbutton(isFullscreenButtonPressed,326,209,Gfx.imagewidth("taste_t_bg_up"),Gfx.imageheight("taste_t_bg_up"));
 	}
 
 
-	function isFullscreenButtonPressed():Bool{
-		return IMGUI.isButtonDown("vollbildmodus");
-	}
 	function reset(){
 		setup();
 	}
@@ -1805,9 +1807,11 @@ function tueRedo(){
 	var forcerender:Bool=true;
 	
 	var zeigabout:Bool=false;
+	var zeigende:Bool=false;
 
 	function update() {	
 
+		
 
 		var keyrepeat=Math.floor(Core.fps/5);
 
@@ -1851,7 +1855,7 @@ function tueRedo(){
 			Text.display(153,44,Globals.S("Gestaltaufbau","Gestalt Manufacturing","Fabricación Gestalt","Fabrication Gestalt"),0x20116d);
 			Text.display(153,55,Globals.S("GmbH (R)","Corporation (R)","Sociedad (R)","Société (R)"),0x20116d);
 			
-			Text.display(153,73,Globals.S("Gestalt_BS 3.14 (\"Beton\")","Gestalt_OS 3.14 (\"Beton\")",'Gestalt_OS 3.14 ("Beton")','Gestalt_OS 3.14 ("Beton")'),0x20116d);
+			Text.display(153,73,Globals.S("Gestalt_BS "+version+" (\"Beton\")","Gestalt_OS "+version+" (\"Beton\")",'Gestalt_OS '+version+' ("Beton")','Gestalt_OS '+version+' ("Beton")'),0x20116d);
 			Text.display(153,90,Globals.S("(R) GAB GmbH 2019","Copyright(C) 2019 GMC",'Copyright(C) 2019 SFC',"Droit d'auteur (C) 2019 SFC"),0x20116d);
 
 			var nameListe = "Daniel Frier - Stephen Saver - David Kilford - Dani Soria - Adrian Toncean - Alvaro Salvagno - Ethan Clark - Blake Regehr - Happy Snake - Joel Gahr - Alexander Turner - Tatsunami - Matt Rix - Bigaston - Lajos Kis - Lorxus - Fachewachewa - Marcos Donnantuoni - That Scar - Llewelyn Griffiths - @capnsquishy - Alexander Martin - Guilherme Töws - Alex Fink - Christian Zachau - @Ilija - Celeste Brault - Cédric Coulon - Lukas Koudelka - George Kurelic - Konstantin Dediukhin";
@@ -1900,10 +1904,57 @@ function tueRedo(){
 					))
 			{
 				zeigabout=false;
-				Core.fullscreenbutton(isFullscreenButtonPressed,326,209,Gfx.imagewidth("taste_t_bg_up"),Gfx.imageheight("taste_t_bg_up"));
+				forcerender=true;
+			}
+
+
+			Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
+	
+			return;
+		}
+
+
+
+		if (zeigende){
+			Text.wordwrap=180;
+
+			Gfx.drawimage(0,0,"endscreen");
+			
+			Text.display(103,54,Globals.S("Herzlichen Glückwunsch","Congratulations","Enhorabuena","Félicitations"),farbe_menutext);
+
+			Text.display(103,72,Globals.S(
+				"Herzlichen Glückwunsch! Du hast alle Levels gelöst!",
+				"Congratulations, you solved all of the levels!",
+				"Enhorabuena, has resuelto todos los niveles!",
+				"Félicitations, tu as résolu tous les niveaux!")
+				,0x20116d);
+
+			
+			Text.display(103,100,Globals.S(
+				"Wir freuen uns, dass du unser Spiel gespielt hast. Hoffentlich hat es dir gut gefallen :)",
+				"Thank you so much for playing the game. We hope you had a good time doing so :)",
+				"Muchas gracias por jugar a este juego. Esperamos que hayas disfrutado jugándolo :)",
+				"Merci beaucoup d'avoir joué. Nous espérons que vous vous êtes bien amusés :)"
+				),0x20116d);
+				
+			Text.wordwrap=0;			
+			Text.font="nokia";
+
+			if (
+				IMGUI.presstextbutton(
+					"ueber_ok",
+					"btn_solve_bg_up",
+					"btn_solve_bg_down",
+					Globals.S("OK","OK","OK","OK"),
+					0x20116d,
+					235,148
+					))
+			{
+				zeigende=false;
 				forcerender=true;
 			}
 	
+			Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
 			return;
 		}
 
@@ -2018,7 +2069,6 @@ function tueRedo(){
 			Globals.S("Über diese Anwendung","About this app","Sobre esta aplicación","Sûr cette aplication")
 			)){
 				zeigabout=true;
-				Core.fullscreenbutton(null,0,0,0,0);
 				forcerender=true;
 			}
 
@@ -2064,8 +2114,11 @@ function tueRedo(){
 		} else if (cansolve){
 			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Lösen","Solve","Resolver","Résoudre"),0x20116d,306,182)){
 				geloest[aktuellesZielIdx]=ziele[aktuellesZielIdx][0];
-				Save.savevalue("level"+version+"-"+aktuellesZielIdx,ziele[aktuellesZielIdx][0]);
+				Save.savevalue("level"+aktuellesZielIdx,ziele[aktuellesZielIdx][0]);
 				forcerender=true;
+				if (aktuellesZielIdx==49){
+					zeigende=true;
+				}
 			}
 		} else {
 					IMGUI.presstextbutton_disabled(
@@ -2382,10 +2435,11 @@ function tueRedo(){
 			}
 
 		}
-		if (zeigabout){
+		if (zeigabout||zeigende){
 			IMGUI.tooltipstr=null;
 		}
 		IMGUI.zeigtooltip();
+		Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
 	}
 
 }
