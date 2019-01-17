@@ -482,7 +482,7 @@ class Main {
 
 		Globals.state.level=Save.loadvalue("mwblevel",0);
 		Globals.state.audio=Save.loadvalue("mwbaudio",1);
-		Globals.state.sprache=Save.loadvalue("mwbsprache_v2",1);
+		Globals.state.sprache=Save.loadvalue("mwbsprache_v2",0);
 
 		for(i in 0...6){
 			Globals.state.solved[i]=Save.loadvalue("mwbsolved"+i,0);
@@ -1666,6 +1666,12 @@ class Main {
 
 		animationen = new Array<AnimationFrame>();
 		zieh_modus=false;
+
+		if(zieh_modus){
+				zieh_modus=false;
+				szs_inventory[zieh_quelle_j][zieh_quelle_i]=zieh_name;
+		}
+
 		szs_inventory = new Array<Array<String>>();
 		for (j in 0...i_zeilen){
 			var zeile = new Array<String>();
@@ -1719,6 +1725,12 @@ class Main {
 	}
 	
 	function tueUndo(){
+
+		if(zieh_modus){
+				zieh_modus=false;
+				szs_inventory[zieh_quelle_j][zieh_quelle_i]=zieh_name;
+		}
+		
 		animationen.splice(0,animationen.length);	
 		animPos=0;		
 		var curhash = Json.stringify([szs_inventory,szs_brett]);
@@ -1743,6 +1755,12 @@ class Main {
 	}
 
 function tueRedo(){
+	
+		if(zieh_modus){
+				zieh_modus=false;
+				szs_inventory[zieh_quelle_j][zieh_quelle_i]=zieh_name;
+		}
+		
 		animationen.splice(0,animationen.length);	
 		animPos=0;		
 		var curhash = Json.stringify([szs_inventory,szs_brett]);
@@ -1981,6 +1999,54 @@ function tueRedo(){
 		
 		Gfx.drawimage(0,0,"bg");
 	
+		for (j in 0...i_zeilen){
+			for (i in 0...i_spalten){
+
+				var ix = 8+19*i;
+				var iy = 21+19*j;
+				
+
+				var index = i+i_spalten*j;
+				
+				if (editmodus){
+					if (IMGUI.mouseover(
+							"schatten/s"+invfolge[index],
+							ix,
+							iy) &&
+						Input.justpressed(Key.E) )
+					{
+						versperre(i,j);
+					}
+				}
+
+				var inhalt = szs_inventory[j][i];
+				
+
+				if (inhalt!=null){
+					if (IMGUI.clickableimage(
+							"icons/"+inhalt,
+							ix,
+							iy)){
+						zieh_name = szs_inventory[j][i];
+						szs_inventory[j][i] = null;
+						zieh_modus=true;
+
+						do_playSound(3);
+						zieh_offset_x=(ix)-Mouse.x;
+						zieh_offset_y=(iy)-Mouse.y;
+						zieh_quelle_i=i;
+						zieh_quelle_j=j;
+					}
+				} else {
+					Gfx.drawimage(ix,iy,"schatten/s"+invfolge[index]);
+					if (aktuellesZiel.werkzeuge[index]==false){
+						Gfx.drawimage(ix,iy,"versperrt");
+					}
+				}
+				
+			}
+		}
+		
 		// Gfx.drawimage(7,7,"taste_t_bg_up");
 		if (IMGUI.pressbutton(
 				"neu",
@@ -2055,9 +2121,9 @@ function tueRedo(){
 			);
 
 		if (neu_spr!=Globals.state.sprache){
-				Globals.state.sprache=neu_spr;
-				IMGUI.tooltipstr=null;
-				forcerender=true;
+			Globals.state.sprache=neu_spr;
+			IMGUI.tooltipstr=null;
+			forcerender=true;
 			Save.savevalue("mwbsprache_v2",Globals.state.sprache);
 		}
 
@@ -2144,53 +2210,7 @@ function tueRedo(){
 		// Gfx.drawimage(Mouse.x-3,Mouse.y-3,"cursor_finger");
 
 
-		for (j in 0...i_zeilen){
-			for (i in 0...i_spalten){
-
-				var ix = 8+19*i;
-				var iy = 21+19*j;
-				
-
-				var index = i+i_spalten*j;
-				
-				if (editmodus){
-					if (IMGUI.mouseover(
-							"schatten/s"+invfolge[index],
-							ix,
-							iy) &&
-						Input.justpressed(Key.E) )
-					{
-						versperre(i,j);
-					}
-				}
-
-				var inhalt = szs_inventory[j][i];
-				
-
-				if (inhalt!=null){
-					if (IMGUI.clickableimage(
-							"icons/"+inhalt,
-							ix,
-							iy)){
-						zieh_name = szs_inventory[j][i];
-						szs_inventory[j][i] = null;
-						zieh_modus=true;
-
-						do_playSound(3);
-						zieh_offset_x=(ix)-Mouse.x;
-						zieh_offset_y=(iy)-Mouse.y;
-						zieh_quelle_i=i;
-						zieh_quelle_j=j;
-					}
-				} else {
-					Gfx.drawimage(ix,iy,"schatten/s"+invfolge[index]);
-					if (aktuellesZiel.werkzeuge[index]==false){
-						Gfx.drawimage(ix,iy,"versperrt");
-					}
-				}
-				
-			}
-		}
+	
 
 
 		var zielb_x=284;
@@ -2417,7 +2437,7 @@ function tueRedo(){
 			var px = 18 + 13*gx;
 			var py = 216 - 10*gy;
 			
-			if (Mouse.leftclick()){
+			if (editmodus && Mouse.leftclick()){
 				if (Mouse.x>=(px-4)&&Mouse.y>=(py-2) && (Mouse.x<(px-2+9+2)) && (Mouse.y<(py-2+9))){
 					LoadLevel(i);
 				}
