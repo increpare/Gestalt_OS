@@ -273,93 +273,127 @@ class Main {
 	public var zieh_offset_y:Int;
 	public var zieh_name:String;
 	
-	function checkSolve(){
-
+	function checkSolve(partikelnErlauben:Bool){
 		var schonloesbar = cansolve;
 
 		solvex=-1;
 		solvey=-1;
 		cansolve=false;
 		
-		var z =  aktuellesZiel.ziel;
-		var zw = aktuellesZiel.ziel[0].length;
-		var zh = aktuellesZiel.ziel.length;
-
-		for (gi in 0...(sp_spalten+1-zw)){
-			for (gj in 0...(sp_zeilen+1-zh)){
-				var match=true;
-				for (i in 0...zw){
-					for (j in 0...zh){
-						if (z[j][i]!=szs_brett[gj+j][gi+i]){
-							match=false;
-						}
-					}
-					if (match==false){
-						break;
-					}
-				}
-				if (match){
-					cansolve=true;
-					solvex=gi;
-					solvey=gj;
-
-					if (schonloesbar==false){
-			
-						var px = 306;
-						var py =  182;
-						var pbb = Gfx.imagewidth("btn_solve_bg_up");
-						var pbh = Gfx.imageheight("btn_solve_bg_down");
-						cansolve=true;
-						Particle.GenerateParticles(
-										{min:px,max:px+pbb},
-										{min:py,max:py+pbh},
-										0x9e61cc,
-										10,
-										1.0,
-										0.0,
-										{min:2,max:4},
-										{min:0,max:360},
-										{min:-20,max:20},
-										{min:-20,max:20},
-										{min:-1,max:1},
-										{min:3,max:5},
-										{min:0,max:0});	
-						Particle.GenerateParticles(
-										{min:px,max:px+pbb},
-										{min:py,max:py+pbh},
-										0x6051ac,
-										10,
-										1.0,
-										0.0,
-										{min:2,max:4},
-										{min:0,max:360},
-										{min:-20,max:20},
-										{min:-20,max:20},
-										{min:-1,max:1},
-										{min:3,max:5},
-										{min:0,max:0});	
-						Particle.GenerateParticles(
-										{min:px,max:px+pbb},
-										{min:py,max:py+pbh},
-										0x40318d,
-										10,
-										1.0,
-										0.0,
-										{min:2,max:4},
-										{min:0,max:360},
-										{min:-20,max:20},
-										{min:-20,max:20},
-										{min:-1,max:1},
-										{min:3,max:5},
-										{min:0,max:0});	
-										
-					}
-					return;
-				}
-			}	
+		if (geloest[aktuellesZielIdx]){
+			return;
 		}
 
+		if (aktuellesZielIdx==48){
+			cansolve=true;
+
+			for (j in 0...sp_zeilen){
+				for (i in 0...sp_spalten){
+					if (szs_brett[j][i]!=null){
+						cansolve=false;
+						return;
+					}
+				}
+			}
+
+			for (j in 0...i_zeilen){
+				for (i in 0...i_spalten){
+					if (szs_inventory[j][i]!=null){
+						cansolve=false;
+						return;
+					}
+				}
+			}
+					
+		} else if (aktuellesZielIdx==49){
+			cansolve=true;
+			for (i in 0...(ziele.length-1)){
+				if (geloest[i]==false){
+					cansolve=false;
+					return;
+				}
+			}
+		} else {
+			var z =  aktuellesZiel.ziel;
+			var zw = aktuellesZiel.ziel[0].length;
+			var zh = aktuellesZiel.ziel.length;
+
+			for (gi in 0...(sp_spalten+1-zw)){
+				for (gj in 0...(sp_zeilen+1-zh)){
+					var match=true;
+					for (i in 0...zw){
+						for (j in 0...zh){
+							if (z[j][i]!=szs_brett[gj+j][gi+i]){
+								match=false;
+							}
+						}
+						if (match==false){
+							break;
+						}
+					}
+					if (match){
+						cansolve=true;
+						solvex=gi;
+						solvey=gj;
+						break;
+					}
+				}	
+			}
+		}
+
+		if (partikelnErlauben && schonloesbar==false){
+			var px = 306;
+			var py =  182;
+			var pbb = Gfx.imagewidth("btn_solve_bg_up");
+			var pbh = Gfx.imageheight("btn_solve_bg_down");
+			cansolve=true;
+			Particle.GenerateParticles(
+							{min:px,max:px+pbb},
+							{min:py,max:py+pbh},
+							0x9e61cc,
+							10,
+							1.0,
+							0.0,
+							{min:2,max:4},
+							{min:0,max:360},
+							{min:-20,max:20},
+							{min:-20,max:20},
+							{min:-1,max:1},
+							{min:3,max:5},
+							{min:0,max:0});	
+			Particle.GenerateParticles(
+							{min:px,max:px+pbb},
+							{min:py,max:py+pbh},
+							0x6051ac,
+							10,
+							1.0,
+							0.0,
+							{min:2,max:4},
+							{min:0,max:360},
+							{min:-20,max:20},
+							{min:-20,max:20},
+							{min:-1,max:1},
+							{min:3,max:5},
+							{min:0,max:0});	
+			Particle.GenerateParticles(
+							{min:px,max:px+pbb},
+							{min:py,max:py+pbh},
+							0x40318d,
+							10,
+							1.0,
+							0.0,
+							{min:2,max:4},
+							{min:0,max:360},
+							{min:-20,max:20},
+							{min:-20,max:20},
+							{min:-1,max:1},
+							{min:3,max:5},
+							{min:0,max:0});	
+							
+		}
 	}
+	
+	
 
 	function LoadLevel(level:Int){
 		if (level>=ziele.length||level<0){
@@ -380,7 +414,7 @@ class Main {
 			);
 
 			neuesBlatt();
-			checkSolve();
+			checkSolve(false);
 			forcerender=true;
 			return;
 		}
@@ -394,21 +428,22 @@ class Main {
 		aktuellesZiel = unserializer.unserialize();
 
 		var dieser_undoStack = undoStack[aktuellesZielIdx];
+		var dieser_undoStack_pos = undoPos[aktuellesZielIdx];
 		if (dieser_undoStack.length>0){
-			var zs = dieser_undoStack[dieser_undoStack.length-1];
+			var zs = dieser_undoStack[dieser_undoStack_pos];
 			szs_inventory=Copy.copy(zs.i);
 			szs_brett=Copy.copy(zs.sp);
 		} else {
 			neuesBlatt();
 		}
 
-		checkSolve();
+		checkSolve(false);
 		forcerender=true;
 	}
 	
 		
 	var geloest = [];
-	var version=1.3;
+	var version=1.4;
 	
 	// function _setupSound(url:String, ?loop:Bool = false):WaudSound {
 	// 	// return  new WaudSound(
@@ -438,8 +473,10 @@ class Main {
 		Gfx.clearcolor=Col.TRANSPARENT;
 
 		undoStack=new Array<Array<LevelZustand>>();
+		undoPos = new Array<Int>();
 		for (i in 0...ziele.length){
 			undoStack.push([]);
+			undoPos.push(-1);
 		}
 
 		Globals.state.level=Save.loadvalue("mwblevel",0);
@@ -1578,7 +1615,7 @@ class Main {
 			szs_brett = animationen[animationen.length-1].nach_brett;
 
 			zustandSpeichern();
-			checkSolve();
+			checkSolve(true);
 		}
 
 	}
@@ -1656,8 +1693,13 @@ class Main {
 	}
 
 	var undoStack:Array<Array<LevelZustand>>;
+	var undoPos:Array<Int>;
 
 	function zustandSpeichern(){
+		var curUndoPos = undoPos[aktuellesZielIdx];
+		var curUndoStack = undoStack[aktuellesZielIdx];
+		curUndoStack.splice(curUndoPos+1,curUndoStack.length);
+
 		var lzs = new LevelZustand();
 		lzs.i=Copy.copy(szs_inventory);
 		lzs.sp=Copy.copy(szs_brett);
@@ -1670,27 +1712,54 @@ class Main {
 			}
 		}
 		dieser_undoStack.push(lzs);
+		undoPos[aktuellesZielIdx]++;
 	}
 	
 	function tueUndo(){
 		animationen.splice(0,animationen.length);	
 		animPos=0;		
 		var curhash = Json.stringify([szs_inventory,szs_brett]);
-		var i = undoStack[aktuellesZielIdx].length-1;
+		var i = undoPos[aktuellesZielIdx];
 		while (i>=0){
 			var zs = undoStack[aktuellesZielIdx][i];
 			if (curhash!=zs.hash){
 				szs_inventory=Copy.copy(zs.i);
 				szs_brett=Copy.copy(zs.sp);
-				checkSolve();
+				checkSolve(false);
 				do_playSound(0);
+				undoPos[aktuellesZielIdx]=i;
+				forcerender=true;
 				return;
 			} else {
 				if (i>0){
-					undoStack[aktuellesZielIdx].splice(i,1);
+					// undoStack[aktuellesZielIdx].splice(i,1);
 				}
 			}
 			i--;
+		}
+	}
+
+function tueRedo(){
+		animationen.splice(0,animationen.length);	
+		animPos=0;		
+		var curhash = Json.stringify([szs_inventory,szs_brett]);
+		var i = undoPos[aktuellesZielIdx];
+		while (i<undoStack[aktuellesZielIdx].length){
+			var zs = undoStack[aktuellesZielIdx][i];
+			if (curhash!=zs.hash){
+				szs_inventory=Copy.copy(zs.i);
+				szs_brett=Copy.copy(zs.sp);
+				checkSolve(false);
+				do_playSound(0);
+				undoPos[aktuellesZielIdx]=i;
+				forcerender=true;
+				return;
+			} else {
+				if (i>0){
+					// undoStack[aktuellesZielIdx].splice(i,1);
+				}
+			}
+			i++;
 		}
 	}
 
@@ -1754,6 +1823,7 @@ class Main {
 			!Input.justpressed(Key.P) &&
 			!Input.justpressed(Key.N) &&
 			!Input.justpressed(Key.R) &&
+			!Input.justpressed(Key.Y) &&
 			!Input.justpressed(Key.M) &&
 			!Input.justpressed(Key.Z) &&
 			!Input.justpressed(Key.U) &&
@@ -1875,7 +1945,7 @@ class Main {
 			forcerender=true;
 		}
 
-		if (undoStack[aktuellesZielIdx].length>1){
+		if (undoPos[aktuellesZielIdx]>0){
 			if (IMGUI.pressbutton(
 					"rückgängig",
 					"taste_t_bg_up",
@@ -1889,24 +1959,30 @@ class Main {
 					)
 			{
 					tueUndo();
-					forcerender=true;
 			}
 		} else {
 			Gfx.drawimage(306,209,"keineundosmehr");
 		}
 
-		var aktuell_av:Bool = Globals.state.audio==1 ? true : false;
-		if (IMGUI.pressbutton(
-					"vollbildmodus",
+
+		if ( (undoPos[aktuellesZielIdx]+1)<undoStack[aktuellesZielIdx].length){
+
+			if (IMGUI.pressbutton(
+					"wiederholen",
 					"taste_t_bg_up",
 					"taste_t_bg_down",
-					"vollbildmodus",
-			326,
-			209,
-			Globals.S("Vollbildmodus","Fullscreen mode",'Pantalla completa','Plein écran')
-		)){
+					"icon_wiederholen",
+					326,209,
+					Globals.S("Wiederholen (Y)","Undo (Y)",'Rehacer (Y)','Rétablir (Y)')
+					)
+					|| Input.justpressed(Key.Y)
+					)
+			{
+					tueRedo();
+			}
+		} else {
+			Gfx.drawimage(326,209,"keinredosmehr");
 		}
-		
 
 		var neu_spr:Int = IMGUI.togglebutton_multi(
 			"sprache",
@@ -2061,18 +2137,29 @@ class Main {
 			}
 		}
 
+
+		var zielb_x=284;
+		var zielb_y=19;
+
+		var zielb_w=103;
+		var zielb_h=163;
+		
 		//ziel zeigen
-		{
+		if (aktuellesZielIdx>=48){
+			var image_s = aktuellesZielIdx==48 ? "leererlevel" : "letzterlevel";
+
+			var ziel_darstellung_w=Gfx.imagewidth(image_s);
+			var ziel_darstellung_h=Gfx.imageheight(image_s);
+
+			var ziel_x=zielb_x+zielb_w/2-ziel_darstellung_w/2;
+			var ziel_y=zielb_y+zielb_h/2-ziel_darstellung_h/2;
+			Gfx.drawimage(ziel_x,ziel_y,image_s);
+		} else {
 			var alevel = aktuellesZiel;
 			var z_raster = alevel.ziel;
 			var z_w = z_raster[0].length;
 			var z_h = z_raster.length;
 
-			var zielb_x=284;
-			var zielb_y=19;
-
-			var zielb_w=103;
-			var zielb_h=163;
 
 			var ziel_darstellung_w=17*z_w+1;
 			var ziel_darstellung_h=17*z_h+1;
