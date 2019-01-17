@@ -59,168 +59,168 @@ class Main {
 
 	public var aktuellesZiel:Ziel;	
 	public var aktuellesZielIdx=0;
-	public var ziele:Array<String> = [
+	public var ziele:Array<Array<String>> = [
 
 	
 		//1 sehr einfach
-		"cy4:Ziely4:zielaau6hany2:s5R2R2R2nhau6hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau6hany2:s5R2R2R2nhau6hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//2
-		"cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//3 leichter variatn von 2x4 punkte
-		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//4 mittel-leicht, interessanter
-		"cy4:Ziely4:zielaay2:s5R2R2haR2y3:s14R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay2:s5R2R2haR2y3:s14R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//5 ziemlich einfach 
-		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2nR2nR2hanR2y2:s8R2nhaR2nR2nR2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay3:s12R2nR2R2haR2nR2nR2hanR2y2:s8R2nhaR2nR2nR2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//6 ziemlich einfach - zu einfach?
-		"cy4:Ziely4:zielaay3:s12R2R2R2R2haR2nR2nR2haR2R2R2R2R2haR2nR2nR2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay3:s12R2R2R2R2haR2nR2nR2haR2R2R2R2R2haR2nR2nR2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//7 mittel-leicht, nicht so interessant
-		"cy4:Ziely4:zielaay2:s5u3R2haR2y3:s12R3R3R2haR2R3nR3R2haR2R3R3R3R2haR2u3R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay2:s5u3R2haR2y3:s12R3R3R2haR2R3nR3R2haR2R3R3R3R2haR2u3R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//8 2x4 punkte
-		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//9 finde ich das tatsächlich ok? ich weiß nicht!
-		"cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//10 große 1 (nicht so gut)
-		"cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//11 sollte nicht zu schwierig sein, aber bin nicht sicher
-		"cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//12 kreuz mit beharrung
-		"cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//13 avocadenvoll
-		"cy4:Ziely4:zielaay3:s21R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay3:s21R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 
 		//43 hexagon
-		"cy4:Ziely4:zielaau2y2:s8u2haR2u3R2hau5haR2u3R2hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau2y2:s8u2haR2u3R2hau5haR2u3R2hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 
 		//14 humdrumm
-		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany2:s5R4R4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany2:s5R4R4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//15 langweilig, mit avocaden
-		"cy4:Ziely4:zielaay3:s20y3:s21R2haR3nR3haR2R3R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay3:s20y3:s21R2haR3nR3haR2R3R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//16 L mit füßen
-		"cy4:Ziely4:zielaau5hany2:s5u3hanR2u3hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany2:s5u3hanR2u3hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//17 herzen - nicht einfach aber macht spaß?
-		"cy4:Ziely4:zielaany2:s2nR2nhaR2nR2nR2hanR2nR2nhau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaany2:s2nR2nhaR2nR2nR2hanR2nR2nhau2R2u2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//18  drehen
-		"cy4:Ziely4:zielaau5hau2y3:s11u2hany3:s10nR2nhau2R3u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hau2y3:s11u2hany3:s10nR2nhau2R3u2hau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//39 leg diagonal. fun
-		"cy4:Ziely4:zielaay2:s5u3hanR2u2hau2R2nhau3R2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay2:s5u3hanR2u2hau2R2nhau3R2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//19  vierekige haut
-		"cy4:Ziely4:zielaau5hany2:s2R2R2nhanR2nR2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany2:s2R2R2nhanR2nR2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//20 ziemlich einfach , digit 3 zu machen
-		"cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",		
-		
+		["v1","cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//21 große digit 5 (vllt besser ohne grenzebereich?)
-		"cy4:Ziely4:zielaau5hany3:s12R2R2nhanR2u3hanR2R2R2nhau3R2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaau5hany3:s12R2R2nhanR2u3hanR2R2R2nhau3R2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//22 cross with ups and downs
-		"cy4:Ziely4:zielaau5hau2y3:s17u2hany3:s16nR3nhau2R2u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau5hau2y3:s17u2hany3:s16nR3nhau2R2u2hau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//23 mittel-schwer, könnte spaß machen
-		"cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//24 2x2 deleters
-		"cy4:Ziely4:zielaau4hany2:s1y2:s3nhany2:s4y3:s19nhau4hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau4hany2:s1y2:s3nhany2:s4y3:s19nhau4hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//42 avocado plant
-		"cy4:Ziely4:zielaau5hau2y3:s21u2hanR2R2R2nhau2R2u2hau2y3:s20u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau5hau2y3:s21u2hanR2R2R2nhau2R2u2hau2y3:s20u2hau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//25 2x2 suckers
-		"cy4:Ziely4:zielaau4hany2:s8R2nhanR2R2nhau4hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau4hany2:s8R2nhanR2R2nhau4hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//26 4x4 pushers
-		"cy4:Ziely4:zielaay3:s13u2R2hau4hau4haR2u2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay3:s13u2R2hau4hau4haR2u2R2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 
 		//27 quite tricky , by my logic it requires credoing a copier
-		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany3:s18nR4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany3:s18nR4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 
 		//28 vertical avod/dropper ladder
-		"cy4:Ziely4:zielaay3:s21hay2:s9haR2haR3haR2haR3haR2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay3:s21hay2:s9haR2haR3haR2haR3haR2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//29 4x4 fill a hole
-		"cy4:Ziely4:zielaay2:s6R2R2R2haR2u2R2haR2u2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay2:s6R2R2R2haR2u2R2haR2u2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//36 great avocado level
-		"cy4:Ziely4:zielaau3hany3:s21nhau3hanR2nhany3:s20nhau3hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau3hany3:s21nhau3hanR2nhany3:s20nhau3hhy9:werkzeugeatttttttttttttttttttthg"],
 
 
 		//30 3x3 skin
-		"cy4:Ziely4:zielaay2:s2R2R2haR2R2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay2:s2R2R2haR2R2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//31 spaced ladder of flippers
-		"cy4:Ziely4:zielaany3:s16nhau3hanR2nhau3hanR2nhau3hanR2nhau3hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaany3:s16nhau3hanR2nhau3hanR2nhau3hanR2nhau3hanR2nhhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//32 pretty easy-going
-		"cy4:Ziely4:zielaau2y3:s10u2hau5haR2nR2nR2hau5hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau2y3:s10u2hau5haR2nR2nR2hau5hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//41  two col level that looks like the old toolbar
-		"cy4:Ziely4:zielaay2:s2R2hay2:s5R3hay3:s12R4hay2:s6R5haR2R2haR3R3haR4R4haR5R5hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay2:s2R2hay2:s5R3hay3:s12R4hay2:s6R5haR2R2haR3R3haR4R4haR5R5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//33 medium-interesting, but not bad
-		"cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//34 tricky-hard to guess at (Actually i think it's ok now)
-		"cy4:Ziely4:zielaany3:s11nR2nhau5hay3:s10R2R3R2R3hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaany3:s11nR2nhau5hay3:s10R2R3R2R3hhy9:werkzeugeatttttttttttttttttttthg"],
 
-		//35 +made of turners. it's ok	
-		"cy4:Ziely4:zielaay3:s14nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+		//35 +made of turners. it's ok
+		["v1","cy4:Ziely4:zielaay3:s14nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//37 avocado surrounded by foliage
-		"cy4:Ziely4:zielaay3:s21R2R2haR2y3:s20R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay3:s21R2R2haR2y3:s20R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//38 = of plusses, designed to force plussing a plus
-		"cy4:Ziely4:zielaau5hany2:s7R2R2nhau5hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau5hany2:s7R2R2nhau5hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//40 quad with corners missing
-		"cy4:Ziely4:zielaany3:s12R2nhaR2u2R2haR2u2R2hanR2R2nhhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaany3:s12R2nhaR2u2R2haR2u2R2hanR2R2nhhy9:werkzeugeatttttttttttttttttttthg"],
 
-///these need to be moved begin
+		///these need to be moved begin
 
 		//44 make a 2
-		"cy4:Ziely4:zielaay3:s21R2R2hau2R2haR2R2R2haR2u2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay3:s21R2R2hau2R2haR2R2R2haR2u2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//45  filled skin
-		"cy4:Ziely4:zielaany2:s2R2R2nhaR2y2:s6R3R3R2haR2R3R2R3R2haR2R3R3R3R2hanR2R2R2nhhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaany2:s2R2R2nhaR2y2:s6R3R3R2haR2R3R2R3R2haR2R3R3R3R2hanR2R2R2nhhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//46 tricksy double-snake
-		"cy4:Ziely4:zielaau2y3:s12R2R2hau2R2nR2haR2R2R2R2R2haR2nR2u2haR2R2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau2y3:s12R2R2hau2R2nR2haR2R2R2R2R2haR2nR2u2haR2R2R2u2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 
-//these need to be placed end
+		//these need to be placed end
 
 		//47 designated penultimate level
-		"cy4:Ziely4:zielaay2:s6R2R2R2R2haR2u3R2haR2nR2nR2haR2u3R2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-		
+		["v1","cy4:Ziely4:zielaay2:s6R2R2R2R2haR2u3R2haR2nR2nR2haR2u3R2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
 		//48 amazong recreate palette level
-		"cy4:Ziely4:zielaay3:s12y2:s1y2:s7y2:s3hay3:s14y2:s6y3:s11y2:s4hay3:s18y2:s5y3:s13y3:s10hay2:s2y2:s8y3:s20y2:s9hay3:s15y3:s17y3:s16y3:s19hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaay3:s12y2:s1y2:s7y2:s3hay3:s14y2:s6y3:s11y2:s4hay3:s18y2:s5y3:s13y3:s10hay2:s2y2:s8y3:s20y2:s9hay3:s15y3:s17y3:s16y3:s19hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//49 SPECIAL empty level
-		"cy4:Ziely4:zielaau3hau3hau3hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau3hau3hau3hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//50 special level tower
-		"cy4:Ziely4:zielaau3hau3hau3hhy9:werkzeugeatttttttttttttttttttthg",
+		["v1","cy4:Ziely4:zielaau3hau3hau3hhy9:werkzeugeatttttttttttttttttttthg"],
 	];
 
 
@@ -280,7 +280,7 @@ class Main {
 		solvey=-1;
 		cansolve=false;
 		
-		if (geloest[aktuellesZielIdx]){
+		if (geloest[aktuellesZielIdx]==ziele[aktuellesZielIdx][0]){
 			return;
 		}
 
@@ -308,7 +308,7 @@ class Main {
 		} else if (aktuellesZielIdx==49){
 			cansolve=true;
 			for (i in 0...(ziele.length-1)){
-				if (geloest[i]==false){
+				if (geloest[i]==ziele[i][0]){
 					cansolve=false;
 					return;
 				}
@@ -341,7 +341,7 @@ class Main {
 			}
 		}
 
-		if (partikelnErlauben && schonloesbar==false){
+		if (partikelnErlauben && cansolve && schonloesbar==false){
 			var px = 306;
 			var py =  182;
 			var pbb = Gfx.imagewidth("btn_solve_bg_up");
@@ -422,7 +422,7 @@ class Main {
 		aktuellesZielIdx=level;
 
 		Save.savevalue("mwb"+version+"levelidx",aktuellesZielIdx);
-		var ziel_s = ziele[aktuellesZielIdx];
+		var ziel_s = ziele[aktuellesZielIdx][1];
 	    var unserializer = new Unserializer(ziel_s);
 
 		aktuellesZiel = unserializer.unserialize();
@@ -442,7 +442,7 @@ class Main {
 	}
 	
 		
-	var geloest = [];
+	var geloest:Array<String> = [];
 	var version=1.4;
 	
 	// function _setupSound(url:String, ?loop:Bool = false):WaudSound {
@@ -465,7 +465,7 @@ class Main {
 		
 		geloest = [];
 		for (i in 0...ziele.length){
-			geloest.push(Save.loadvalue("level"+version+"-"+i,false));
+			geloest.push(Save.loadvalue("level"+version+"-"+i,null));
 		}
 
 		// Core.showstats=true;
@@ -1783,7 +1783,7 @@ function tueRedo(){
 		aktuellesZiel=new_z;
 
 		var s = serializer.toString();
-		ziele[aktuellesZielIdx]=s;
+		ziele[aktuellesZielIdx]=[""+version,s];
 
 		#if html5 
 			Browser.alert('"'+s+'",');
@@ -1809,11 +1809,12 @@ function tueRedo(){
 	function update() {	
 
 
+		var keyrepeat=Math.floor(Core.fps/5);
+
 		if (Input.justpressed(Key.A)){
 			editmodus=!editmodus;
 			forcerender=true;
 		}
-
 		if (
 			Mouse.deltax==0 &&
 			Mouse.deltay==0 &&
@@ -1823,15 +1824,15 @@ function tueRedo(){
 			!Input.justpressed(Key.P) &&
 			!Input.justpressed(Key.N) &&
 			!Input.justpressed(Key.R) &&
-			!Input.justpressed(Key.Y) &&
+			!Input.delaypressed(Key.Y,keyrepeat) &&
 			!Input.justpressed(Key.M) &&
-			!Input.justpressed(Key.Z) &&
-			!Input.justpressed(Key.U) &&
+			!Input.delaypressed(Key.Z,keyrepeat) &&
+			!Input.delaypressed(Key.U,keyrepeat) &&
 			!Input.justpressed(Key.E) &&
 			!Input.justpressed(Key.Q) &&
 			!Input.justpressed(Key.W) &&
-			!Input.justpressed(Key.LEFT) &&
-			!Input.justpressed(Key.RIGHT) &&
+			!Input.delaypressed(Key.LEFT,keyrepeat) &&
+			!Input.delaypressed(Key.RIGHT,keyrepeat) &&
 			!Particle.active() &&
 			animationen.length==0 &&
 			forcerender==false
@@ -1954,8 +1955,8 @@ function tueRedo(){
 					306,209,
 					Globals.S("Rückgängig (Z)","Undo (Z)",'Deshacer (Z)','Défaire (Z)')
 					)
-					|| Input.justpressed(Key.Z)
-					|| Input.justpressed(Key.U)
+					|| Input.delaypressed(Key.Z,keyrepeat)
+					|| Input.delaypressed(Key.U,keyrepeat)
 					)
 			{
 					tueUndo();
@@ -1975,7 +1976,7 @@ function tueRedo(){
 					326,209,
 					Globals.S("Wiederholen (Y)","Undo (Y)",'Rehacer (Y)','Rétablir (Y)')
 					)
-					|| Input.justpressed(Key.Y)
+					|| Input.delaypressed(Key.Y,keyrepeat)
 					)
 			{
 					tueRedo();
@@ -2041,7 +2042,7 @@ function tueRedo(){
 				),farbe_menutext);
 
 		if (aktuellesZielIdx>0){
-			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,182)||Input.justpressed(Key.LEFT)){
+			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,182)||Input.delaypressed(Key.LEFT,keyrepeat)){
 				LoadLevel(aktuellesZielIdx-1);
 			}
 		} else {
@@ -2051,7 +2052,7 @@ function tueRedo(){
 		}
 
 
-		if (geloest[aktuellesZielIdx]){
+		if (geloest[aktuellesZielIdx]==ziele[aktuellesZielIdx][0]){
 			IMGUI.presstextbutton_disabled(
 						"menü_l",
 						"btn_solve_bg_down_done",
@@ -2062,8 +2063,8 @@ function tueRedo(){
 						);
 		} else if (cansolve){
 			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Lösen","Solve","Resolver","Résoudre"),0x20116d,306,182)){
-				geloest[aktuellesZielIdx]=true;
-				Save.savevalue("level"+version+"-"+aktuellesZielIdx,true);
+				geloest[aktuellesZielIdx]=ziele[aktuellesZielIdx][0];
+				Save.savevalue("level"+version+"-"+aktuellesZielIdx,ziele[aktuellesZielIdx][0]);
 				forcerender=true;
 			}
 		} else {
@@ -2078,7 +2079,7 @@ function tueRedo(){
 		}
 		
 		if (aktuellesZielIdx+1<ziele.length){
-			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",366,182)||Input.justpressed(Key.RIGHT)){
+			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",366,182)||Input.delaypressed(Key.RIGHT,keyrepeat)){
 				LoadLevel(aktuellesZielIdx+1);
 			}
 		} else {
@@ -2368,7 +2369,7 @@ function tueRedo(){
 				}
 			}
 
-			if (geloest[i]){
+			if (geloest[i]==ziele[i][0]){
 				Gfx.drawimage(px,py,"level_geloest");
 
 				
