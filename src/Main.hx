@@ -12,18 +12,6 @@ import haxe.Json;
  import js.html.Audio;
 #end
 
-
-/*
-credits
-
-testing/feedback:
-Daniel Frier, 
-
-rest:
-increpare
-
-*/
-
 @:access(lime.ui.Window)
 
 class AnimationFrame {
@@ -80,16 +68,16 @@ class Main {
 		//2
 		"cy4:Ziely4:zielaau5hany2:s9u3hau5hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//4 leichter variatn von 2x4 punkte
+		//3 leichter variatn von 2x4 punkte
 		"cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//3 mittel-leicht, interessanter
+		//4 mittel-leicht, interessanter
 		"cy4:Ziely4:zielaay2:s5R2R2haR2y3:s14R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//6 ziemlich einfach 
+		//5 ziemlich einfach 
 		"cy4:Ziely4:zielaay3:s12R2nR2R2haR2nR2nR2hanR2y2:s8R2nhaR2nR2nR2haR2R2nR2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//5 ziemlich einfach - zu einfach?
+		//6 ziemlich einfach - zu einfach?
 		"cy4:Ziely4:zielaay3:s12R2R2R2R2haR2nR2nR2haR2R2R2R2R2haR2nR2nR2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
 		//7 mittel-leicht, nicht so interessant
@@ -101,108 +89,138 @@ class Main {
 		//9 finde ich das tatsächlich ok? ich weiß nicht!
 		"cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//19 große 1 (nicht so gut)
+		//10 große 1 (nicht so gut)
 		"cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 
-		//10 sollte nicht zu schwierig sein, aber bin nicht sicher
+		//11 sollte nicht zu schwierig sein, aber bin nicht sicher
 		"cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//11 kreuz mit beharrung
+		//12 kreuz mit beharrung
 		"cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//12 avocadenvoll
+		//13 avocadenvoll
 		"cy4:Ziely4:zielaay3:s21R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//13 humdrumm
+
+		//43 hexagon
+		"cy4:Ziely4:zielaau2y2:s8u2haR2u3R2hau5haR2u3R2hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+
+
+		//14 humdrumm
 		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany2:s5R4R4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//14 langweilig, mit avocaden
+		//15 langweilig, mit avocaden
 		"cy4:Ziely4:zielaay3:s20y3:s21R2haR3nR3haR2R3R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//15 L mit füßen
+		//16 L mit füßen
 		"cy4:Ziely4:zielaau5hany2:s5u3hanR2u3hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//16 herzen - nicht einfach aber macht spaß?
+		//17 herzen - nicht einfach aber macht spaß?
 		"cy4:Ziely4:zielaany2:s2nR2nhaR2nR2nR2hanR2nR2nhau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//17  drehen
+		//18  drehen
 		"cy4:Ziely4:zielaau5hau2y3:s11u2hany3:s10nR2nhau2R3u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//18  vierekige haut
+		//39 leg diagonal. fun
+		"cy4:Ziely4:zielaay2:s5u3hanR2u2hau2R2nhau3R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//19  vierekige haut
 		"cy4:Ziely4:zielaau5hany2:s2R2R2nhanR2nR2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//22 ziemlich einfach , digit 3 zu machen
+		//20 ziemlich einfach , digit 3 zu machen
 		"cy4:Ziely4:zielaay3:s12R2R2hau2R2hanR2R2hau2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",		
 		
-		//20 große digit 5 (vllt besser ohne grenzebereich?)
+		//21 große digit 5 (vllt besser ohne grenzebereich?)
 		"cy4:Ziely4:zielaau5hany3:s12R2R2nhanR2u3hanR2R2R2nhau3R2nhanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//cross with ups and downs
+		//22 cross with ups and downs
 		"cy4:Ziely4:zielaau5hau2y3:s17u2hany3:s16nR3nhau2R2u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
 
 		//23 mittel-schwer, könnte spaß machen
 		"cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//2x2 deleters
+		//24 2x2 deleters
 		"cy4:Ziely4:zielaau4hany2:s1y2:s3nhany2:s4y3:s19nhau4hhy9:werkzeugeatttttttttttttttttttthg",
 
-		//2x2 suckers
+		//42 avocado plant
+		"cy4:Ziely4:zielaau5hau2y3:s21u2hanR2R2R2nhau2R2u2hau2y3:s20u2hau5hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//25 2x2 suckers
 		"cy4:Ziely4:zielaau4hany2:s8R2nhanR2R2nhau4hhy9:werkzeugeatttttttttttttttttttthg",
 
-		//4x4 pushers
+		//26 4x4 pushers
 		"cy4:Ziely4:zielaay3:s13u2R2hau4hau4haR2u2R2hhy9:werkzeugeatttttttttttttttttttthg",
 
 
-		//quite tricky , by my logic it requires credoing a copier
+		//27 quite tricky , by my logic it requires credoing a copier
 		"cy4:Ziely4:zielaau5hany3:s10y3:s11R2nhany3:s18nR4nhanR2R3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 
 
-		//vertical avod/dropper ladder
+		//28 vertical avod/dropper ladder
 		"cy4:Ziely4:zielaay3:s21hay2:s9haR2haR3haR2haR3haR2hhy9:werkzeugeatttttttttttttttttttthg",
 
-		//4x4 fill a hole
+		//29 4x4 fill a hole
 		"cy4:Ziely4:zielaay2:s6R2R2R2haR2u2R2haR2u2R2haR2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-
-		//3x3 skin
-		"cy4:Ziely4:zielaay2:s2R2R2haR2R2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
-
-		//spaced ladder of flippers
-		"cy4:Ziely4:zielaany3:s16nhau3hanR2nhau3hanR2nhau3hanR2nhau3hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
-
-		//pretty easy-going
-		"cy4:Ziely4:zielaau2y3:s10u2hau5haR2nR2nR2hau5hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
-
-		//medium-interesting, but not bad
-		"cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
-
-		//tricky-hard to guess at (Actually i think it's ok now)
-		"cy4:Ziely4:zielaany3:s11nR2nhau5hay3:s10R2R3R2R3hhy9:werkzeugeatttttttttttttttttttthg",
-
-		//+made of turners. it's ok	
-		"cy4:Ziely4:zielaay3:s14nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
-
-		//great avocado level
+		//36 great avocado level
 		"cy4:Ziely4:zielaau3hany3:s21nhau3hanR2nhany3:s20nhau3hhy9:werkzeugeatttttttttttttttttttthg",
 
-		//avocado surrounded by foliage
+
+		//30 3x3 skin
+		"cy4:Ziely4:zielaay2:s2R2R2haR2R2R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//31 spaced ladder of flippers
+		"cy4:Ziely4:zielaany3:s16nhau3hanR2nhau3hanR2nhau3hanR2nhau3hanR2nhhy9:werkzeugeatttttttttttttttttttthg",
+
+		//32 pretty easy-going
+		"cy4:Ziely4:zielaau2y3:s10u2hau5haR2nR2nR2hau5hau2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//41  two col level that looks like the old toolbar
+		"cy4:Ziely4:zielaay2:s2R2hay2:s5R3hay3:s12R4hay2:s6R5haR2R2haR3R3haR4R4haR5R5hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//33 medium-interesting, but not bad
+		"cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//34 tricky-hard to guess at (Actually i think it's ok now)
+		"cy4:Ziely4:zielaany3:s11nR2nhau5hay3:s10R2R3R2R3hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//35 +made of turners. it's ok	
+		"cy4:Ziely4:zielaay3:s14nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//37 avocado surrounded by foliage
 		"cy4:Ziely4:zielaay3:s21R2R2haR2y3:s20R2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
 		
-		//= of plusses, designed to force plussing a plus
+		//38 = of plusses, designed to force plussing a plus
 		"cy4:Ziely4:zielaau5hany2:s7R2R2nhau5hanR2R2R2nhau5hhy9:werkzeugeatttttttttttttttttttthg",
 
-		//leg diagonal. fun
-		"cy4:Ziely4:zielaay2:s5u3hanR2u2hau2R2nhau3R2hhy9:werkzeugeatttttttttttttttttttthg",
-
-		//quad with corners missing
+		//40 quad with corners missing
 		"cy4:Ziely4:zielaany3:s12R2nhaR2u2R2haR2u2R2hanR2R2nhhy9:werkzeugeatttttttttttttttttttthg",
 
-		//designated penultimate level
-		"cy4:Ziely4:zielaay2:s6R2R2R2R2haR2u3R2haR2nR2nR2haR2u3R2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+///these need to be moved begin
 
-		//amazong final level
+		//44 make a 2
+		"cy4:Ziely4:zielaay3:s21R2R2hau2R2haR2R2R2haR2u2haR2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//45  filled skin
+		"cy4:Ziely4:zielaany2:s2R2R2nhaR2y2:s6R3R3R2haR2R3R2R3R2haR2R3R3R3R2hanR2R2R2nhhy9:werkzeugeatttttttttttttttttttthg",
+
+		//46 tricksy double-snake
+		"cy4:Ziely4:zielaau2y3:s12R2R2hau2R2nR2haR2R2R2R2R2haR2nR2u2haR2R2R2u2hhy9:werkzeugeatttttttttttttttttttthg",
+
+
+//these need to be placed end
+
+		//47 designated penultimate level
+		"cy4:Ziely4:zielaay2:s6R2R2R2R2haR2u3R2haR2nR2nR2haR2u3R2haR2R2R2R2R2hhy9:werkzeugeatttttttttttttttttttthg",
+		
+		//48 amazong recreate palette level
 		"cy4:Ziely4:zielaay3:s12y2:s1y2:s7y2:s3hay3:s14y2:s6y3:s11y2:s4hay3:s18y2:s5y3:s13y3:s10hay2:s2y2:s8y3:s20y2:s9hay3:s15y3:s17y3:s16y3:s19hhy9:werkzeugeatttttttttttttttttttthg",
 
+		//49 SPECIAL empty level
+		"cy4:Ziely4:zielaau3hau3hau3hhy9:werkzeugeatttttttttttttttttttthg",
+
+		//50 special level tower
+		"cy4:Ziely4:zielaau3hau3hau3hhy9:werkzeugeatttttttttttttttttttthg",
 	];
 
 
@@ -390,7 +408,7 @@ class Main {
 	
 		
 	var geloest = [];
-	var version=1.2;
+	var version=1.3;
 	
 	// function _setupSound(url:String, ?loop:Bool = false):WaudSound {
 	// 	// return  new WaudSound(
@@ -426,7 +444,7 @@ class Main {
 
 		Globals.state.level=Save.loadvalue("mwblevel",0);
 		Globals.state.audio=Save.loadvalue("mwbaudio",1);
-		Globals.state.sprache=Save.loadvalue("mwbsprache",1);
+		Globals.state.sprache=Save.loadvalue("mwbsprache_v2",1);
 
 		for(i in 0...6){
 			Globals.state.solved[i]=Save.loadvalue("mwbsolved"+i,0);
@@ -1757,28 +1775,45 @@ class Main {
 
 			Gfx.drawimage(0,0,"aboutscreen");
 			
-			Text.display(57,25,Globals.S("Über Gestalt_BS","About Gestalt_OS"),farbe_menutext);
+			Text.display(57,25,Globals.S("Über Gestalt_BS","About Gestalt_OS","Sobre Gestalt_OS","Sûr Gestalt_OS"),farbe_menutext);
 
-			Text.display(153,44,Globals.S("Gestaltaufbau","Gestalt Manufacturing"),0x20116d);
-			Text.display(153,55,Globals.S("GmbH (R)","Corporation (R)"),0x20116d);
+			Text.display(153,44,Globals.S("Gestaltaufbau","Gestalt Manufacturing","Fabricación Gestalt","Fabrication Gestalt"),0x20116d);
+			Text.display(153,55,Globals.S("GmbH (R)","Corporation (R)","Sociedad (R)","Société (R)"),0x20116d);
 			
-			Text.display(153,73,Globals.S("Gestalt_BS 3.14 (\"Beton\")","Gestalt_OS 3.14 (\"Beton\")"),0x20116d);
-			Text.display(153,90,Globals.S("(R) GAB GmbH 2019","Copyright(C) 2019 GMC"),0x20116d);
+			Text.display(153,73,Globals.S("Gestalt_BS 3.14 (\"Beton\")","Gestalt_OS 3.14 (\"Beton\")",'Gestalt_OS 3.14 ("Beton")','Gestalt_OS 3.14 ("Beton")'),0x20116d);
+			Text.display(153,90,Globals.S("(R) GAB GmbH 2019","Copyright(C) 2019 GMC",'Copyright(C) 2019 SFC',"Droit d'auteur (C) 2019 SFC"),0x20116d);
 
 			var nameListe = "Daniel Frier - Stephen Saver - David Kilford - Dani Soria - Adrian Toncean - Alvaro Salvagno - Ethan Clark - Blake Regehr - Happy Snake - Joel Gahr - Alexander Turner - Tatsunami - Matt Rix - Bigaston - Lajos Kis - Lorxus - Fachewachewa - Marcos Donnantuoni - That Scar - Llewelyn Griffiths - @capnsquishy - Alexander Martin - Guilherme Töws - Alex Fink - Christian Zachau - @Ilija - Celeste Brault - Cédric Coulon - Lukas Koudelka - George Kurelic - Konstantin Dediukhin";
 
 			Text.font = "pixel";
 			Text.display(56,113,
-			Globals.S("Dank für Testing und Feedback zu sagen zu "+nameListe+".
+			Globals.S("Dank für Testing und Feedback zu sagen zu : "+nameListe+".
 			
 			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
 			Der Rest: Stephen Lavelle",
-			"Thanks for testing and feedback to "+nameListe+".
+			"Thanks for testing and feedback to : "+nameListe+".
 			
 			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
-			The Rest: Stephen Lavelle ( http://www.increpare.com )."),0x20116d
+			The Rest: Stephen Lavelle ( http://www.increpare.com ).",
+			"Gracias por probar y comentar a: "+nameListe+"
+			
+			Diseño de niveles: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
+
+			Traducciones al Español y Francés: Lucas Le Slo
+
+			El resto:  Stephen Lavelle ( http://www.increpare.com ).
+			",
+			"Merci pour tester et donner du feedback à: "+nameListe+"
+			
+			Conception de niveaux:  Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
+
+			Traductions française et espagnole: Lucas Le Slo
+
+			Le reste: Stephen Lavelle ( http://www.increpare.com ).
+			"			
+			),0x20116d
 			);
 			Text.wordwrap=0;			
 			Text.font="nokia";
@@ -1788,7 +1823,7 @@ class Main {
 					"ueber_ok",
 					"btn_solve_bg_up",
 					"btn_solve_bg_down",
-					Globals.S("OK","OK"),
+					Globals.S("OK","OK","OK","OK"),
 					0x20116d,
 					279,193
 					))
@@ -1830,7 +1865,7 @@ class Main {
 				"taste_t_bg_down",
 				"icon_neu",
 				286,209,
-				Globals.S("Blatt leeren (N)","Clear page (N)")
+				Globals.S("Blatt leeren (N)","Clear page (N)","Borrar página (N)",'Effacer page (N)')
 				)  
 				|| Input.justpressed(Key.N)
 				|| Input.justpressed(Key.R)
@@ -1847,7 +1882,7 @@ class Main {
 					"taste_t_bg_down",
 					"icon_undo",
 					306,209,
-					Globals.S("Rückgängig (Z)","Undo (Z)")
+					Globals.S("Rückgängig (Z)","Undo (Z)",'Deshacer (Z)','Défaire (Z)')
 					)
 					|| Input.justpressed(Key.Z)
 					|| Input.justpressed(Key.U)
@@ -1868,30 +1903,33 @@ class Main {
 					"vollbildmodus",
 			326,
 			209,
-			Globals.S("Vollbildmodus","Fullscreen mode")
+			Globals.S("Vollbildmodus","Fullscreen mode",'Pantalla completa','Plein écran')
 		)){
 		}
 		
 
-		var aktuell_sprache:Bool = Globals.state.sprache==1 ? true : false;
-		var neusprache:Bool = IMGUI.togglebutton(
+		var neu_spr:Int = IMGUI.togglebutton_multi(
 			"sprache",
 			"taste_t_bg_up",
 			"taste_t_bg_down",
+			["icon_flagge_en",
 			"icon_flagge_de",
-			"icon_flagge_en",
+			"icon_flagge_es",
+			"icon_flagge_fr"],
 			346,209,
-			aktuell_sprache,
-			Globals.S("Sprache: Deutsch","Language: German"),
-			Globals.S("Sprache: Englisch","Language: English")	
+			Globals.state.sprache,
+			[
+			Globals.S("Sprache: Englisch","Language: English",'Idioma: Inglés','Langue: Anglais'),
+			Globals.S("Sprache: Deutsch","Language: German",'Idioma: Alemán','Langue: Allemand'),
+			Globals.S('Sprache: Spanisch','Language: Spanish','Idioma: Español','Langue: Spagnol'),
+			Globals.S('Sprache: Französisch','Language: French','Idioma: Francés','Langue: Français')]
 			);
 
-		var neu_spr = neusprache?1:0;
 		if (neu_spr!=Globals.state.sprache){
 				Globals.state.sprache=neu_spr;
 				IMGUI.tooltipstr=null;
 				forcerender=true;
-			Save.savevalue("mwbsprache",Globals.state.sprache);
+			Save.savevalue("mwbsprache_v2",Globals.state.sprache);
 		}
 
 		if (IMGUI.pressbutton(
@@ -1900,26 +1938,31 @@ class Main {
 			"taste_t_bg_down",
 			"icon_hilfe",
 			366,209,
-			Globals.S("Über diese Anwendung","About this app")
+			Globals.S("Über diese Anwendung","About this app","Sobre esta aplicación","Sûr cette aplication")
 			)){
 				zeigabout=true;
 				Core.fullscreenbutton(null,0,0,0,0);
 				forcerender=true;
 			}
 
-		Text.display(9,8,Globals.S("Werkzeuge","Tools"),farbe_menutext);
+		Text.display(9,8,Globals.S("Werkzeuge","Tools","Herramientas","Outils"),farbe_menutext);
 
 
 		var lebende = Lambda.count(Globals.state.solved, (w)->w==0);
 		var titeltext="";
 		if (lebende>1){
-			titeltext = Globals.S("Werkbank","Workbench");// + " (" + lebende + Globals.S(" leben noch"," still live")+")." ;
+			titeltext = Globals.S("Werkbank","Workbench","Mesa de trabajo","Table de travail");// + " (" + lebende + Globals.S(" leben noch"," still live")+")." ;
 		} else {
-			titeltext = Globals.S("Werkbank","Workbench");// + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
+			titeltext = Globals.S("Werkbank","Workbench","Mesa de trabajo","Table de travail");// + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
 		}
 		Text.display(91,8,titeltext,farbe_menutext);
 
-		Text.display(287,8,Globals.S("Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")","Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")"),farbe_menutext);
+		Text.display(287,8,Globals.S(
+				"Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")",
+				"Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")",
+				"Objetivo ("+(aktuellesZielIdx+1) +" de "+ziele.length+")",
+				"Cible ("+(aktuellesZielIdx+1) +" de "+ziele.length+")"
+				),farbe_menutext);
 
 		if (aktuellesZielIdx>0){
 			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,182)||Input.justpressed(Key.LEFT)){
@@ -1937,12 +1980,12 @@ class Main {
 						"menü_l",
 						"btn_solve_bg_down_done",
 						"btn_solve_bg_down_done",
-						Globals.S("Gelöst","Solved"),
+						Globals.S("Gelöst","Solved","Resuelto","Résolu"),
 						0x505050,
 						306,182
 						);
 		} else if (cansolve){
-			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Lösen","Solve"),0x20116d,306,182)){
+			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Lösen","Solve","Resolver","Résoudre"),0x20116d,306,182)){
 				geloest[aktuellesZielIdx]=true;
 				Save.savevalue("level"+version+"-"+aktuellesZielIdx,true);
 				forcerender=true;
@@ -1952,7 +1995,7 @@ class Main {
 						"menü_l",
 						"btn_solve_bg_up",
 						"btn_solve_bg_down",
-						Globals.S("Lösen","Solve"),
+						Globals.S("Lösen","Solve","Resolver","Résoudre"),
 						0x505050,
 						306,182
 						);
@@ -2225,18 +2268,29 @@ class Main {
 		}
 
 		for (i in 0...ziele.length){
-			var px = 17 + 13*(i%5);
-			var py = 128 + 12*Math.floor(i/5);
+
+			var gx = i%5;
+			var gy = Math.floor(i/5);
+			
+			var px = 18 + 13*gx;
+			var py = 216 - 10*gy;
+			
+			if (Mouse.leftclick()){
+				if (Mouse.x>=(px-4)&&Mouse.y>=(py-2) && (Mouse.x<(px-2+9+2)) && (Mouse.y<(py-2+9))){
+					LoadLevel(i);
+				}
+			}
+
 			if (geloest[i]){
-				Gfx.drawimage(px-1,py-1,"level_geloest");
+				Gfx.drawimage(px,py,"level_geloest");
 
 				
 			} else {
-				Gfx.drawimage(px-1,py-1,"level_ungeloest");
+				Gfx.drawimage(px,py,"level_ungeloest");
 			}
 
 			if (i==aktuellesZielIdx){
-				Gfx.drawimage(px-3,py-3,"level_selector");
+				Gfx.drawimage(px-2,py-2,"level_selector");
 			}
 
 		}

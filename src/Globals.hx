@@ -21,12 +21,19 @@ class Globals
       level:0,
       solved:[0,0,0,0,0,0]
   };
-
-  public static function S(de:String,en:String):String{
-      if (state.sprache==0){
-          return de;
-      } else {
-        return en;
+//de, en, es, fr
+  public static function S(de:String,en:String, es:String, fr:String):String{
+      switch(state.sprache){
+          case 0:
+            return en;
+          case 1:
+            return de;
+          case 2:
+            return es;
+          case 3:
+            return fr;
       }
+      trace("ERROR state.sprache = "+state.sprache);
+      return "";
   }
 }

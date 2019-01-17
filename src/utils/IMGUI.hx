@@ -329,6 +329,70 @@ class IMGUI {
 	}
 
 
+	public static function togglebutton_multi(
+		id:String,
+		bg:String,
+		bg_pressed:String,
+		ims:Array<String>,
+		x:Int,
+		y:Int,
+		state:Int,//img0 or img1
+		?tooltips:Array<String>
+		) : Int
+		{
+		
+		if (downstates.exists(id)==false){
+			downstates.set(id,false);
+		}
+		var downstate = downstates.get(id);
+
+		var dx = Mouse.x-x;
+		var dy = Mouse.y-y;
+	 	var w = Gfx.imagewidth(bg);
+	 	var h = Gfx.imageheight(bg);
+		var over:Bool = dx>=0&& dy>=0 && dx<w && dy<h;
+
+		var mouseclicked = Mouse.leftclick();
+		var mousedown = Mouse.leftheld()||mouseclicked;
+		if (over&&!mousedown){
+			tooltipstr=tooltips[state];	
+		}
+		if (over){
+			if (downstate==false){
+				if (mouseclicked){
+					downstate=true; 
+				}
+			} else {//downstate==true
+				if (mousedown==false){
+					if (downstate){
+						downstate=false;
+						state=(state+1)%ims.length;
+					}
+				}
+			}
+		} else {
+			if (mousedown==false){
+				downstate=false;	//no click
+			}
+		}
+
+		Gfx.drawimage(
+			x,
+			y,
+			(downstate&&over)?bg_pressed:bg
+			);
+	
+		Gfx.drawimage(
+			x+((downstate&&over)?1:0),
+			y+((downstate&&over)?1:0),
+			ims[state]
+			);
+
+		downstates.set(id,downstate);
+		return state;
+	}
+
+
 	public static function pushbutton(
 		id:String,
 		bg:String,
