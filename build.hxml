@@ -12,7 +12,6 @@
 -cp /usr/local/lib/haxe/lib/openfl/7,1,2/src/externs/core/openfl
 -cp /usr/local/lib/haxe/lib/openfl/7,1,2/src/externs/extras
 -D tools=6.2.0
--D howlerjs
 -D no-compilation
 -D openfl-html5
 -D windowheight=860

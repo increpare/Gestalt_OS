@@ -33,6 +33,7 @@
 	<source path="plugins" />
 	<haxelib name="openfl" />
 	<haxelib name="haxegon" />
+	<haxelib name="firetongue" />
 
 	<haxedef name="windowwidth" value="${windowwidth}" />
   <haxedef name="windowheight" value="${windowheight}" />
@@ -40,6 +41,6 @@
 	<assets path="data" exclude="*.mp3" if="cpp || neko"/>
 	<assets path="data" exclude="*.ogg" if="flash"/>
 	<assets path="data" if="html5"/>
-	
+
 	<icon path="data/icon.png"/>
 </project>

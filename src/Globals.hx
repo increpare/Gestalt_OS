@@ -22,7 +22,7 @@ class Globals
       solved:[0,0,0,0,0,0]
   };
 //de, en, es, fr
-  public static function S(de:String,en:String, es:String, fr:String):String{
+  public static function S(de:String,en:String, es:String, fr:String,it:String):String{
       switch(state.sprache){
           case 0:
             return en;
@@ -32,6 +32,8 @@ class Globals
             return es;
           case 3:
             return fr;
+          case 4:
+            return it;
       }
       trace("ERROR state.sprache = "+state.sprache);
       return "";

@@ -463,7 +463,6 @@ class Main {
 		// _sfx_drop3 = _setupSound("data/sounds/drop3.mp3");
 		// _sfx_drop4 = _setupSound("data/sounds/drop4.mp3");
 
-		
 		geloest = [];
 		for (i in 0...ziele.length){
 			geloest.push(Save.loadvalue("level"+i,null));
@@ -1625,11 +1624,16 @@ class Main {
 
 	public static var farbe_desktop = 0x7869c4;
 	public static var farbe_menutext = 0x9f9f9f;
+	public static var tongue:FireTongue;
 	function init(){
+		var tongue:FireTongue = new FireTongue();
+
 		// Text.font = "dos";
 		// Sound.play("t2");
 		//Music.play("music",0,true);
-		Gfx.resizescreen(392, 235,true);
+		Gfx.resizescreen(392, 235,true);//true->false for  non-pixel-perfect-scaling
+
+		Gfx.createimage("fg", 392, 235);
 		SpriteManager.enable();
 		Particle.enable();
 		Text.font="nokia";
@@ -1729,6 +1733,7 @@ class Main {
 		if(zieh_modus){
 				zieh_modus=false;
 				szs_inventory[zieh_quelle_j][zieh_quelle_i]=zieh_name;
+				return;
 		}
 		
 		animationen.splice(0,animationen.length);	
@@ -1869,44 +1874,99 @@ function tueRedo(){
 
 			Gfx.drawimage(0,0,"aboutscreen");
 			
-			Text.display(57,25,Globals.S("Über Gestalt_BS","About Gestalt_OS","Sobre Gestalt_OS","Sûr Gestalt_OS"),farbe_menutext);
+			Text.display(57,25,Globals.S(
+				"Über Gestalt_BS",
+				"About Gestalt_OS",
+				"Sobre Gestalt_OS",
+				"Sûr Gestalt_OS",
+				"Riguardo a Gestalt_OS"
+				),farbe_menutext);
 
-			Text.display(153,44,Globals.S("Gestaltaufbau","Gestalt Manufacturing","Fabricación Gestalt","Fabrication Gestalt"),0x20116d);
-			Text.display(153,55,Globals.S("GmbH (R)","Corporation (R)","Sociedad (R)","Société (R)"),0x20116d);
+			Text.display(153,44,Globals.S(
+				"Gestaltaufbau",
+				"Gestalt Manufacturing",
+				"Fabricación Gestalt",
+				"Fabrication Gestalt",
+				'Officine Gestalt'
+				),0x20116d);
+
+			Text.display(153,55,Globals.S(
+				"GmbH (R)",
+				"Corporation (R)",
+				"Sociedad (R)",
+				"Société (R)",
+				'Soc. An.'
+				),0x20116d);
 			
-			Text.display(153,73,Globals.S("Gestalt_BS "+version+" (\"Beton\")","Gestalt_OS "+version+" (\"Beton\")",'Gestalt_OS '+version+' ("Beton")','Gestalt_OS '+version+' ("Beton")'),0x20116d);
-			Text.display(153,90,Globals.S("(R) GAB GmbH 2019","Copyright(C) 2019 GMC",'Copyright(C) 2019 SFC',"Droit d'auteur (C) 2019 SFC"),0x20116d);
+			Text.display(153,73,Globals.S(
+				'Gestalt_BS '+version+' ("Beton")',
+				'Gestalt_OS '+version+' ("Beton")',
+				'Gestalt_OS '+version+' ("Beton")',
+				'Gestalt_OS '+version+' ("Beton")',
+				'Gestalt_OS '+version+' ("Beton")'
+				),0x20116d);
 
-			var nameListe = "Daniel Frier - Stephen Saver - David Kilford - Dani Soria - Adrian Toncean - Alvaro Salvagno - Ethan Clark - Blake Regehr - Happy Snake - Joel Gahr - Alexander Turner - Tatsunami - Matt Rix - Bigaston - Lajos Kis - Lorxus - Fachewachewa - Marcos Donnantuoni - That Scar - Llewelyn Griffiths - @capnsquishy - Alexander Martin - Guilherme Töws - Alex Fink - Christian Zachau - @Ilija - Celeste Brault - Cédric Coulon - Lukas Koudelka - George Kurelic - Konstantin Dediukhin";
+			Text.display(153,90,Globals.S(
+				"(R) GAB GmbH 2019",
+				"Copyright(C) 2019 GMC",
+				'Copyright(C) 2019 SFG',
+				"Droit d'auteur (C) 2019 SFG",
+				'Copyright(C) 2019 OG Soc. An.'
+				),0x20116d);
+
+			var nameListe = "Ugurcan Kilic - Daniel Frier - Stephen Saver - David Kilford - Dani Soria - Adrian Toncean - Alvaro Salvagno - Ethan Clark - Blake Regehr - Happy Snake - Joel Gahr - Alexander Turner - Tatsunami - Matt Rix - Bigaston - Lajos Kis - Lorxus - Fachewachewa - Marcos Donnantuoni - That Scar - Llewelyn Griffiths - @capnsquishy - Alexander Martin - Guilherme Töws - Alex Fink - Christian Zachau - @Ilija - Celeste Brault - Cédric Coulon - Lukas Koudelka - George Kurelic - Konstantin Dediukhin";
 
 			Text.font = "pixel";
 			Text.display(56,113,
-			Globals.S("Dank für Testing und Feedback zu sagen zu : "+nameListe+".
+			Globals.S(
+				
+			"Dank für Testing und Feedback zu sagen zu : "+nameListe+".
 			
 			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
+			Translations: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle.
+
 			Der Rest: Stephen Lavelle",
+
+
+
 			"Thanks for testing and feedback to : "+nameListe+".
 			
 			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
+			Translations: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle.
+
 			The Rest: Stephen Lavelle ( http://www.increpare.com ).",
+
+
+
 			"Gracias por probar y comentar a: "+nameListe+".
 			
 			Diseño de niveles: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 
-			Traducciones al Español y Francés: Lucas Le Slo
+			Traducciones: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle
 
-			El resto:  Stephen Lavelle ( http://www.increpare.com ).
-			",
+			El resto:  Stephen Lavelle ( http://www.increpare.com ).",
+
+
+
 			"Merci pour tester et donner du feedback à: "+nameListe+".
 			
 			Conception de niveaux:  Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 
-			Traductions française et espagnole: Lucas Le Slo
+			Traductions: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle
 
-			Le reste: Stephen Lavelle ( http://www.increpare.com ).
-			"			
+			Le reste: Stephen Lavelle ( http://www.increpare.com ).",
+
+
+			"Grazie per il testing e per il feedback di: "+nameListe+".
+
+			Design dei livelli: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
+
+			Traduzioni:  Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle
+
+			Il resto: Stephen Lavelle ( http://www.increpare.com )."
+
 			),0x20116d
 			);
 			Text.wordwrap=0;			
@@ -1917,7 +1977,7 @@ function tueRedo(){
 					"ueber_ok",
 					"btn_solve_bg_up",
 					"btn_solve_bg_down",
-					Globals.S("OK","OK","OK","OK"),
+					Globals.S("OK","OK","OK","OK","OK"),
 					0x20116d,
 					279,193
 					))
@@ -1939,13 +1999,21 @@ function tueRedo(){
 
 			Gfx.drawimage(0,0,"endscreen");
 			
-			Text.display(103,54,Globals.S("Herzlichen Glückwunsch","Congratulations","Enhorabuena","Félicitations"),farbe_menutext);
+			Text.display(103,54,Globals.S(
+				"Herzlichen Glückwunsch",
+				"Congratulations",
+				"Enhorabuena",
+				"Félicitations",
+				"Congratulazioni"
+				),farbe_menutext);
 
 			Text.display(103,72,Globals.S(
 				"Herzlichen Glückwunsch! Du hast alle Levels gelöst!",
 				"Congratulations, you solved all of the levels!",
 				"Enhorabuena, has resuelto todos los niveles!",
-				"Félicitations, tu as résolu tous les niveaux!")
+				"Félicitations, tu as résolu tous les niveaux!",
+				"Congratulazioni, hai completato tutti i livelli!"
+				)
 				,0x20116d);
 
 			
@@ -1953,7 +2021,8 @@ function tueRedo(){
 				"Wir freuen uns, dass du unser Spiel gespielt hast. Hoffentlich hat es dir gut gefallen :)",
 				"Thank you so much for playing the game. We hope you had a good time doing so :)",
 				"Muchas gracias por jugar a este juego. Esperamos que hayas disfrutado jugándolo :)",
-				"Merci beaucoup d'avoir joué. Nous espérons que vous vous êtes bien amusés :)"
+				"Merci beaucoup d'avoir joué. Nous espérons que vous vous êtes bien amusés :)",
+				"Grazie mille per aver giocato. Speriamo ti sia divertito."
 				),0x20116d);
 				
 			Text.wordwrap=0;			
@@ -1964,7 +2033,7 @@ function tueRedo(){
 					"ueber_ok",
 					"btn_solve_bg_up",
 					"btn_solve_bg_down",
-					Globals.S("OK","OK","OK","OK"),
+					Globals.S("OK","OK","OK","OK","OK"),
 					0x20116d,
 					235,148
 					))
@@ -1979,7 +2048,7 @@ function tueRedo(){
 
 		forcerender=false;
 
-		if (Input.justpressed(Key.P)){
+		if (editmodus&&Input.justpressed(Key.P)){
 			drueckBrett();
 		}
 
@@ -2082,7 +2151,13 @@ function tueRedo(){
 				"taste_t_bg_down",
 				"icon_neu",
 				286,209,
-				Globals.S("Blatt leeren (N)","Clear page (N)","Borrar página (N)",'Effacer page (N)')
+				Globals.S(
+					"Blatt leeren (N)",
+					"Clear page (N)",
+					"Borrar página (N)",
+					'Effacer page (N)',
+					'Sgombra il banco da lavoro (N)'
+					)
 				)  
 				|| Input.justpressed(Key.N)
 				|| Input.justpressed(Key.R)
@@ -2099,7 +2174,13 @@ function tueRedo(){
 					"taste_t_bg_down",
 					"icon_undo",
 					306,209,
-					Globals.S("Rückgängig (Z)","Undo (Z)",'Deshacer (Z)','Défaire (Z)')
+					Globals.S(
+						"Rückgängig (Z)",
+						"Undo (Z)",
+						'Deshacer (Z)',
+						'Défaire (Z)',
+						'Annulla (Z)'
+						)
 					)
 					|| Input.delaypressed(Key.Z,keyrepeat)
 					|| Input.delaypressed(Key.U,keyrepeat)
@@ -2120,7 +2201,13 @@ function tueRedo(){
 					"taste_t_bg_down",
 					"icon_wiederholen",
 					326,209,
-					Globals.S("Wiederholen (Y)","Undo (Y)",'Rehacer (Y)','Rétablir (Y)')
+					Globals.S(
+						"Wiederholen (Y)",
+						"Redo (Y)",
+						'Rehacer (Y)',
+						'Rétablir (Y)',
+						'Ripeti (Y)'
+						)
 					)
 					|| Input.delaypressed(Key.Y,keyrepeat)
 					)
@@ -2138,14 +2225,17 @@ function tueRedo(){
 			["icon_flagge_en",
 			"icon_flagge_de",
 			"icon_flagge_es",
-			"icon_flagge_fr"],
+			"icon_flagge_fr",
+			"icon_flagge_it"],
 			346,209,
 			Globals.state.sprache,
 			[
-			Globals.S("Sprache: Englisch","Language: English",'Idioma: Inglés','Langue: Anglais'),
-			Globals.S("Sprache: Deutsch","Language: German",'Idioma: Alemán','Langue: Allemand'),
-			Globals.S('Sprache: Spanisch','Language: Spanish','Idioma: Español','Langue: Spagnol'),
-			Globals.S('Sprache: Französisch','Language: French','Idioma: Francés','Langue: Français')]
+			"Language: English",
+			"Sprache: Deutsch",
+			'Idioma: Español',
+			'Langue: Français',
+			'Lingua: Italiano'
+			]
 			);
 
 		if (neu_spr!=Globals.state.sprache){
@@ -2161,29 +2251,43 @@ function tueRedo(){
 			"taste_t_bg_down",
 			"icon_hilfe",
 			366,209,
-			Globals.S("Über diese Anwendung","About this app","Sobre esta aplicación","Sûr cette aplication")
+			Globals.S(
+				"Über diese Anwendung",
+				"About this app",
+				"Sobre esta aplicación",
+				"Sûr cette aplication",
+				"Informazioni su questa applicazione"
+				)
 			)){
 				zeigabout=true;
 				forcerender=true;
 			}
 
-		Text.display(9,8,Globals.S("Werkzeuge","Tools","Herramientas","Outils"),farbe_menutext);
+		Text.display(9,8,Globals.S(
+			"Werkzeuge",
+			"Tools",
+			"Herramientas",
+			"Outils",
+			"Strumenti"
+			),farbe_menutext);
 
 
 		var lebende = Lambda.count(Globals.state.solved, (w)->w==0);
-		var titeltext="";
-		if (lebende>1){
-			titeltext = Globals.S("Werkbank","Workbench","Mesa de trabajo","Table de travail");// + " (" + lebende + Globals.S(" leben noch"," still live")+")." ;
-		} else {
-			titeltext = Globals.S("Werkbank","Workbench","Mesa de trabajo","Table de travail");// + " (" + lebende + Globals.S(" lebt noch"," still lives")+")." ;
-		}
+		var titeltext = Globals.S(
+			"Werkbank",
+			"Workbench",
+			"Mesa de trabajo",
+			"Table de travail",
+			'Banco da lavoro'
+			);
 		Text.display(91,8,titeltext,farbe_menutext);
 
 		Text.display(287,8,Globals.S(
 				"Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")",
 				"Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")",
 				"Objetivo ("+(aktuellesZielIdx+1) +" de "+ziele.length+")",
-				"Cible ("+(aktuellesZielIdx+1) +" de "+ziele.length+")"
+				"Cible ("+(aktuellesZielIdx+1) +" de "+ziele.length+")",
+				"Obiettivo ("+(aktuellesZielIdx+1) +" di "+ziele.length+")"
 				),farbe_menutext);
 
 		if (aktuellesZielIdx>0){
@@ -2202,12 +2306,25 @@ function tueRedo(){
 						"menü_l",
 						"btn_solve_bg_down_done",
 						"btn_solve_bg_down_done",
-						Globals.S("Gelöst","Solved","Resuelto","Résolu"),
+						Globals.S(
+							"Gelöst",
+							"Solved",
+							"Resuelto",
+							"Résolu",
+							"Risolto"
+							),
 						0x505050,
 						306,182
 						);
 		} else if (cansolve){
-			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",Globals.S("Lösen","Solve","Resolver","Résoudre"),0x20116d,306,182)){
+			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",
+										Globals.S(
+											"Lösen",
+											"Solve",
+											"Resolver",
+											"Résoudre",
+											"Risolvi"
+										),0x20116d,306,182)){
 				geloest[aktuellesZielIdx]=ziele[aktuellesZielIdx][0];
 				Save.savevalue("level"+aktuellesZielIdx,ziele[aktuellesZielIdx][0]);
 				forcerender=true;
@@ -2220,7 +2337,7 @@ function tueRedo(){
 						"menü_l",
 						"btn_solve_bg_up",
 						"btn_solve_bg_down",
-						Globals.S("Lösen","Solve","Resolver","Résoudre"),
+						Globals.S("Lösen","Solve","Resolver","Résoudre","Risolvi"),
 						0x505050,
 						306,182
 						);
