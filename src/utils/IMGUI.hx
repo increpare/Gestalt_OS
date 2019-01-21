@@ -221,9 +221,13 @@ class IMGUI {
 		var th = Text.height(text);
 		var tx = x+w/2-tw/2+((downstate&&over)?1:0);
 		var ty = y+h/2-th/2+((downstate&&over)?1:0);
-		if(Globals.state.sprache=="ja"&&text=="OK"){
-			ty-=2;
-			tx++;
+		if(Globals.state.sprache=="ja"){
+			if(text=="OK"){
+				ty-=2;
+				tx++;
+			} else {
+				tx++;
+			}
 		}
 		Text.display(tx,ty,text,color);
 
@@ -264,6 +268,14 @@ class IMGUI {
 		var th = Text.height(text);
 		var tx = x+w/2-tw/2;
 		var ty = y+h/2-th/2;
+		if(Globals.state.sprache=="ja"){
+			if(text=="OK"){
+				ty-=2;
+				tx++;
+			} else {
+				tx+=2;
+			}
+		}
 		Text.display(tx,ty,text,color);
 	}
 
