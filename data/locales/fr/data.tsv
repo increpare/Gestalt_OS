@@ -1,0 +1,25 @@
+ID	French	
+$ABOUT_GESTALT_OS	Sûr Gestalt_OS	
+$GESTALT_MANUFACTURING	Fabrication Gestalt	
+$CORPORATION_R	Société (R)	
+$GESTALT_OS_VERSION	Gestalt_OS 3.14 ("Beton")	
+$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE	Droit d'auteur (C) 2019 SFG	
+$CREDITS_THANKS_TO	Merci pour tester et donner du feedback à: <NAMELIST>	
+$CREDITS_LEVEL_DESIGN	Conception de niveaux:  Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle	
+$CREDITS_TRANSLATION	Traductions: <NAMELIST>	
+$CREDITS_THE_REST	Le reste: Stephen Lavelle ( http://www.increpare.com ).	
+$BUTTON_OK	OK	
+$TOOLTIP_CLEAR_PAGE	Effacer page (N)	
+$TOOLTIP_UNDO	Défaire (Z)	
+$TOOLTIP_REDO	Rétablir (Y)	
+$TOOLTIP_FULLSCREEN	Plein écran	
+$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO	Langue: Français	
+$TOOLTIP_ABOUT	Sûr cette aplication	
+$TOOLS	Outils	
+$WORKBENCH	Table de travail	
+$GOAL_X_OF_Y	Cible (<X> de <Y>)	
+$SOLVED	Résolu	
+$SOLVE	Résoudre	
+$CONGRATS	Félicitations	
+$CONGRATS_SENTENCE	Félicitations, tu as résolu tous les niveaux!	
+$WE_ARE_HAPPY	Merci beaucoup d'avoir joué. Nous espérons que vous vous êtes bien amusés :)	

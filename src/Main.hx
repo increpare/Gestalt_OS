@@ -1,3 +1,4 @@
+import haxe.ds.Map;
 import haxe.rtti.XmlParser;
 import haxe.ds.Vector;
 import haxegon.*;
@@ -7,6 +8,8 @@ import haxe.Serializer;
 import haxe.Unserializer;
 import lime.ui.Window;
 import haxe.Json;
+import firetongue.*;
+
 #if html5
  import js.Browser;
  import js.html.Audio;
@@ -417,6 +420,7 @@ class Main {
 			neuesBlatt();
 			checkSolve(false);
 			forcerender=true;
+			regenAllText();
 			return;
 		}
 
@@ -440,6 +444,7 @@ class Main {
 
 		checkSolve(false);
 		forcerender=true;
+		regenAllText();
 	}
 	
 		
@@ -481,8 +486,15 @@ class Main {
 
 		Globals.state.level=Save.loadvalue("mwblevel",0);
 		Globals.state.audio=Save.loadvalue("mwbaudio",1);
-		Globals.state.sprache=Save.loadvalue("mwbsprache_v2",0);
-
+		Globals.state.sprache=Save.loadvalue("global_sprache","en");
+		
+		tongue.init(Globals.state.sprache,onLanguageLoaded,true,true,null,"data/locales/");
+		
+		var unterstuetzteSprachen = tongue.get_locales();
+		if (unterstuetzteSprachen.indexOf(Globals.state.sprache)==-1){
+			Globals.state.sprache="en";
+		}
+		
 		for(i in 0...6){
 			Globals.state.solved[i]=Save.loadvalue("mwbsolved"+i,0);
 		}
@@ -1625,18 +1637,73 @@ class Main {
 	public static var farbe_desktop = 0x7869c4;
 	public static var farbe_menutext = 0x9f9f9f;
 	public static var tongue:FireTongue;
-	function init(){
-		var tongue:FireTongue = new FireTongue();
+	public static var text_y_off_menu:Int=0;
 
+	public static var dict:Map<String,String> =  new Map<String,String>();
+	public static var dict_internal:Map<String,String> = new Map<String,String>();
+	public static var thanks_str:String="";
+	public static var goal_x_of_y_str:String="";
+
+function regenAllText(){
+
+		if (Globals.state.sprache=="ja"){
+			text_y_off_menu=-1;
+		} else {
+			text_y_off_menu=1;
+		}
+		var dumbkeys=["$ABOUT_GESTALT_OS","$GESTALT_MANUFACTURING","$CORPORATION_R","$GESTALT_OS_VERSION","$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE","$CREDITS_THANKS_TO","$CREDITS_LEVEL_DESIGN","$CREDITS_TRANSLATION","$CREDITS_THE_REST","$BUTTON_OK","$TOOLTIP_CLEAR_PAGE","$TOOLTIP_UNDO","$TOOLTIP_REDO","$TOOLTIP_FULLSCREEN","$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO","$TOOLTIP_ABOUT","$TOOLS","$WORKBENCH","$GOAL_X_OF_Y","$SOLVED","$SOLVE","$CONGRATS","$CONGRATS_SENTENCE","$WE_ARE_HAPPY"];
+		dict = new Map<String,String>();
+		for (d in dumbkeys){
+			dict[d]=tongue.get(d);	
+		}
+
+		var dumbkeys_internal=["$FLAGGE_ICON","$FONT_BIG","$FONT_SMALL"];
+		for (d in dumbkeys_internal){
+			dict_internal[d]=tongue.get(d,"internal");	
+		}	
+
+
+
+		var nameListe = "Daniel Frier.Stephen Saver.David Kilford.Dani Soria.Adrian Toncean.Alvaro Salvagno.Ethan Clark.Blake Regehr.Happy Snake.Joel Gahr.Alexander Turner.Tatsunami.Matt Rix.Bigaston.Lajos Kis.Lorxus.Fachewachewa.Marcos Donnantuoni.That Scar.Llewelyn Griffiths.Capnsquishy.Alexander Martin.Guilherme Töws.Alex Fink.Christian Zachau.@Ilija.Celeste Brault.Cédric Coulon.Lukas Koudelka.George Kurelic.Konstantin Dediukhin.Jazz Mickle.Oori.Xanto.Jonah Ostroff.Felix Niklas.Carlos Pidox.Tarek Sabet.Jason Reed.Justin Smith.Scott Redig.Ugurcan Kilic.Nolan Daigle.Louis Fontaine.@IsThereAnyDeal.MikkelP";
+		var translatorListe = "Carlos Pidox.Francesco Mazzoli.Tatsunami.Lucas Le Slo.Stephen Lavelle";
+		
+		if (Globals.state.sprache=="ja"){
+        	nameListe = "D.Frier S.Saver D.Kilford D.Soria A.Toncean A.Salvagno E.Clark B.Regehr H.Snake J.Gahr A.Turner Tatsunami M.Rix Bigaston L.Kis Lorxus Fachewachewa M.Donnantuoni TheScar L.Griffiths Capnsquishy A.Martin G.Töws A.Fink C.Zachau Ilija C.Brault C.Coulon L.Koudelka G.Kurelic K.Dediukhin J.Mickle Oori Xanto J.Ostroff F.Niklas C.Pidox T.Sabet J.Reed J.Smith S.Redig U.Kilic N.Daigle L.Fontaine IsThereAnyDeal MikkelP";
+        	translatorListe = "C.Pidox F.Mazzoli Tatsunami L.Le Slo S.Lavelle";
+		}
+
+		thanks_str = Replace.flags(tongue.get("$CREDITS_THANKS_TO"),["<NAMELIST>"],[nameListe])+"\n\n"
+		+Replace.flags(tongue.get("$CREDITS_TRANSLATION"),["<NAMELIST>"],[translatorListe])+"\n\n"
+		+tongue.get("$CREDITS_LEVEL_DESIGN")+"\n\n"
+		+tongue.get("$CREDITS_THE_REST");
+
+		goal_x_of_y_str = Replace.flags(
+				tongue.get("$GOAL_X_OF_Y"),
+				["<X>","<Y>"],
+				[""+(aktuellesZielIdx+1),""+ziele.length]
+				);
+
+	}
+
+	function onLanguageLoaded():Void{
+
+		forceregentext=true;
+		forcerender=true;
+        //trace(dict["$HELLO_WORLD"]);  
+        //outputs "Hello, World!" 
+        //(which is stored in the flag $HELLO_WORD in a file indexed by context id "data")
+    }
+
+	function init(){
+		tongue = new FireTongue();
 		// Text.font = "dos";
 		// Sound.play("t2");
 		//Music.play("music",0,true);
-		Gfx.resizescreen(392, 235,true);//true->false for  non-pixel-perfect-scaling
+		Gfx.resizescreen(392, 236,true);//true->false for  non-pixel-perfect-scaling
 
-		Gfx.createimage("fg", 392, 235);
+		Gfx.createimage("fg", 392, 236);
 		SpriteManager.enable();
 		Particle.enable();
-		Text.font="nokia";
 		// Gfx.clearcolor=Col.RED;// desktop_farbe;
 		// Gfx.loadtiles("dice_highlighted",16,16);
 		setup();
@@ -1829,18 +1896,34 @@ function tueRedo(){
 	}
 
 	var forcerender:Bool=true;
+	var forceregentext:Bool=false;
 	
 	var zeigabout:Bool=false;
 	var zeigende:Bool=false;
 
+	function betaNotice(){
+		var oldfont = Text.font;
+		Text.font="nokia";
+		Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
+		Text.font=oldfont;
+	}
+
 	function update() {	
 
 		
+		if(forceregentext){
+			regenAllText();
+			forcerender=true;
+		}
 
 		var keyrepeat=Math.floor(Core.fps/5);
 
 		if (Input.justpressed(Key.A)){
-			editmodus=!editmodus;
+			// editmodus=!editmodus;
+			// forcerender=true;
+		}
+		if (editmodus && Input.justpressed(Key.LBRACKET)){
+			zeigende=true;
 			forcerender=true;
 		}
 		if (
@@ -1869,125 +1952,49 @@ function tueRedo(){
 				return;
 		}
 
+		Text.font=dict_internal["$FONT_BIG"];
+		
 		if (zeigabout){
-			Text.wordwrap=277;
+			Text.wordwrap=277+50;
 
 			Gfx.drawimage(0,0,"aboutscreen");
 			
-			Text.display(57,25,Globals.S(
-				"Über Gestalt_BS",
-				"About Gestalt_OS",
-				"Sobre Gestalt_OS",
-				"Sûr Gestalt_OS",
-				"Riguardo a Gestalt_OS"
-				),farbe_menutext);
+			Text.display(32,18+text_y_off_menu,dict["$ABOUT_GESTALT_OS"],farbe_menutext);
 
-			Text.display(153,44,Globals.S(
-				"Gestaltaufbau",
-				"Gestalt Manufacturing",
-				"Fabricación Gestalt",
-				"Fabrication Gestalt",
-				'Officine Gestalt'
-				),0x20116d);
+			Text.display(123,38,dict["$GESTALT_MANUFACTURING"],0x20116d);
 
-			Text.display(153,55,Globals.S(
-				"GmbH (R)",
-				"Corporation (R)",
-				"Sociedad (R)",
-				"Société (R)",
-				'Soc. An.'
-				),0x20116d);
+			Text.display(123,51,dict["$CORPORATION_R"],0x20116d);
 			
-			Text.display(153,73,Globals.S(
-				'Gestalt_BS '+version+' ("Beton")',
-				'Gestalt_OS '+version+' ("Beton")',
-				'Gestalt_OS '+version+' ("Beton")',
-				'Gestalt_OS '+version+' ("Beton")',
-				'Gestalt_OS '+version+' ("Beton")'
-				),0x20116d);
+			Text.display(123,67,dict["$GESTALT_OS_VERSION"],0x20116d);
 
-			Text.display(153,90,Globals.S(
-				"(R) GAB GmbH 2019",
-				"Copyright(C) 2019 GMC",
-				'Copyright(C) 2019 SFG',
-				"Droit d'auteur (C) 2019 SFG",
-				'Copyright(C) 2019 OG Soc. An.'
-				),0x20116d);
+			Text.display(123,86,dict["$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE"],0x20116d);
 
-			var nameListe = "Ugurcan Kilic - Daniel Frier - Stephen Saver - David Kilford - Dani Soria - Adrian Toncean - Alvaro Salvagno - Ethan Clark - Blake Regehr - Happy Snake - Joel Gahr - Alexander Turner - Tatsunami - Matt Rix - Bigaston - Lajos Kis - Lorxus - Fachewachewa - Marcos Donnantuoni - That Scar - Llewelyn Griffiths - @capnsquishy - Alexander Martin - Guilherme Töws - Alex Fink - Christian Zachau - @Ilija - Celeste Brault - Cédric Coulon - Lukas Koudelka - George Kurelic - Konstantin Dediukhin";
 
-			Text.font = "pixel";
-			Text.display(56,113,
-			Globals.S(
-				
-			"Dank für Testing und Feedback zu sagen zu : "+nameListe+".
+			Text.font=dict_internal["$FONT_SMALL"];
 			
-			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
 			
-			Translations: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle.
-
-			Der Rest: Stephen Lavelle",
 
 
-
-			"Thanks for testing and feedback to : "+nameListe+".
+			Text.display(31,108,thanks_str,0x20116d);
 			
-			Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
-			
-			Translations: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle.
-
-			The Rest: Stephen Lavelle ( http://www.increpare.com ).",
-
-
-
-			"Gracias por probar y comentar a: "+nameListe+".
-			
-			Diseño de niveles: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
-
-			Traducciones: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle
-
-			El resto:  Stephen Lavelle ( http://www.increpare.com ).",
-
-
-
-			"Merci pour tester et donner du feedback à: "+nameListe+".
-			
-			Conception de niveaux:  Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
-
-			Traductions: Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle
-
-			Le reste: Stephen Lavelle ( http://www.increpare.com ).",
-
-
-			"Grazie per il testing e per il feedback di: "+nameListe+".
-
-			Design dei livelli: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle.
-
-			Traduzioni:  Lucas Le Slo - Francesco Mazzoli - Stephen Lavelle
-
-			Il resto: Stephen Lavelle ( http://www.increpare.com )."
-
-			),0x20116d
-			);
-			Text.wordwrap=0;			
-			Text.font="nokia";
+			Text.wordwrap=0;	
+			Text.font=dict_internal["$FONT_BIG"];
 
 			if (
 				IMGUI.presstextbutton(
 					"ueber_ok",
 					"btn_solve_bg_up",
 					"btn_solve_bg_down",
-					Globals.S("OK","OK","OK","OK","OK"),
+					dict["$BUTTON_OK"],
 					0x20116d,
-					279,193
+					279+25,198
 					))
 			{
 				zeigabout=false;
 				forcerender=true;
 			}
 
-
-			Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
+			betaNotice();
 	
 			return;
 		}
@@ -1999,50 +2006,32 @@ function tueRedo(){
 
 			Gfx.drawimage(0,0,"endscreen");
 			
-			Text.display(103,54,Globals.S(
-				"Herzlichen Glückwunsch",
-				"Congratulations",
-				"Enhorabuena",
-				"Félicitations",
-				"Congratulazioni"
-				),farbe_menutext);
+			Text.display(103,52+text_y_off_menu,dict["$CONGRATS"],farbe_menutext);
 
-			Text.display(103,72,Globals.S(
-				"Herzlichen Glückwunsch! Du hast alle Levels gelöst!",
-				"Congratulations, you solved all of the levels!",
-				"Enhorabuena, has resuelto todos los niveles!",
-				"Félicitations, tu as résolu tous les niveaux!",
-				"Congratulazioni, hai completato tutti i livelli!"
-				)
+			Text.display(103,73,dict["$CONGRATS_SENTENCE"]
 				,0x20116d);
 
 			
-			Text.display(103,100,Globals.S(
-				"Wir freuen uns, dass du unser Spiel gespielt hast. Hoffentlich hat es dir gut gefallen :)",
-				"Thank you so much for playing the game. We hope you had a good time doing so :)",
-				"Muchas gracias por jugar a este juego. Esperamos que hayas disfrutado jugándolo :)",
-				"Merci beaucoup d'avoir joué. Nous espérons que vous vous êtes bien amusés :)",
-				"Grazie mille per aver giocato. Speriamo ti sia divertito."
-				),0x20116d);
+			Text.display(103,101,dict["$WE_ARE_HAPPY"],0x20116d);
 				
 			Text.wordwrap=0;			
-			Text.font="nokia";
+			Text.font=dict_internal["$FONT_BIG"];
 
 			if (
 				IMGUI.presstextbutton(
 					"ueber_ok",
 					"btn_solve_bg_up",
 					"btn_solve_bg_down",
-					Globals.S("OK","OK","OK","OK","OK"),
+					dict["$BUTTON_OK"],
 					0x20116d,
-					235,148
+					236,149
 					))
 			{
 				zeigende=false;
 				forcerender=true;
 			}
 	
-			Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
+			betaNotice();
 			return;
 		}
 
@@ -2074,7 +2063,7 @@ function tueRedo(){
 			var gy = Math.floor(i/5);
 			
 			var px = 18 + 13*gx;
-			var py = 216 - 10*gy;
+			var py = 217 - 10*gy;
 			
 			if (editmodus && Mouse.leftclick()){
 				if (Mouse.x>=(px-4)&&Mouse.y>=(py-2) && (Mouse.x<(px-2+9+2)) && (Mouse.y<(py-2+9))){
@@ -2100,7 +2089,7 @@ function tueRedo(){
 			for (i in 0...i_spalten){
 
 				var ix = 8+19*i;
-				var iy = 21+19*j;
+				var iy = 22+19*j;
 				
 
 				var index = i+i_spalten*j;
@@ -2150,14 +2139,8 @@ function tueRedo(){
 				"taste_t_bg_up",
 				"taste_t_bg_down",
 				"icon_neu",
-				286,209,
-				Globals.S(
-					"Blatt leeren (N)",
-					"Clear page (N)",
-					"Borrar página (N)",
-					'Effacer page (N)',
-					'Sgombra il banco da lavoro (N)'
-					)
+				286,210,
+				dict["$TOOLTIP_CLEAR_PAGE"]
 				)  
 				|| Input.justpressed(Key.N)
 				|| Input.justpressed(Key.R)
@@ -2173,14 +2156,8 @@ function tueRedo(){
 					"taste_t_bg_up",
 					"taste_t_bg_down",
 					"icon_undo",
-					306,209,
-					Globals.S(
-						"Rückgängig (Z)",
-						"Undo (Z)",
-						'Deshacer (Z)',
-						'Défaire (Z)',
-						'Annulla (Z)'
-						)
+					306,210,
+					dict["$TOOLTIP_UNDO"]
 					)
 					|| Input.delaypressed(Key.Z,keyrepeat)
 					|| Input.delaypressed(Key.U,keyrepeat)
@@ -2189,7 +2166,7 @@ function tueRedo(){
 					tueUndo();
 			}
 		} else {
-			Gfx.drawimage(306,209,"keineundosmehr");
+			Gfx.drawimage(306,210,"keineundosmehr");
 		}
 
 
@@ -2200,14 +2177,8 @@ function tueRedo(){
 					"taste_t_bg_up",
 					"taste_t_bg_down",
 					"icon_wiederholen",
-					326,209,
-					Globals.S(
-						"Wiederholen (Y)",
-						"Redo (Y)",
-						'Rehacer (Y)',
-						'Rétablir (Y)',
-						'Ripeti (Y)'
-						)
+					326,210,
+					dict["$TOOLTIP_REDO"]
 					)
 					|| Input.delaypressed(Key.Y,keyrepeat)
 					)
@@ -2215,34 +2186,35 @@ function tueRedo(){
 					tueRedo();
 			}
 		} else {
-			Gfx.drawimage(326,209,"keinredosmehr");
+			Gfx.drawimage(326,210,"keinredosmehr");
 		}
 
-		var neu_spr:Int = IMGUI.togglebutton_multi(
+		var changelang = IMGUI.pressbutton(
 			"sprache",
 			"taste_t_bg_up",
 			"taste_t_bg_down",
-			["icon_flagge_en",
-			"icon_flagge_de",
-			"icon_flagge_es",
-			"icon_flagge_fr",
-			"icon_flagge_it"],
-			346,209,
-			Globals.state.sprache,
-			[
-			"Language: English",
-			"Sprache: Deutsch",
-			'Idioma: Español',
-			'Langue: Français',
-			'Lingua: Italiano'
-			]
+			dict_internal["$FLAGGE_ICON"],
+			346,210,
+			dict["$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO"]
 			);
 
-		if (neu_spr!=Globals.state.sprache){
-			Globals.state.sprache=neu_spr;
-			IMGUI.tooltipstr=null;
-			forcerender=true;
-			Save.savevalue("mwbsprache_v2",Globals.state.sprache);
+		if (changelang){
+			
+			var unterstuetzteSprachen = tongue.get_locales();
+			var spridx = unterstuetzteSprachen.indexOf(Globals.state.sprache);
+
+			if (spridx==-1){
+				Globals.state.sprache="en";
+			} else {
+				spridx=(spridx+1)%unterstuetzteSprachen.length;
+				Globals.state.sprache=unterstuetzteSprachen[spridx];	    
+				Save.savevalue("global_sprache",Globals.state.sprache);
+
+				tongue.init(Globals.state.sprache,onLanguageLoaded,true,true,null,"data/locales/");
+				forcerender=true;
+
+			}
+			
 		}
 
 		if (IMGUI.pressbutton(
@@ -2250,53 +2222,31 @@ function tueRedo(){
 			"taste_t_bg_up",
 			"taste_t_bg_down",
 			"icon_hilfe",
-			366,209,
-			Globals.S(
-				"Über diese Anwendung",
-				"About this app",
-				"Sobre esta aplicación",
-				"Sûr cette aplication",
-				"Informazioni su questa applicazione"
-				)
+			366,210,
+			dict["$ABOUT_GESTALT_OS"]
 			)){
 				zeigabout=true;
 				forcerender=true;
 			}
 
-		Text.display(9,8,Globals.S(
-			"Werkzeuge",
-			"Tools",
-			"Herramientas",
-			"Outils",
-			"Strumenti"
-			),farbe_menutext);
+		Text.display(9,8+text_y_off_menu,dict["$TOOLS"],farbe_menutext);
 
 
 		var lebende = Lambda.count(Globals.state.solved, (w)->w==0);
-		var titeltext = Globals.S(
-			"Werkbank",
-			"Workbench",
-			"Mesa de trabajo",
-			"Table de travail",
-			'Banco da lavoro'
-			);
-		Text.display(91,8,titeltext,farbe_menutext);
+		var titeltext = dict["$WORKBENCH"];
+		Text.display(91,8+text_y_off_menu,titeltext,farbe_menutext);
 
-		Text.display(287,8,Globals.S(
-				"Ziel ("+(aktuellesZielIdx+1) +" von "+ziele.length+")",
-				"Goal ("+(aktuellesZielIdx+1) +" of "+ziele.length+")",
-				"Objetivo ("+(aktuellesZielIdx+1) +" de "+ziele.length+")",
-				"Cible ("+(aktuellesZielIdx+1) +" de "+ziele.length+")",
-				"Obiettivo ("+(aktuellesZielIdx+1) +" di "+ziele.length+")"
-				),farbe_menutext);
+		Text.display(287,8+text_y_off_menu,
+			goal_x_of_y_str,
+			farbe_menutext);
 
 		if (aktuellesZielIdx>0){
-			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,182)||Input.delaypressed(Key.LEFT,keyrepeat)){
+			if(IMGUI.pressbutton("menü_l","taste_t_bg_up","taste_t_bg_down","icon_sm_l",286,183)||Input.delaypressed(Key.LEFT,keyrepeat)){
 				LoadLevel(aktuellesZielIdx-1);
 			}
 		} else {
-			Gfx.drawimage(286,182,"taste_t_bg_up");
-			Gfx.drawimage(286,182,"icon_sm_l_deaktiviert");
+			Gfx.drawimage(286,183,"taste_t_bg_up");
+			Gfx.drawimage(286,183,"icon_sm_l_deaktiviert");
 
 		}
 
@@ -2306,25 +2256,13 @@ function tueRedo(){
 						"menü_l",
 						"btn_solve_bg_down_done",
 						"btn_solve_bg_down_done",
-						Globals.S(
-							"Gelöst",
-							"Solved",
-							"Resuelto",
-							"Résolu",
-							"Risolto"
-							),
+						dict["$SOLVED"],
 						0x505050,
-						306,182
+						306,183
 						);
 		} else if (cansolve){
 			if(IMGUI.presstextbutton("loesentaste","btn_solve_bg_up","btn_solve_bg_down",
-										Globals.S(
-											"Lösen",
-											"Solve",
-											"Resolver",
-											"Résoudre",
-											"Risolvi"
-										),0x20116d,306,182)){
+										dict["$SOLVE"],0x20116d,306,183)){
 				geloest[aktuellesZielIdx]=ziele[aktuellesZielIdx][0];
 				Save.savevalue("level"+aktuellesZielIdx,ziele[aktuellesZielIdx][0]);
 				forcerender=true;
@@ -2337,19 +2275,19 @@ function tueRedo(){
 						"menü_l",
 						"btn_solve_bg_up",
 						"btn_solve_bg_down",
-						Globals.S("Lösen","Solve","Resolver","Résoudre","Risolvi"),
+						dict["$SOLVE"],
 						0x505050,
-						306,182
+						306,183
 						);
 		}
 		
 		if (aktuellesZielIdx+1<ziele.length){
-			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",366,182)||Input.delaypressed(Key.RIGHT,keyrepeat)){
+			if(IMGUI.pressbutton("menü_r","taste_t_bg_up","taste_t_bg_down","icon_sm_r",366,183)||Input.delaypressed(Key.RIGHT,keyrepeat)){
 				LoadLevel(aktuellesZielIdx+1);
 			}
 		} else {
-			Gfx.drawimage(366,182,"taste_t_bg_up");
-			Gfx.drawimage(366,182,"icon_sm_r_deaktiviert");
+			Gfx.drawimage(366,183,"taste_t_bg_up");
+			Gfx.drawimage(366,183,"icon_sm_r_deaktiviert");
 		}
 
 		// Gfx.drawimage(Mouse.x-3,Mouse.y-3,"cursor_finger");
@@ -2359,7 +2297,7 @@ function tueRedo(){
 
 
 		var zielb_x=284;
-		var zielb_y=19;
+		var zielb_y=20;
 
 		var zielb_w=103;
 		var zielb_h=163;
@@ -2422,11 +2360,11 @@ function tueRedo(){
 					}
 				}
 				if (inhalt!=null){
-					Gfx.fillbox(90+19*i,21+19*j,16,16,0x6a6a6a);
-					Gfx.drawimage(90+19*i,21+19*j,"icons/"+inhalt);
+					Gfx.fillbox(90+19*i,22+19*j,16,16,0x6a6a6a);
+					Gfx.drawimage(90+19*i,22+19*j,"icons/"+inhalt);
 				}
 				if (abw==frame){
-					Gfx.drawimage(90+19*i,21+19*j,"cursor_aktiv");
+					Gfx.drawimage(90+19*i,22+19*j,"cursor_aktiv");
 				}
 			}
 		}
@@ -2502,7 +2440,7 @@ function tueRedo(){
 				var b_h=editor_br_y-editor_tl_y;
 				b_w = b_w*19+1;
 				b_h = b_h*19+1;
-				Gfx.drawbox(89+editor_tl_x*19-1,20+editor_tl_y*19-1,b_w,b_h,Col.RED);
+				Gfx.drawbox(89+editor_tl_x*19-1,20+editor_tl_y*20-1,b_w,b_h,Col.RED);
 			}
 		}
 		
@@ -2547,7 +2485,7 @@ function tueRedo(){
 			
 			if (geltendes_hoverziel){
 				if (szs_brett[hoverziel_y][hoverziel_x]==null){
-					Gfx.drawimage(90+19*hoverziel_x,21+19*hoverziel_y,"zelle_hervorhebung");
+					Gfx.drawimage(90+19*hoverziel_x,22+19*hoverziel_y,"zelle_hervorhebung");
 				} else {
 					geltendes_hoverziel=false;
 					nope=true;
@@ -2579,7 +2517,7 @@ function tueRedo(){
 			IMGUI.tooltipstr=null;
 		}
 		IMGUI.zeigtooltip();
-		Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
+		betaNotice();
 	}
 
 }

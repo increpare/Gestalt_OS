@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <set name="windowwidth" value="392" />
-  <set name="windowheight" value="235" />
+  <set name="windowheight" value="236" />
   
 	<meta 
     title="Magiewerkbank" 
@@ -33,7 +33,6 @@
 	<source path="plugins" />
 	<haxelib name="openfl" />
 	<haxelib name="haxegon" />
-	<haxelib name="firetongue" />
 
 	<haxedef name="windowwidth" value="${windowwidth}" />
   <haxedef name="windowheight" value="${windowheight}" />

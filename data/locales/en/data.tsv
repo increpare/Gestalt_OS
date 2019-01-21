@@ -1,0 +1,25 @@
+ID	English	
+$ABOUT_GESTALT_OS	About Gestalt_OS	
+$GESTALT_MANUFACTURING	Gestalt Manufacturing	
+$CORPORATION_R	Corporation (R)	
+$GESTALT_OS_VERSION	Gestalt_OS 3.14 ("Beton")	
+$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE	Copyright(C) 2019 GMC	
+$CREDITS_THANKS_TO	Thanks for testing and feedback to : <NAMELIST>	
+$CREDITS_LEVEL_DESIGN	Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle	
+$CREDITS_TRANSLATION	Translations: <NAMELIST>	
+$CREDITS_THE_REST	The rest: Stephen Lavelle ( http://www.increpare.com ).	
+$BUTTON_OK	OK	
+$TOOLTIP_CLEAR_PAGE	Clear page (N)	
+$TOOLTIP_UNDO	Undo (Z)	
+$TOOLTIP_REDO	Redo (Y)	
+$TOOLTIP_FULLSCREEN	Fullscreen mode	
+$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO	Language: English	
+$TOOLTIP_ABOUT	About this app	
+$TOOLS	Tools	
+$WORKBENCH	Workbench	
+$GOAL_X_OF_Y	Goal (<X> of <Y>)	
+$SOLVED	Solved	
+$SOLVE	Solve	
+$CONGRATS	Congratulations	
+$CONGRATS_SENTENCE	Congratulations, you solved all of the levels!	
+$WE_ARE_HAPPY	Thank you so much for playing the game. We hope you had a good time doing so :)	

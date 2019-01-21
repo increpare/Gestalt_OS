@@ -16,26 +16,11 @@ class Globals
     }
 
   public static var state = {
-      sprache:0,
+      sprache:"en",
       audio:1,
       level:0,
       solved:[0,0,0,0,0,0]
   };
-//de, en, es, fr
-  public static function S(de:String,en:String, es:String, fr:String,it:String):String{
-      switch(state.sprache){
-          case 0:
-            return en;
-          case 1:
-            return de;
-          case 2:
-            return es;
-          case 3:
-            return fr;
-          case 4:
-            return it;
-      }
-      trace("ERROR state.sprache = "+state.sprache);
-      return "";
-  }
+
+  
 }

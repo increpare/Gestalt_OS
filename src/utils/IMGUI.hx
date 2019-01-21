@@ -221,6 +221,10 @@ class IMGUI {
 		var th = Text.height(text);
 		var tx = x+w/2-tw/2+((downstate&&over)?1:0);
 		var ty = y+h/2-th/2+((downstate&&over)?1:0);
+		if(Globals.state.sprache=="ja"&&text=="OK"){
+			ty-=2;
+			tx++;
+		}
 		Text.display(tx,ty,text,color);
 
 

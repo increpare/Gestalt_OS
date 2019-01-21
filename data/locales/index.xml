@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<file id="data" value="data.tsv"/>
+	<file id="internal" value="internal.tsv"/>
+
+
+	<locale id="de" is_default="true" sort="0">	
+		<contributors value="Stephen Lavelle"/>
+	</locale>
+
+	<locale id="en" is_default="true" sort="0">	
+		<contributors value="Stephen Lavelle"/>
+	</locale>
+
+	<locale id="es" is_default="true" sort="0">	
+		<contributors value="Lucas Le Slo"/>
+	</locale>
+
+	<locale id="fr" is_default="true" sort="0">	
+		<contributors value="Lucas Le Slo"/>
+	</locale>
+
+	<locale id="it" is_default="true" sort="0">	
+		<contributors value="Francesco Mazzoli"/>
+	</locale>
+
+	<locale id="ja" is_default="true" sort="0">	
+		<contributors value="Tatsunami"/>
+	</locale>
+	
+	<locale id="pt" is_default="true" sort="0">	
+		<contributors value="Carlos Pidox"/>
+	</locale>
+
+</data>
