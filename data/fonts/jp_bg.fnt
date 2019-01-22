@@ -5,7 +5,7 @@
   <pages>
     <page id="0" file="jp_bg_0.png" />
   </pages>
-  <chars count="171">
+  <chars count="175">
 
 		<char id="12510" x="149" y="36" width="11" xadvance="12" height="9" xoffset="1" yoffset="3" />
 		<char id="12491" x="34" y="56" width="11" xadvance="12" height="8" xoffset="1" yoffset="3" />

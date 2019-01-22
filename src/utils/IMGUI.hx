@@ -229,7 +229,7 @@ class IMGUI {
 		if(Globals.state.sprache=="ja"){
 			if(text=="OK"){
 				ty-=2;
-				tx++;
+				// tx++;
 			} else {
 				tx++;
 			}
@@ -278,7 +278,7 @@ class IMGUI {
 		if(Globals.state.sprache=="ja"){
 			if(text=="OK"){
 				ty-=2;
-				tx++;
+				// tx++;
 			} else {
 				tx++;
 			}
