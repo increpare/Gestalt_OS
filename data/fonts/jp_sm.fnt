@@ -147,7 +147,7 @@
 	<char id="122" x="112" y="9" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
 	<char id="84" x="160" y="0" width="3"  xadvance="4" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
 	<char id="109" x="128" y="9" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
-	<char id="105" x="190" y="0" width="2"  xadvance="3" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
+	<char id="105" x="190" y="0" width="2"  xadvance="2" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
 	<char id="117" x="105" y="2" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
 	<char id="99" x="124" y="9" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
 	<char id="115" x="120" y="9" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
@@ -162,7 +162,7 @@
 	<char id="76" x="145" y="0" width="3"  xadvance="4" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
 	<char id="97" x="284" y="10" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
 	<char id="118" x="80" y="2" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
-	<char id="108" x="150" y="0" width="3"  xadvance="4" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
+	<char id="108" x="150" y="0" width="3"  xadvance="3" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
 	<char id="101" x="136" y="9" width="3"  xadvance="4" height="4" xoffset="0" yoffset="2" page="0" chnl="15"/>
 	<char id="34" x="170" y="0" width="4"  xadvance="6" height="8" xoffset="0" yoffset="0" page="0" chnl="15"/>
 	<char id="59" x="156" y="9" width="2"  xadvance="4" height="5" xoffset="0" yoffset="2" page="0" chnl="15"/>

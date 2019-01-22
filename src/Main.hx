@@ -10,6 +10,7 @@ import lime.ui.Window;
 import haxe.Json;
 import firetongue.*;
 
+
 #if html5
  import js.Browser;
  import js.html.Audio;
@@ -1648,13 +1649,15 @@ function regenAllText(){
 
 		if (Globals.state.sprache=="ja"){
 			text_y_off_menu=-1;
-		} else {
+		} else if (Globals.state.sprache=="zh"){
+			text_y_off_menu=-1;
+		} else{
 			text_y_off_menu=1;
 		}
 		var dumbkeys=["$ABOUT_GESTALT_OS","$GESTALT_MANUFACTURING","$CORPORATION_R","$GESTALT_OS_VERSION","$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE","$CREDITS_THANKS_TO","$CREDITS_LEVEL_DESIGN","$CREDITS_TRANSLATION","$CREDITS_THE_REST","$BUTTON_OK","$TOOLTIP_CLEAR_PAGE","$TOOLTIP_UNDO","$TOOLTIP_REDO","$TOOLTIP_FULLSCREEN","$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO","$TOOLTIP_ABOUT","$TOOLS","$WORKBENCH","$GOAL_X_OF_Y","$SOLVED","$SOLVE","$CONGRATS","$CONGRATS_SENTENCE","$WE_ARE_HAPPY"];
 		dict = new Map<String,String>();
 		for (d in dumbkeys){
-			dict[d]=tongue.get(d);	
+			dict[d]=tongue.get(d);
 		}
 
 		var dumbkeys_internal=["$FLAGGE_ICON","$FONT_BIG","$FONT_SMALL"];
@@ -1664,12 +1667,12 @@ function regenAllText(){
 
 
 
-		var nameListe = "Daniel Frier.Stephen Saver.David Kilford.Dani Soria.Adrian Toncean.Alvaro Salvagno.Ethan Clark.Blake Regehr.Happy Snake.Joel Gahr.Alexander Turner.Tatsunami.Matt Rix.Bigaston.Lajos Kis.Lorxus.Fachewachewa.Marcos Donnantuoni.That Scar.Llewelyn Griffiths.Capnsquishy.Alexander Martin.Guilherme Töws.Alex Fink.Christian Zachau.@Ilija.Celeste Brault.Cédric Coulon.Lukas Koudelka.George Kurelic.Konstantin Dediukhin.Jazz Mickle.Oori.Xanto.Jonah Ostroff.Felix Niklas.Carlos Pidox.Tarek Sabet.Jason Reed.Justin Smith.Scott Redig.Ugurcan Kilic.Nolan Daigle.Louis Fontaine.@IsThereAnyDeal.MikkelP";
+		var nameListe = "Daniel Frier.Stephen Saver.David Kilford.Dani Soria.Adrian Toncean.Alvaro Salvagno.Ethan Clark.Blake Regehr.Happy Snake.Joel Gahr.Alexander Turner.Tatsunami.Matt Rix.Bigaston.Lajos Kis.Lorxus.Fachewachewa.Marcos Donnantuoni.That Scar.Llewelyn Griffiths.Capnsquishy.Alexander Martin.Guilherme Töws.Alex Fink.Christian Zachau.@Ilija.Celeste Brault.Cédric Coulon.Lukas Koudelka.George Kurelic.Konstantin Dediukhin.Jazz Mickle.Oori.Xanto.Jonah Ostroff.Felix Niklas.Carlos Pidox.Tarek Sabet.Jason Reed.Justin Smith.Scott Redig.Ugurcan Kilic.Nolan Daigle.Louis Fontaine.Tomas zelgaris Zahradnícek.MikkelP";
 		var translatorListe = "Carlos Pidox.Francesco Mazzoli.Tatsunami.Lucas Le Slo.Stephen Lavelle";
 		
 		if (Globals.state.sprache=="ja"){
-        	nameListe = "D.Frier S.Saver D.Kilford D.Soria A.Toncean A.Salvagno E.Clark B.Regehr H.Snake J.Gahr A.Turner Tatsunami M.Rix Bigaston L.Kis Lorxus Fachewachewa M.Donnantuoni TheScar L.Griffiths Capnsquishy A.Martin G.Töws A.Fink C.Zachau Ilija C.Brault C.Coulon L.Koudelka G.Kurelic K.Dediukhin J.Mickle Oori Xanto J.Ostroff F.Niklas C.Pidox T.Sabet J.Reed J.Smith S.Redig U.Kilic N.Daigle L.Fontaine IsThereAnyDeal MikkelP";
-        	translatorListe = "C.Pidox F.Mazzoli Tatsunami L.Le Slo S.Lavelle";
+        	// nameListe = "D.Frier S.Saver D.Kilford D.Soria A.Toncean A.Salvagno E.Clark B.Regehr H.Snake J.Gahr A.Turner Tatsunami M.Rix Bigaston L.Kis Lorxus Fachewachewa M.Donnantuoni TheScar L.Griffiths Capnsquishy A.Martin G.Töws A.Fink C.Zachau Ilija C.Brault C.Coulon L.Koudelka G.Kurelic K.Dediukhin J.Mickle Oori Xanto J.Ostroff F.Niklas C.Pidox T.Sabet J.Reed J.Smith S.Redig U.Kilic N.Daigle L.Fontaine zelgaris MikkelP";
+        	// translatorListe = "C.Pidox F.Mazzoli Tatsunami L.Le Slo S.Lavelle";
 		}
 
 		thanks_str = Replace.flags(tongue.get("$CREDITS_THANKS_TO"),["<NAMELIST>"],[nameListe])+"\n\n"
@@ -1682,6 +1685,8 @@ function regenAllText(){
 				["<X>","<Y>"],
 				[""+(aktuellesZielIdx+1),""+ziele.length]
 				);
+
+
 
 	}
 
@@ -1700,6 +1705,10 @@ function regenAllText(){
 		// Sound.play("t2");
 		//Music.play("music",0,true);
 		Gfx.resizescreen(392, 236,true);//true->false for  non-pixel-perfect-scaling
+		
+		Text.font="jf-dot";
+		Text.size=12;
+		Text.font="";
 
 		Gfx.createimage("fg", 392, 236);
 		SpriteManager.enable();
@@ -1919,13 +1928,24 @@ function tueRedo(){
 		var keyrepeat=Math.floor(Core.fps/5);
 
 		if (Input.justpressed(Key.A)){
-			// editmodus=!editmodus;
-			// forcerender=true;
+			editmodus=!editmodus;
+			forcerender=true;
 		}
 		if (editmodus && Input.justpressed(Key.LBRACKET)){
 			zeigende=true;
 			forcerender=true;
 		}
+
+		if (Input.justpressed(Key.RBRACKET)){
+			for (lidx in 0...geloest.length){
+				geloest[lidx]=null;
+			}
+			LoadLevel(0);
+			Save.delete();
+			forceregentext=true;
+			forcerender=true;
+		}
+
 		if (
 			Mouse.deltax==0 &&
 			Mouse.deltay==0 &&
@@ -1953,7 +1973,10 @@ function tueRedo(){
 		}
 
 		Text.font=dict_internal["$FONT_BIG"];
-		
+		if (Globals.state.sprache=="zh"){
+			Text.size=12;
+		}
+
 		if (zeigabout){
 			Text.wordwrap=277+50;
 
@@ -1979,7 +2002,11 @@ function tueRedo(){
 			
 			Text.wordwrap=0;	
 			Text.font=dict_internal["$FONT_BIG"];
-
+			if (Globals.state.sprache=="zh"){
+				Text.size=12;
+			}
+			
+			
 			if (
 				IMGUI.presstextbutton(
 					"ueber_ok",
@@ -2002,7 +2029,7 @@ function tueRedo(){
 
 
 		if (zeigende){
-			Text.wordwrap=180;
+			Text.wordwrap=185;
 
 			Gfx.drawimage(0,0,"endscreen");
 			
@@ -2012,11 +2039,15 @@ function tueRedo(){
 				,0x20116d);
 
 			
-			Text.display(103,101,dict["$WE_ARE_HAPPY"],0x20116d);
+			Text.display(103,105,dict["$WE_ARE_HAPPY"],0x20116d);
 				
 			Text.wordwrap=0;			
 			Text.font=dict_internal["$FONT_BIG"];
-
+			if (Globals.state.sprache=="zh"){
+				Text.size=12;
+			}
+			
+			
 			if (
 				IMGUI.presstextbutton(
 					"ueber_ok",
@@ -2518,6 +2549,15 @@ function tueRedo(){
 		}
 		IMGUI.zeigtooltip();
 		betaNotice();
+
+		// var oldfont=Text.font;
+		// Text.font="baloo";
+		// Text.size=12;
+		// var astr="بعد مع وكسبت الحكومة الدولارات. إذ عدد يتمكن العاصمة, اليها والحزب ومحاولة تعد ان. مع الأخذ بتحدّي دار, تلك أطراف الأولية التغييرات تم. حادثة لبولندا، عدم ثم. أم قائمة لفرنسا وبداية ومن.";
+		// astr="مع مع مع مع asd" ;
+		// Text.display(100,2,astr,Col.WHITE);
+		// Text.font=oldfont;
+		// Text.size=1;
 	}
 
 }

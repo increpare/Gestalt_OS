@@ -1,0 +1,25 @@
+[General]
+borderBottom=1
+borderLeft=0
+borderRight=1
+borderTop=0
+charList=\x65e5\x672c\x8a9e\n\x30b2\x30b7\x30e5\x30bf\x30eb\x30c8OS\x306b\x3064\x3044\x3066\n\x30b2\x30b7\x30e5\x30bf\x30eb\x30c8\x30fb\x30de\x30cb\x30e5\x30d5\x30a1\x30af\x30c1\x30e3\x30ea\x30f3\x30b0\x30fb\n\x30b3\x30fc\x30dd\x30ec\x30fc\x30b7\x30e7\x30f3 (R)\n\x30b2\x30b7\x30e5\x30bf\x30eb\x30c8OS 3.14 (\"Beton\")\nCopyright(C) 2019 GMC\nThanks for testing and feedback to : <NAMELIST>\nLevel Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle\nTranslations: <NAMELIST>\nThe rest: Stephen Lavelle ( http://www.increpare.com ).\nOK\n\x30da\x30fc\x30b8\x3092\x30af\x30ea\x30a2(N)\n\x5143\x306b\x623b\x3059(Z)\n\x3084\x308a\x76f4\x3057(Y)\n\x30d5\x30eb\x30b9\x30af\x30ea\x30fc\x30f3\x30e2\x30fc\x30c9\n\x8a00\x8a9e: \x65e5\x672c\x8a9e\n\x3053\x306e\x30a2\x30d7\x30ea\x306b\x3064\x3044\x3066\n\x30c4\x30fc\x30eb\n\x30ef\x30fc\x30af\x30d9\x30f3\x30c1\n\x30b4\x30fc\x30eb(<X>/<Y>)\n\x89e3\x3051\x305f\n\x89e3\x304f\n\x304a\x3081\x3067\x3068\x3046\x3054\x3056\x3044\x307e\x3059\xff01\n\x304a\x3081\x3067\x3068\x3046\x3054\x3056\x3044\x307e\x3059\xff01\x5168\x3066\x306e\x30ec\x30d9\x30eb\x3092\x89e3\x304d\x307e\x3057\x305f\xff01\n\x3042\x305d\x3093\x3067\x304f\x3060\x3055\x308a\x3042\x308a\x304c\x3068\x3046\x3054\x3056\x3044\x307e\x3057\x305f\x3002\x697d\x3057\x3093\x3067\x3044\x305f\x3060\x3051\x3066\x3044\x305f\x3089\x5e78\x3044\x3067\x3059:)0123456789
+distanceField=false
+encoding=UNICODE
+heuristic=1
+imageInXML=false
+kerning=true
+merge=true
+mergeBF=true
+outDir=/Users/stephenlavelle/Documents/magiewerkbank/data/fonts
+outFile=arfont
+outFormat=1
+sortOrder=2
+textureH=256
+textureW=512
+transparent=true
+trim=true
+
+[fonts]
+1\font="JF Dot M+H 12, 12 pt"
+size=1

@@ -32,4 +32,8 @@
 		<contributors value="Carlos Pidox"/>
 	</locale>
 
+	<!-- <locale id="zh" is_default="true" sort="0">	
+		<contributors value="Stephen Lavelle"/>
+	</locale> -->
+
 </data>

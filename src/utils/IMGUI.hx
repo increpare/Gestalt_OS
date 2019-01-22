@@ -84,6 +84,10 @@ class IMGUI {
 		var b_h =h+my_t+my_b;
 		x-=b_w-1;
 		y-=b_h-1;
+		if (Globals.state.sprache=="ja"){
+			my_t--;
+			b_h=17;
+		}
 		Gfx.fillbox(x,y,b_w,b_h,0x035766);
 		Gfx.drawbox(x,y,b_w,b_h,0xbfbfbf);
 		Text.display(x+mx_l,y+my_t,tooltipstr,0x9f9f9f);
@@ -228,6 +232,8 @@ class IMGUI {
 			} else {
 				tx++;
 			}
+		} else if (Globals.state.sprache=="zh"){
+			ty+=2;
 		}
 		Text.display(tx,ty,text,color);
 
@@ -273,8 +279,10 @@ class IMGUI {
 				ty-=2;
 				tx++;
 			} else {
-				tx+=2;
+				tx++;
 			}
+		} else if (Globals.state.sprache=="zh"){
+			ty+=2;
 		}
 		Text.display(tx,ty,text,color);
 	}

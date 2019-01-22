@@ -4,14 +4,14 @@ $GESTALT_MANUFACTURING	ゲシュタルト・マニュファクチャリング・
 $CORPORATION_R	コーポレーション (R)	
 $GESTALT_OS_VERSION	ゲシュタルトOS 3.14 ("Beton")	
 $COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE	Copyright(C) 2019 GMC	
-$CREDITS_THANKS_TO	テストとフィードバックを感謝: <NAMELIST>	
-$CREDITS_LEVEL_DESIGN	レベルデザイン: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle	
-$CREDITS_TRANSLATION	翻訳: <NAMELIST>	
-$CREDITS_THE_REST	それ以外: Stephen Lavelle ( http://www.increpare.com ).	
+$CREDITS_THANKS_TO	Thanks for testing and feedback to : <NAMELIST>	
+$CREDITS_LEVEL_DESIGN	Level Design: Lucas Le Slo ( http://le-slo.itch.io ) - Stephen Lavelle	
+$CREDITS_TRANSLATION	Translations: <NAMELIST>	
+$CREDITS_THE_REST	The rest: Stephen Lavelle ( http://www.increpare.com ).	
 $BUTTON_OK	OK	
 $TOOLTIP_CLEAR_PAGE	ページをクリア(N)	
-$TOOLTIP_UNDO	アンドゥ(Z)	
-$TOOLTIP_REDO	リドゥ(Y)	
+$TOOLTIP_UNDO	元に戻す(Z)	
+$TOOLTIP_REDO	やり直し(Y)	
 $TOOLTIP_FULLSCREEN	フルスクリーンモード	
 $TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO	言語: 日本語	
 $TOOLTIP_ABOUT	このアプリについて	
@@ -19,7 +19,7 @@ $TOOLS	ツール
 $WORKBENCH	ワークベンチ	
 $GOAL_X_OF_Y	ゴール(<X>/<Y>)	
 $SOLVED	解けた	
-$SOLVE	解答中	
+$SOLVE	解く	
 $CONGRATS	おめでとうございます！	
 $CONGRATS_SENTENCE	おめでとうございます！全てのレベルを解きました！	
-$WE_ARE_HAPPY	あそんでくださり本当にありがとうございました。楽しんでいただけていたら幸いです:)	
+$WE_ARE_HAPPY	あそんでくださりありがとうございました。楽しんでいただけていたら幸いです:)	
