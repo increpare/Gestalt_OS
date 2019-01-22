@@ -1706,10 +1706,7 @@ function regenAllText(){
 		//Music.play("music",0,true);
 		Gfx.resizescreen(392, 236,true);//true->false for  non-pixel-perfect-scaling
 		
-		Text.font="jf-dot";
-		Text.size=12;
-		Text.font="";
-
+		
 		Gfx.createimage("fg", 392, 236);
 		SpriteManager.enable();
 		Particle.enable();
