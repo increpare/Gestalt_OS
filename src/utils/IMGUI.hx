@@ -87,6 +87,7 @@ class IMGUI {
 		if (Globals.state.sprache=="ja"){
 			my_t--;
 			b_h=17;
+			b_w+=10;//no idea..
 		}
 		Gfx.fillbox(x,y,b_w,b_h,0x035766);
 		Gfx.drawbox(x,y,b_w,b_h,0xbfbfbf);
