@@ -23,3 +23,5 @@ $SOLVE	解く
 $CONGRATS	おめでとうございます！	
 $CONGRATS_SENTENCE	おめでとうございます！全てのレベルを解きました！	
 $WE_ARE_HAPPY	あそんでくださりありがとうございました。楽しんでいただけていたら幸いです:)	
+$TEXT_RESET	リセット	
+$TOOLTIP_RESET	セーブデータを消します。本当にいいですか？	

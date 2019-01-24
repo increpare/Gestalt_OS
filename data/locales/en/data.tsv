@@ -23,3 +23,5 @@ $SOLVE	Solve
 $CONGRATS	Congratulations	
 $CONGRATS_SENTENCE	Congratulations, you solved all of the levels!	
 $WE_ARE_HAPPY	Thank you so much for playing the game. We hope you had a good time doing so :)	
+$TEXT_RESET	Reset	
+$TOOLTIP_RESET	Reset the game. This will delete all save data.  Are you sure?	

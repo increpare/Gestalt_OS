@@ -23,3 +23,5 @@ $SOLVE	Résoudre
 $CONGRATS	Félicitations	
 $CONGRATS_SENTENCE	Félicitations, tu as résolu tous les niveaux!	
 $WE_ARE_HAPPY	Merci beaucoup d'avoir joué. Nous espérons que vous vous êtes bien amusés :)	
+$TEXT_RESET	Recommencer	
+$TOOLTIP_RESET	Recommencer le jeu. Ceci effacera tout le progrès. Êtes-vous sûr?	

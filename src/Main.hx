@@ -48,6 +48,9 @@ class Ziel{
 
 class Main {
 
+	var enableEditor:Bool=false;
+	var zeigBetaNotice:Bool=false;
+
 	public var letztes_hoverziel_x:Int=-1;
 	public var letztes_hoverziel_y:Int=-1;
 	public var cansolve:Bool=true;
@@ -90,14 +93,18 @@ class Main {
 		//8 2x4 punkte
 		["v1","cy4:Ziely4:zielaau5hany3:s10nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hanR2nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
+		//DELETE
 		//9 finde ich das tatsächlich ok? ich weiß nicht!
-		["v1","cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
+		// ["v1","cy4:Ziely4:zielaau5hany2:s5u3hau2R2u2hau3R2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//10 große 1 (nicht so gut)
 		["v1","cy4:Ziely4:zielaay3:s12R2nhanR2nhanR2nhanR2nhaR2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//11 sollte nicht zu schwierig sein, aber bin nicht sicher
 		["v1","cy4:Ziely4:zielaay2:s9R2R2R2hhy9:werkzeugeatttttttttttttttttttthg"],
+
+		//INSERT
+		["v1","cy4:Ziely4:zielaau2y2:s6R2hau2R2R2haR2R2u2haR2R2u2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//12 kreuz mit beharrung
 		["v1","cy4:Ziely4:zielaany2:s2nhaR2nR2hanR2nhhy9:werkzeugeatttttttttttttttttttthg"],
@@ -139,6 +146,9 @@ class Main {
 
 		//22 cross with ups and downs
 		["v1","cy4:Ziely4:zielaau5hau2y3:s17u2hany3:s16nR3nhau2R2u2hau5hhy9:werkzeugeatttttttttttttttttttthg"],
+
+		//INSERT
+		["v1","cy4:Ziely4:zielaau5hany2:s3ny2:s4nhau5hanR3nR2nhau5hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//23 mittel-schwer, könnte spaß machen
 		["v1","cy4:Ziely4:zielaany2:s5nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2haR2nR2nhanR2nR2hhy9:werkzeugeatttttttttttttttttttthg"],
@@ -182,8 +192,9 @@ class Main {
 		//41  two col level that looks like the old toolbar
 		["v1","cy4:Ziely4:zielaay2:s2R2hay2:s5R3hay3:s12R4hay2:s6R5haR2R2haR3R3haR4R4haR5R5hhy9:werkzeugeatttttttttttttttttttthg"],
 
+		//DELETE
 		//33 medium-interesting, but not bad
-		["v1","cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg"],
+		// ["v1","cy4:Ziely4:zielaay3:s15nR2hanR2nhaR2nR2hhy9:werkzeugeatttttttttttttttttttthg"],
 
 		//34 tricky-hard to guess at (Actually i think it's ok now)
 		["v1","cy4:Ziely4:zielaany3:s11nR2nhau5hay3:s10R2R3R2R3hhy9:werkzeugeatttttttttttttttttttthg"],
@@ -1654,7 +1665,7 @@ function regenAllText(){
 		} else{
 			text_y_off_menu=1;
 		}
-		var dumbkeys=["$ABOUT_GESTALT_OS","$GESTALT_MANUFACTURING","$CORPORATION_R","$GESTALT_OS_VERSION","$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE","$CREDITS_THANKS_TO","$CREDITS_LEVEL_DESIGN","$CREDITS_TRANSLATION","$CREDITS_THE_REST","$BUTTON_OK","$TOOLTIP_CLEAR_PAGE","$TOOLTIP_UNDO","$TOOLTIP_REDO","$TOOLTIP_FULLSCREEN","$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO","$TOOLTIP_ABOUT","$TOOLS","$WORKBENCH","$GOAL_X_OF_Y","$SOLVED","$SOLVE","$CONGRATS","$CONGRATS_SENTENCE","$WE_ARE_HAPPY"];
+		var dumbkeys=["$ABOUT_GESTALT_OS","$GESTALT_MANUFACTURING","$CORPORATION_R","$GESTALT_OS_VERSION","$COPYRIGHT_GMC_TRANSLATE_ACRONYM_PLEASE","$CREDITS_THANKS_TO","$CREDITS_LEVEL_DESIGN","$CREDITS_TRANSLATION","$CREDITS_THE_REST","$BUTTON_OK","$TOOLTIP_CLEAR_PAGE","$TOOLTIP_UNDO","$TOOLTIP_REDO","$TOOLTIP_FULLSCREEN","$TOOLTIP_LANGUAGE_TRANSLATE_LANGUAGE_NAME_ALSO","$TOOLTIP_ABOUT","$TOOLS","$WORKBENCH","$GOAL_X_OF_Y","$SOLVED","$SOLVE","$CONGRATS","$CONGRATS_SENTENCE","$WE_ARE_HAPPY","$TEXT_RESET","$TOOLTIP_RESET"];
 		dict = new Map<String,String>();
 		for (d in dumbkeys){
 			dict[d]=tongue.get(d);
@@ -1667,7 +1678,7 @@ function regenAllText(){
 
 
 
-		var nameListe = "Daniel Frier.Stephen Saver.David Kilford.Dani Soria.Adrian Toncean.Alvaro Salvagno.Ethan Clark.Blake Regehr.Happy Snake.Joel Gahr.Alexander Turner.Tatsunami.Matt Rix.Bigaston.Lajos Kis.Lorxus.Fachewachewa.Marcos Donnantuoni.That Scar.Llewelyn Griffiths.Capnsquishy.Alexander Martin.Guilherme Töws.Alex Fink.Christian Zachau.@Ilija.Celeste Brault.Cédric Coulon.Lukas Koudelka.George Kurelic.Konstantin Dediukhin.Jazz Mickle.Oori.Xanto.Jonah Ostroff.Felix Niklas.Carlos Pidox.Tarek Sabet.Jason Reed.Justin Smith.Scott Redig.Ugurcan Kilic.Nolan Daigle.Louis Fontaine.Tomas zelgaris Zahradnícek.MikkelP";
+		var nameListe = "Daniel Frier.Stephen Saver.David Kilford.Dani Soria.Adrian Toncean.Alvaro Salvagno.Ethan Clark.Blake Regehr.Happy Snake.Joel Gahr.Alexander Turner.Tatsunami.Matt Rix.Bigaston.Lajos Kis.Lorxus.Fachewachewa.Marcos Donnantuoni.That Scar.Llewelyn Griffiths.Capnsquishy.Alexander Martin.Guilherme Töws.Alex Fink.Christian Zachau.@Ilija.Celeste Brault.Cédric Coulon.Lukas Koudelka.George Kurelic.Konstantin Dediukhin.Jazz Mickle.Oori.Xanto.Jonah Ostroff.Felix Niklas.Carlos Pidox.Tarek Sabet.Jason Reed.Justin Smith.Scott Redig.Ugurcan Kilic.Nolan Daigle.Louis Fontaine.Tomas zelgaris Zahradnicek.MikkelP.Terry Cavanagh.Matt Mistele";
 		var translatorListe = "Carlos Pidox.Francesco Mazzoli.Tatsunami.Lucas Le Slo.Stephen Lavelle";
 		
 		if (Globals.state.sprache=="ja"){
@@ -1780,6 +1791,17 @@ function regenAllText(){
 
 	var undoStack:Array<Array<LevelZustand>>;
 	var undoPos:Array<Int>;
+
+	function reset_all(){
+		for (lidx in 0...geloest.length){
+			geloest[lidx]=null;
+		}
+		Save.delete();
+		forceregentext=true;
+		zeigabout=false;
+		LoadLevel(0);
+		forcerender=true;
+	}
 
 	function zustandSpeichern(){
 		var curUndoPos = undoPos[aktuellesZielIdx];
@@ -1901,6 +1923,7 @@ function tueRedo(){
 		}
 	}
 
+
 	var forcerender:Bool=true;
 	var forceregentext:Bool=false;
 	
@@ -1908,10 +1931,12 @@ function tueRedo(){
 	var zeigende:Bool=false;
 
 	function betaNotice(){
-		var oldfont = Text.font;
-		Text.font="nokia";
-		Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
-		Text.font=oldfont;
+		if (zeigBetaNotice){
+			var oldfont = Text.font;
+			Text.font="nokia";
+			Text.display(3,Gfx.screenheight-10,"Beta: please do not distribute",Col.BLACK);
+			Text.font=oldfont;
+		}
 	}
 
 	function update() {	
@@ -1924,7 +1949,7 @@ function tueRedo(){
 
 		var keyrepeat=Math.floor(Core.fps/5);
 
-		if (Input.justpressed(Key.A)){
+		if (Input.justpressed(Key.A)&&enableEditor){
 			editmodus=!editmodus;
 			forcerender=true;
 		}
@@ -1934,13 +1959,7 @@ function tueRedo(){
 		}
 
 		if (Input.justpressed(Key.RBRACKET)){
-			for (lidx in 0...geloest.length){
-				geloest[lidx]=null;
-			}
-			LoadLevel(0);
-			Save.delete();
-			forceregentext=true;
-			forcerender=true;
+			reset_all();
 		}
 
 		if (
@@ -2018,6 +2037,35 @@ function tueRedo(){
 				forcerender=true;
 			}
 
+			if (
+				IMGUI.presstextbutton(
+					"ueber_ok",
+					"btn_solve_bg_up",
+					"btn_solve_bg_down",
+					dict["$BUTTON_OK"],
+					0x20116d,
+					279+25,198
+					))
+			{
+				zeigabout=false;
+				forcerender=true;
+			}
+
+			// if (
+			// 	IMGUI.presstextbutton(
+			// 		"ueber_ok",
+			// 		"btn_solve_bg_up_2",
+			// 		"btn_solve_bg_down_2",
+			// 		dict["$TEXT_RESET"],
+			// 		0x20116d,
+			// 		29,198,
+			// 		dict["$TOOLTIP_RESET"]
+			// 		))
+			// {
+			// 	reset_all();
+			// }
+
+			IMGUI.zeigtooltip();
 			betaNotice();
 	
 			return;
@@ -2468,7 +2516,7 @@ function tueRedo(){
 				var b_h=editor_br_y-editor_tl_y;
 				b_w = b_w*19+1;
 				b_h = b_h*19+1;
-				Gfx.drawbox(89+editor_tl_x*19-1,20+editor_tl_y*20-1,b_w,b_h,Col.RED);
+				Gfx.drawbox(89+editor_tl_x*19-1,19+editor_tl_y*20-1,b_w,b_h,Col.RED);
 			}
 		}
 		

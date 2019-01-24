@@ -89,6 +89,12 @@ class IMGUI {
 			b_h=17;
 			b_w++;//=10;//no idea..
 		}
+		if (x<0){
+			x=Mouse.x;
+			if (x+b_w>=Gfx.screenwidth){
+				x=Gfx.screenwidth-(b_w+1);
+			}
+		}
 		Gfx.fillbox(x,y,b_w,b_h,0x035766);
 		Gfx.drawbox(x,y,b_w,b_h,0xbfbfbf);
 		Text.display(x+mx_l,y+my_t,tooltipstr,0x9f9f9f);

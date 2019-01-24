@@ -23,3 +23,5 @@ $SOLVE	Lösen
 $CONGRATS	Herzlichen Glückwunsch!	
 $CONGRATS_SENTENCE	Herzlichen Glückwunsch! Du hast alle Levels gelöst!	
 $WE_ARE_HAPPY	Wir freuen uns, dass du unser Spiel gespielt hast. Hoffentlich hat es dir gut gefallen :)	
+$TEXT_RESET	Zurücksetzen	
+$TOOLTIP_RESET	Das Spiel zurückzusetzen.  All Daten werden gelöscht.	

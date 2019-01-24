@@ -94,7 +94,7 @@
 		<char id="12372" x="161" y="37" width="11" xadvance="12" height="9" xoffset="1" yoffset="2" />
 		<char id="12374" x="76" y="13" width="11" xadvance="12" height="11" xoffset="1" yoffset="1" />
 		<char id="12414" x="19" y="13" width="10" xadvance="12" height="11" xoffset="1" yoffset="1" />
-		<char id="12290" x="70" y="25" width="5" xadvance="12" height="4" xoffset="4" yoffset="8" />
+		<char id="12290" x="70" y="25" width="5" xadvance="12" height="4" xoffset="2" yoffset="8" />
 		<char id="27005" x="147" y="0" width="11" xadvance="12" height="12" xoffset="1" yoffset="0" />
 		<char id="12375" x="215" y="37" width="8" xadvance="12" height="10" xoffset="2" yoffset="2" />
 		<char id="12435" x="112" y="25" width="11" xadvance="12" height="10" xoffset="1" yoffset="2" />
@@ -185,6 +185,15 @@
 		<char id="25147" x="0" y="76" width="11" xadvance="12" height="11" xoffset="1" yoffset="1" />
 		<char id="30452" x="0" y="88" width="11" xadvance="12" height="12" xoffset="1" yoffset="0" />
 		<char id="65306" x="194" y="58" width="2" xadvance="12" height="6" xoffset="6" yoffset="4" />
+
+		<char id="12475" x="16" y="80" width="11" xadvance="12" height="11" xoffset="1" yoffset="1" />
+		<char id="12483" x="32" y="80" width="6" xadvance="12" height="7" xoffset="3" yoffset="5" />
+		<char id="12502" x="48" y="80" width="10" xadvance="12" height="12" xoffset="1" yoffset="0" />
+		<char id="12487" x="64" y="80" width="11" xadvance="12" height="12" xoffset="1" yoffset="0" />
+		<char id="28040" x="16" y="96" width="11" xadvance="12" height="12" xoffset="1" yoffset="0" />
+		<char id="24403" x="32" y="96" width="11" xadvance="12" height="12" xoffset="1" yoffset="0" />
+		<char id="12363" x="48" y="96" width="11" xadvance="12" height="11" xoffset="1" yoffset="1" />
+		<char id="65311" x="0" y="112" width="8"  xadvance="12" height="10" xoffset="2" yoffset="1" />
 
 	</chars>
 </font>

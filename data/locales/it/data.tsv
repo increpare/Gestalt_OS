@@ -23,3 +23,5 @@ $SOLVE	Risolvi
 $CONGRATS	Congratulazioni	
 $CONGRATS_SENTENCE	Congratulazioni, hai completato tutti i livelli!	
 $WE_ARE_HAPPY	Grazie mille per aver giocato. Speriamo ti sia divertito.	
+$TEXT_RESET	Reset	
+$TOOLTIP_RESET	Resetta il gioco. Tutti i salvataggi verranno cancellati. Sei sicuro?	
