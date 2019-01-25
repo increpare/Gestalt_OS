@@ -56,7 +56,7 @@ class Main {
 	public var cansolve:Bool=true;
 	public var solvex:Int=-1;
 	public var solvey:Int=-1;
-
+	
 	public var editmodus:Bool=false;
 	public var editor_tl_x:Int=1;
 	public var editor_tl_y:Int=2;

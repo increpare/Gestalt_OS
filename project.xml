@@ -4,8 +4,8 @@
   <set name="windowheight" value="236" />
   
 	<meta 
-    title="Magiewerkbank" 
-    package="com.increpare.magiewerkbank" 
+    title="Gestalt_OS" 
+    package="com.increpare.Gestalt_OS" 
     version="1.0.0" 
     company="Haxegon" 
   />
@@ -14,7 +14,7 @@
 	<app 
       main="haxegon.Load"
       path="bin" 
-      file="magiewerkbank" 
+      file="Gestalt_OS" 
    />
 
   <window width="${windowwidth}" height="${windowheight}" if="flash || cpp || neko"></window>
